@@ -5,11 +5,19 @@ import "@shoelace-style/shoelace/dist/components/icon/icon.js"
 import "@shoelace-style/shoelace/dist/components/menu/menu.js"
 import "@shoelace-style/shoelace/dist/components/menu-item/menu-item.js"
 import "@shoelace-style/shoelace/dist/components/switch/switch.js"
+import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import { AppRoot } from "Elements/App-Root.js"
-import { SelectTheme } from "Elements/Select-Theme.js"
+import { CurrencyPicker } from "Elements/Currency-Picker.js"
+import { ThemePicker } from "Elements/Theme-Picker.js"
 
 customElements.define("app-root", AppRoot)
-customElements.define("select-theme", SelectTheme)
+customElements.define("currency-picker", CurrencyPicker)
+customElements.define("theme-picker", ThemePicker)
+
+registerIconLibrary("custom-icons", {
+	resolver: name => `/images/${name}.svg`,
+	mutator: svg => svg.setAttribute("fill", "currentColor"),
+})
 
 const getRoot = (ele: ParentNode | HTMLElement) =>
 	(ele as HTMLElement).shadowRoot ?? ele

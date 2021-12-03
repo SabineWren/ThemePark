@@ -9,5 +9,6 @@ TODO:
 Shoelace requires a one-time copy of icons and styling
 - Copy the shoelace assets directory into Web_Root.
 - Copy the shoelace theme css files into Web_Root.
+
 Bring your own web server.
 

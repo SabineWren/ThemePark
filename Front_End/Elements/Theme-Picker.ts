@@ -1,5 +1,6 @@
 import { html, LitElement } from "lit"
 import { state } from "lit/decorators.js"
+import { Shared } from "Elements/Style.js"
 
 const THEMES_DARK = [
 	{ SlClass: "sl-theme-dark", Label: "Default" },
@@ -25,33 +26,35 @@ const loadStylesheet = (theme: themeDark | themeLight) => {
 		})
 }
 
-enum ThemePref { Auto=1, Light=2, Dark=3 }
-const getIsLight = (t: ThemePref) => t === ThemePref.Light
-	|| t === ThemePref.Auto && MEDIA_PREF_LIGHT.matches
-export class SelectTheme extends LitElement {
-	@state() private pref = ThemePref.Auto
+enum THEME { Auto=1, Light=2, Dark=3 }
+const getIsLight = (t: THEME) => t === THEME.Light
+	|| t === THEME.Auto && MEDIA_PREF_LIGHT.matches
+export class ThemePicker extends LitElement {
+	@state() private pref = THEME.Auto
 	@state() private dark: themeDark = THEMES_DARK[0]
 	@state() private light: themeLight = THEMES_LIGHT[0]
 	override connectedCallback() {
 		MEDIA_PREF_LIGHT.addEventListener("change", () => {
-			if (this.pref === ThemePref.Auto) { this.requestUpdate() }
+			if (this.pref === THEME.Auto) { this.requestUpdate() }
 		})
 		return super.connectedCallback() }
+	static override get styles() { return [Shared] }
 	override render() {
 		const t = getIsLight(this.pref) ? this.light : this.dark
 		loadStylesheet(t).then(() => $(document, "body").className = t.SlClass)
-		const modeItem = (p: ThemePref, t: string) => html`
+		const modeItem = (p: THEME, t: string) => html`
 <sl-menu-item ?checked=${p === this.pref} value="${p}">${t}</sl-menu-item>`
 		return html`
 <sl-button-group>
+	<currency-picker></currency-picker>
 	<sl-dropdown>
 		<sl-button slot="trigger" size="small" caret type="default">
 			<sl-icon name="${getIsLight(this.pref) ? "sun" : "moon"}"></sl-icon>
 		</sl-button>
 		<sl-menu @sl-select=${(e: any) => this.pref = Number.parseInt(e.detail.item.value)}>
-			${modeItem(ThemePref.Dark, "Dark")}
-			${modeItem(ThemePref.Light, "Light")}
-			${modeItem(ThemePref.Auto, "Auto")}
+			${modeItem(THEME.Dark, "Dark")}
+			${modeItem(THEME.Light, "Light")}
+			${modeItem(THEME.Auto, "Auto")}
 		</sl-menu>
 	</sl-dropdown>
 	${getIsLight(this.pref)
