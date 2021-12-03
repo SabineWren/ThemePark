@@ -1,0 +1,147 @@
+/* https://www.nordtheme.com/
+ * https://github.com/arcticicestudio/nord/blob/develop/src/nord.css */
+:host,
+.sl-theme-polar-night,
+.sl-theme-snow-storm {
+	/* Polar Night */
+	/* Dark mode: high contrast background; Light mode: main text colour */
+	--nord0: #2e3440;
+	/* Dark mode: low contrast background; Light mode: low contrast text */
+	--nord1: #3b4252;
+	/* Dark mode: selection highlight; Light mode: borders */
+	--nord2: #434c5e;
+	/* Both light and dark: Disabled content */
+	--nord3: #4c566a;
+
+	/* Snow Storm */
+	/* Dark mode: main text colour; Light mode: high contrast background */
+	--nord6: #eceff4;
+	/* Mostly indistinguishable from --nord6. Why do they have this? */
+	--nord5: #e5e9f0;
+	/* Dark mode: low contrast text; Light mode: low contrast background */
+	--nord4: #d8dee9;
+	/* Not enough whites for Light mode, so use --nord3 or --nord9 for borders */
+
+	/* Frost (low sat blues) */
+	--nord7: #8fbcbb;/* Pastel accent colour for gradients */
+	--nord8: #88c0d0;/* Main accent colour; useful in gradients */
+	--nord9: #81a1c1;/* Special text (grey-blue) */
+	--nord10: #5e81ac;/* Special text text (pastel blue) */
+
+	/* Aurora (pastel colours) */
+	--nord11: #bf616a;/* red Error */
+	--nord12: #d08770;/* Light mode warnings (orange) */
+	--nord13: #ebcb8b;/* Dark mode warnings (yellow) */
+	--nord14: #a3be8c;/* green Success */
+	--nord15: #b48ead;/* purple Probably useful for gradients */
+
+	--sl-color-danger-50: var(--nord11);
+	--sl-color-danger-100: var(--nord11);
+	--sl-color-danger-200: var(--nord11);
+	--sl-color-danger-300: var(--nord11);
+	--sl-color-danger-400: var(--nord11);
+	--sl-color-danger-500: var(--nord11);
+	--sl-color-danger-600: var(--nord11);
+	--sl-color-danger-700: var(--nord11);
+	--sl-color-danger-800: var(--nord11);
+	--sl-color-danger-900: var(--nord11);
+	--sl-color-danger-950: var(--nord11);
+}
+
+:host,
+.sl-theme-polar-night {
+	--sl-color-gray-50: var(--nord1);
+	--sl-color-gray-100: var(--nord1);
+	--sl-color-gray-200: var(--nord1);
+	--sl-color-gray-300: var(--nord2);
+	--sl-color-gray-400: var(--nord2);
+	--sl-color-gray-500: var(--nord3);
+	--sl-color-gray-600: var(--nord3);
+	--sl-color-gray-700: var(--nord6);
+	--sl-color-gray-800: var(--nord6);
+	--sl-color-gray-900: var(--nord5);
+	--sl-color-gray-950: var(--nord5);
+
+	--sl-color-warning-50: var(--nord13);
+	--sl-color-warning-100: var(--nord13);
+	--sl-color-warning-200: var(--nord13);
+	--sl-color-warning-300: var(--nord13);
+	--sl-color-warning-400: var(--nord13);
+	--sl-color-warning-500: var(--nord13);
+	--sl-color-warning-600: var(--nord13);
+	--sl-color-warning-700: var(--nord13);
+	--sl-color-warning-800: var(--nord13);
+	--sl-color-warning-900: var(--nord13);
+	--sl-color-warning-950: var(--nord13);
+
+	--sl-color-neutral-0: var(--nord0);
+	--sl-color-neutral-1000: var(--nord6);
+
+	/* TODO: THESE ARE COPIED FROM DEFAULT */
+	--sl-shadow-x-small: 0 1px 2px rgb(0 0 0 / 18%);
+	--sl-shadow-small: 0 1px 2px rgb(0 0 0 / 24%);
+	--sl-shadow-medium: 0 2px 4px rgb(0 0 0 / 24%);
+	--sl-shadow-large: 0 2px 8px rgb(0 0 0 / 24%);
+	--sl-shadow-x-large: 0 4px 16px rgb(0 0 0 / 24%);
+
+	--sl-input-background-color: var(--sl-color-neutral-0);
+	--sl-input-background-color-hover: var(--sl-color-neutral-0);
+	--sl-input-background-color-focus: var(--sl-color-neutral-0);
+	--sl-input-background-color-disabled: var(--sl-color-neutral-100);
+	--sl-input-border-color: var(--sl-color-neutral-300);
+	--sl-input-border-color-hover: var(--sl-color-neutral-400);
+	--sl-input-border-color-focus: var(--sl-color-primary-500);
+	--sl-input-border-color-disabled: var(--sl-color-neutral-300);
+	--sl-input-border-width: 1px;
+
+	--sl-overlay-background-color: hsl(0 0% 0% / 43%);
+}
+
+:host,
+.sl-theme-snow-storm {
+	--sl-color-gray-50: var(--nord4);
+	--sl-color-gray-100: var(--nord5);
+	--sl-color-gray-200: var(--nord5);
+	--sl-color-gray-300: var(--nord6);
+	--sl-color-gray-400: var(--nord3);
+	--sl-color-gray-500: var(--nord3);
+	--sl-color-gray-600: var(--nord2);
+	--sl-color-gray-700: var(--nord2);
+	--sl-color-gray-800: var(--nord1);
+	--sl-color-gray-900: var(--nord1);
+	--sl-color-gray-950: var(--nord1);
+
+	--sl-color-warning-50: var(--nord12);
+	--sl-color-warning-100: var(--nord12);
+	--sl-color-warning-200: var(--nord12);
+	--sl-color-warning-300: var(--nord12);
+	--sl-color-warning-400: var(--nord12);
+	--sl-color-warning-500: var(--nord12);
+	--sl-color-warning-600: var(--nord12);
+	--sl-color-warning-700: var(--nord12);
+	--sl-color-warning-800: var(--nord12);
+	--sl-color-warning-900: var(--nord12);
+	--sl-color-warning-950: var(--nord12);
+
+	--sl-color-neutral-0: var(--nord6);
+	--sl-color-neutral-1000: var(--nord0);
+
+	/* TODO: THESE ARE COPIED FROM DEFAULT */
+	--sl-shadow-x-small: 0 1px 2px hsl(240 3.8% 46.1% / 6%);
+	--sl-shadow-small: 0 1px 2px hsl(240 3.8% 46.1% / 12%);
+	--sl-shadow-medium: 0 2px 4px hsl(240 3.8% 46.1% / 12%);
+	--sl-shadow-large: 0 2px 8px hsl(240 3.8% 46.1% / 12%);
+	--sl-shadow-x-large: 0 4px 16px hsl(240 3.8% 46.1% / 12%);
+
+	--sl-input-background-color: var(--sl-color-neutral-0);
+	--sl-input-background-color-hover: var(--sl-input-background-color);
+	--sl-input-background-color-focus: var(--sl-input-background-color);
+	--sl-input-background-color-disabled: var(--sl-color-neutral-100);
+	--sl-input-border-color: var(--sl-color-neutral-300);
+	--sl-input-border-color-hover: var(--sl-color-neutral-400);
+	--sl-input-border-color-focus: var(--sl-color-primary-500);
+	--sl-input-border-color-disabled: var(--sl-color-neutral-300);
+	--sl-input-border-width: 1px;
+
+	--sl-overlay-background-color: hsl(240 3.8% 46.1% / 33%);
+}

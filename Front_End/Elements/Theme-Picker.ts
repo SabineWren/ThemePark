@@ -3,18 +3,19 @@ import { state } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 
 const THEMES_DARK = [
-	{ SlClass: "sl-theme-dark", Label: "Default" },
-	{ SlClass: "sl-theme-test", Label: "Test" },
+	{ File: "sl-theme-dark", SlClass: "sl-theme-dark", Label: "Default" },
+	{ File: "sl-theme-nord", SlClass: "sl-theme-polar-night", Label: "Nord: Polar Night" },
 ] as const
 const THEMES_LIGHT = [
-	{ SlClass: "sl-theme-light", Label: "Default" },
+	{ File: "sl-theme-light", SlClass: "sl-theme-light", Label: "Default" },
+	{ File: "sl-theme-nord", SlClass: "sl-theme-snow-storm", Label: "Nord: Snow Storm" },
 ] as const
 type themeDark = typeof THEMES_DARK[number]
 type themeLight = typeof THEMES_LIGHT[number]
 const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
 
 const loadStylesheet = (theme: themeDark | themeLight) => {
-	const url = `/${theme.SlClass}.css`
+	const url = `/${theme.File}.css`
 	return document.querySelector(`link[href="${url}"]`)
 		? Promise.resolve()
 		: new Promise(resolve => {
