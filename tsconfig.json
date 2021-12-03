@@ -1,0 +1,46 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		// ****** Settings necessary for making the build work. ******
+		"allowJs": false,
+		"baseUrl": "Front_End",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"importHelpers": true,
+		"lib": ["ESNext", "dom"],
+		// 2021 for pipes and pattern matching
+		// 2022 for top level await when the eslint, rollup, etc support it
+		"module": "ES2020",
+		"moduleResolution": "node",
+		"plugins": [
+			{
+				"name": "ts-lit-plugin",
+				"strict": true,
+				"rules": {
+					"no-incompatible-property-type": "warn",
+					"no-incompatible-type-binding": "warn",
+					"no-missing-import": "off",
+					"no-unknown-tag-name": "off",
+					"no-unintended-mixed-binding": "error"
+				}
+			}
+		],
+		"skipLibCheck": false,
+		"sourceMap": true,
+		"sourceRoot": "Front_End",
+		"target": "ES2020",
+		"typeRoots": [
+			"Front_End/**",
+			"node_modules/@types",
+		],
+		// ****** Language features for code verification. ******
+		"noImplicitAny": true,
+		"noImplicitOverride": true,
+		"noImplicitThis": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true
+	},
+	"include": ["Front_End/**/*"],
+	"exclude": ["node_modules"]
+}

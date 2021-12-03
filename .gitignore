@@ -1,0 +1,20 @@
+# Build Artifacts
+*.js.map
+*.js
+Web_Root/assets
+Web_Root/dist
+Web_Root/sl-theme-dark.css
+Web_Root/sl-theme-light.css
+
+# Dependencies
+node_modules
+# Yes I'm aware this should be committed for production.
+# This isn't a production repo, and I don't want big diffs
+package-lock.json
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+
+# Secrets
+# <none>
