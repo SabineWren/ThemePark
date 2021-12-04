@@ -3,8 +3,6 @@
 *.js
 Web_Root/assets
 Web_Root/dist
-Web_Root/sl-theme-dark.css
-Web_Root/sl-theme-light.css
 
 # Dependencies
 node_modules

@@ -31,7 +31,7 @@ sl-card { flex: 0 0 25rem; }
 
 	<sl-card>
 		<h4>Card: Subtle</h4>
-		<p>High-contrast background for related information. Suitable for image backgrounds. Themes may apply a box shadow, or style headers/icons with gradients.</p>
+		<p>High-contrast background. May contain a stretched image. Themes may apply a box shadow, or style headers/icons with gradients.</p>
 	</sl-card>
 
 	<sl-card>
