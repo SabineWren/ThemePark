@@ -35,6 +35,18 @@
 	--nord14: #a3be8c;/* green Success */
 	--nord15: #b48ead;/* purple Probably useful for gradients */
 
+	--sl-color-sky-50: var(--nord8);
+	--sl-color-sky-100: var(--nord8);
+	--sl-color-sky-200: var(--nord8);
+	--sl-color-sky-300: var(--nord8);
+	--sl-color-sky-400: var(--nord8);
+	--sl-color-sky-500: var(--nord8);
+	--sl-color-sky-600: var(--nord8);
+	--sl-color-sky-700: var(--nord8);
+	--sl-color-sky-800: var(--nord8);
+	--sl-color-sky-900: var(--nord8);
+	--sl-color-sky-950: var(--nord8);
+
 	--sl-color-danger-50: var(--nord11);
 	--sl-color-danger-100: var(--nord11);
 	--sl-color-danger-200: var(--nord11);
@@ -48,19 +60,30 @@
 	--sl-color-danger-950: var(--nord11);
 }
 
+.sl-theme-polar-night {
+	font-family: var(--sl-font-sans);
+	font-size: var(--sl-font-size-medium);
+	font-weight: var(--sl-font-weight-normal);
+	letter-spacing: var(--sl-letter-spacing-normal);
+	background: var(--sl-color-neutral-200);
+	color: var(--sl-color-neutral-900);
+	line-height: var(--sl-line-height-normal);
+}
 :host,
 .sl-theme-polar-night {
-	--sl-color-gray-50: var(--nord1);
+	--sl-color-neutral-0: var(--nord0);
+	--sl-color-gray-50: var(--nord0);
 	--sl-color-gray-100: var(--nord1);
-	--sl-color-gray-200: var(--nord1);
+	--sl-color-gray-200: var(--nord2);
 	--sl-color-gray-300: var(--nord2);
 	--sl-color-gray-400: var(--nord2);
 	--sl-color-gray-500: var(--nord3);
 	--sl-color-gray-600: var(--nord3);
-	--sl-color-gray-700: var(--nord6);
-	--sl-color-gray-800: var(--nord6);
+	--sl-color-gray-700: var(--nord4);/* Palette missing this shade */
+	--sl-color-gray-800: var(--nord4);
 	--sl-color-gray-900: var(--nord5);
-	--sl-color-gray-950: var(--nord5);
+	--sl-color-gray-950: var(--nord6);
+	--sl-color-neutral-1000: hsl(0, 0%, 100%);
 
 	--sl-color-warning-50: var(--nord13);
 	--sl-color-warning-100: var(--nord13);
@@ -73,9 +96,6 @@
 	--sl-color-warning-800: var(--nord13);
 	--sl-color-warning-900: var(--nord13);
 	--sl-color-warning-950: var(--nord13);
-
-	--sl-color-neutral-0: var(--nord0);
-	--sl-color-neutral-1000: var(--nord6);
 
 	/* TODO: THESE ARE COPIED FROM DEFAULT */
 	--sl-shadow-x-small: 0 1px 2px rgb(0 0 0 / 18%);
@@ -97,19 +117,30 @@
 	--sl-overlay-background-color: hsl(0 0% 0% / 43%);
 }
 
+.sl-theme-snow-storm {
+	font-family: var(--sl-font-sans);
+	font-size: var(--sl-font-size-medium);
+	font-weight: var(--sl-font-weight-normal);
+	letter-spacing: var(--sl-letter-spacing-normal);
+	background: var(--sl-color-neutral-200);
+	color: var(--sl-color-neutral-1000);
+	line-height: var(--sl-line-height-normal);
+}
 :host,
 .sl-theme-snow-storm {
-	--sl-color-gray-50: var(--nord4);
-	--sl-color-gray-100: var(--nord5);
+	--sl-color-neutral-0: hsl(0, 0%, 100%);
+	--sl-color-gray-50: hsl(0, 0%, 100%);
+	--sl-color-gray-100: var(--nord6);
 	--sl-color-gray-200: var(--nord5);
-	--sl-color-gray-300: var(--nord6);
-	--sl-color-gray-400: var(--nord3);
+	--sl-color-gray-300: var(--nord4);
+	--sl-color-gray-400: var(--nord4);/* Palette missing this shade */
 	--sl-color-gray-500: var(--nord3);
 	--sl-color-gray-600: var(--nord2);
 	--sl-color-gray-700: var(--nord2);
 	--sl-color-gray-800: var(--nord1);
 	--sl-color-gray-900: var(--nord1);
 	--sl-color-gray-950: var(--nord1);
+	--sl-color-neutral-1000: hsl(0, 0%, 0%);
 
 	--sl-color-warning-50: var(--nord12);
 	--sl-color-warning-100: var(--nord12);
@@ -122,9 +153,6 @@
 	--sl-color-warning-800: var(--nord12);
 	--sl-color-warning-900: var(--nord12);
 	--sl-color-warning-950: var(--nord12);
-
-	--sl-color-neutral-0: var(--nord6);
-	--sl-color-neutral-1000: var(--nord0);
 
 	/* TODO: THESE ARE COPIED FROM DEFAULT */
 	--sl-shadow-x-small: 0 1px 2px hsl(240 3.8% 46.1% / 6%);
