@@ -13,19 +13,6 @@
 		// 2022 for top level await when the eslint, rollup, etc support it
 		"module": "ES2020",
 		"moduleResolution": "node",
-		"plugins": [
-			{
-				"name": "ts-lit-plugin",
-				"strict": true,
-				"rules": {
-					"no-incompatible-property-type": "warn",
-					"no-incompatible-type-binding": "warn",
-					"no-missing-import": "off",
-					"no-unknown-tag-name": "off",
-					"no-unintended-mixed-binding": "error"
-				}
-			}
-		],
 		"skipLibCheck": false,
 		"sourceMap": true,
 		"sourceRoot": "Front_End",
