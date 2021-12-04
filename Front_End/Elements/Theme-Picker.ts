@@ -49,7 +49,7 @@ export class ThemePicker extends LitElement {
 <sl-button-group>
 	<currency-picker></currency-picker>
 	<sl-dropdown>
-		<sl-button slot="trigger" size="small" caret type="default">
+		<sl-button slot="trigger" caret type="default">
 			<sl-icon name="${getIsLight(this.pref) ? "sun" : "moon"}"></sl-icon>
 		</sl-button>
 		<sl-menu @sl-select=${(e: any) => this.pref = Number.parseInt(e.detail.item.value)}>
@@ -72,8 +72,8 @@ const renderTheme = <T extends themeDark | themeLight>(
 	selected: T, options: readonly T[],
 	setTheme: (e: T) => any) => html`
 <sl-dropdown>
-	<sl-button size="small" slot="trigger" caret>${selected.Label}</sl-button>
-	<sl-menu size="small"
+	<sl-button slot="trigger" caret>${selected.Label}</sl-button>
+	<sl-menu
 		@sl-select=${(e: any) => setTheme(e.detail.item.theme)}>
 		${options.map(o => html`
 		<sl-menu-item ?checked=${o === selected} .theme="${o}">${o.Label}</sl-menu-item>`)}

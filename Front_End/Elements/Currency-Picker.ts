@@ -22,10 +22,10 @@ export class CurrencyPicker extends LitElement {
 	override render() {
 		return html`
 <sl-dropdown>
-	<sl-button size="small" slot="trigger" caret>
+	<sl-button slot="trigger" caret>
 		${getIcon(selected)} 420
 	</sl-button>
-	<sl-menu size="small"
+	<sl-menu
 		@sl-select=${(e: any) => {
 			selected = e.detail.item.currency
 			this.requestUpdate()}}>
