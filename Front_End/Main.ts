@@ -9,7 +9,7 @@ import "@shoelace-style/shoelace/dist/components/switch/switch.js"
 import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import { AppRoot } from "Elements/App-Root.js"
 import { CurrencyPicker } from "Elements/Currency-Picker.js"
-import { ThemePicker } from "Elements/Theme-Picker.js"
+import { ThemePickerDropdown, ThemePickerSwitch } from "Elements/Theme-Picker.js"
 
 registerIconLibrary("custom-icons", {
 	resolver: name => `/images/${name}.svg`,
@@ -25,4 +25,5 @@ window.$$ = <T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: str
 
 customElements.define("app-root", AppRoot)
 customElements.define("currency-picker", CurrencyPicker)
-customElements.define("theme-picker", ThemePicker)
+customElements.define("theme-picker-dropdown", ThemePickerDropdown)
+customElements.define("theme-picker-switch", ThemePickerSwitch)

@@ -5,10 +5,10 @@ export const CURRENCIES = [
 	{ File: "caps", Label: "Caps" },
 	{ File: "dogecoin-text", Label: "Doge" },
 ] as const
-type currencyOption = typeof CURRENCIES[number]
+type optionCurrency = typeof CURRENCIES[number]
 
 let hosts: ReactiveControllerHost[] = []
-let selected: currencyOption = CURRENCIES[0]
+let selected: optionCurrency = CURRENCIES[0]
 export const GetCurrency = () => selected
 
 export class CurrencyFormat implements ReactiveController {
@@ -18,7 +18,7 @@ export class CurrencyFormat implements ReactiveController {
 		hosts.push(this.host) }
 	hostDisconnected() {
 		hosts = hosts.filter(h => h !== this.host) }
-	Set(o: currencyOption) {
+	Set(o: optionCurrency) {
 		selected = o
 		hosts.forEach(h => h.requestUpdate()) }
 	ToHtml(n: number | null) {
@@ -27,7 +27,7 @@ export class CurrencyFormat implements ReactiveController {
 		return CurrencyToIcon(selected) }
 }
 
-export const CurrencyToIcon = (c: currencyOption) => html`
+export const CurrencyToIcon = (c: optionCurrency) => html`
 <sl-icon library="custom-icons"
 	name="${c.File}"
 	slot="prefix"
