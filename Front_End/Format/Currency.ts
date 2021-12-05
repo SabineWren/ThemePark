@@ -9,8 +9,6 @@ type optionCurrency = typeof CURRENCIES[number]
 
 let hosts: ReactiveControllerHost[] = []
 let selected: optionCurrency = CURRENCIES[0]
-export const GetCurrency = () => selected
-
 export class CurrencyFormat implements ReactiveController {
 	constructor(private host: ReactiveControllerHost) {
 		host.addController(this) }
@@ -18,6 +16,7 @@ export class CurrencyFormat implements ReactiveController {
 		hosts.push(this.host) }
 	hostDisconnected() {
 		hosts = hosts.filter(h => h !== this.host) }
+	Get() { return selected }
 	Set(o: optionCurrency) {
 		selected = o
 		hosts.forEach(h => h.requestUpdate()) }

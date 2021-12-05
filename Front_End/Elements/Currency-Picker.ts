@@ -1,20 +1,20 @@
 import { html, LitElement } from "lit"
 import { Shared } from "Elements/Style.js"
-import { CurrencyFormat, CURRENCIES, CurrencyToIcon, GetCurrency } from "Format/Currency.js"
+import { CurrencyFormat, CURRENCIES, CurrencyToIcon } from "Format/Currency.js"
 
 export class CurrencyPicker extends LitElement {
-	private format = new CurrencyFormat(this)
+	private currency = new CurrencyFormat(this)
 	static override get styles() { return [Shared] }
 	override render() {
 		return html`
 <sl-dropdown>
 	<sl-button slot="trigger" caret>
-		${this.format.ToHtml(420)}
+		${this.currency.ToHtml(420)}
 	</sl-button>
 	<sl-menu
-		@sl-select=${(e: any) => this.format.Set(e.detail.item.currency)}>
+		@sl-select=${(e: any) => this.currency.Set(e.detail.item.currency)}>
 		${CURRENCIES.map(o => html`
-		<sl-menu-item ?checked=${o === GetCurrency()} .currency="${o}">
+		<sl-menu-item ?checked=${o === this.currency.Get()} .currency="${o}">
 			${CurrencyToIcon(o)} ${o.Label}
 		</sl-menu-item>`)}
 	</sl-menu>
