@@ -1,16 +1,9 @@
-import { css } from "lit"
 import { Nord } from "./NordPalette.js"
 
-export const NordDarkBody = css`
-.sl-theme-polar-night {
-	font-family: var(--sl-font-sans);
-	font-size: var(--sl-font-size-medium);
-	font-weight: var(--sl-font-weight-normal);
-	letter-spacing: var(--sl-letter-spacing-normal);
-	background: var(--sl-color-neutral-200);
-	color: var(--sl-color-neutral-900);
-	line-height: var(--sl-line-height-normal);
-}`
+export const NordDarkBody = `
+background: var(--sl-color-neutral-200);
+color: var(--sl-color-neutral-900);
+`
 
 const overlay = (opacity: number): Rgb =>
 	({ Red: 0, Green: 0, Blue: 0, Alpha: opacity })

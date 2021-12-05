@@ -5,8 +5,16 @@
 	<meta charset="utf-8">
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/sl-root.css"/>
 	<link rel="stylesheet" href="/sl-theme-dark.css"/>
+	<style>
+body {
+	font-family: var(--sl-font-sans);
+	font-size: var(--sl-font-size-medium);
+	font-weight: var(--sl-font-weight-normal);
+	letter-spacing: var(--sl-letter-spacing-normal);
+	line-height: var(--sl-line-height-normal);
+}
+	</style>
 	<script>
 const getRoot = ele => ele.shadowRoot ?? ele
 window.$ = (ele, selector) => getRoot(ele).querySelector(selector)

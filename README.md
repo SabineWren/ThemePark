@@ -3,8 +3,6 @@ Apps document themes through a set of Design Tokens, typically CSS Custom Proper
 
 Existing theme specification systems like [Style Dictionary](https://amzn.github.io/style-dictionary/) and [Theo](https://github.com/salesforce-ux/theo) define all the styling for apps, including sizing and spacing. That's because they're not meant for 3rd party replacement, and overriding stylesheets with 3rd party themes can [break apps](https://stopthemingmy.app/).
 
-Current tools aren't type-safe for theme implementers, although several [System UI](https://github.com/system-ui/theme-specification) issues discuss standardizing a TypeScript definition. [Universal Design Tokens](https://github.com/universal-design-tokens/udt) created a standard with tooling for validation, but it looks abandoned.
-
 ## Goal
 Bring **[all the themes](#themes)** to the web, bridging the gap between theme creators and app authors.
 

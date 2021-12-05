@@ -1,20 +1,21 @@
-import { css, unsafeCSS, CSSResult } from "lit"
+import { css, unsafeCSS } from "lit"
 
 export const ThemeToShoelaceCss = (
 	cssClass: string,
 	theme: ThemeTargetShoelace,
-	body: CSSResult) =>
+	bodyText: string) =>
 {
 	const cssText = Object.entries(theme)
 		.map(([k,v]) => `${k}: ${vToString(v)};`)
 		.join("\n")
+	const className = unsafeCSS(cssClass)
 	const cssParsed = css`
-:root,
-:host,
-${unsafeCSS("." + cssClass)} {
+:root, :host, .${className} {
 	${unsafeCSS(cssText)}
 }`
-	return css`${cssParsed}${nonThemeTokens}${body}`
+	const cssBody = css`
+body.${className} { ${unsafeCSS(bodyText)} }`
+	return css`${cssBody}${cssParsed}${nonThemeTokens}`
 }
 
 const getIsHex = (v: ThemeValue): v is HexColour =>
