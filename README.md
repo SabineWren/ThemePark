@@ -30,10 +30,9 @@ Themes add bytes, and I hope to eventually support a ludicrous number of themes.
 Shoelace requires a one-time copy of its Bootstrap icons. Copy the shoelace assets directory into Web_Root. Bring your own web server.
 
 ### TODO Mock Website
-1. Remove 'auto' light/dark state, instead choosing one automatically. I originally did this in the first pass, but didn't like how it looked and instead copied the Shoelace docs. I'll try again with a custom toggle switch.
-2. Save theme selection to local storage to handle page refresh. Shoelace does this in their docs, so I'll probably just copy it.
-3. Add many components to a mock site to test theming.
-4. Implement full support for Nord Polar Night, as it's the best-documented dark theme that also has a corresponding light theme.
+- Save theme selection to local storage to handle page refresh. Shoelace does this in their docs, so I'll probably just copy it.
+- Add many components to a mock site to test theming.
+- Implement full support for Nord Polar Night, as it's the best-documented dark theme that also has a corresponding light theme.
 
 ### TODO Theme Tooling
 1. Figure out a better way to map theme colours to Shoelace.
