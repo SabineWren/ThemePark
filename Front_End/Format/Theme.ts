@@ -1,4 +1,9 @@
 import { ReactiveController, ReactiveControllerHost } from "lit"
+import { NordDarkBody, NordPolarNight } from "Themes/NordPolarNight.js"
+import { ThemeToShoelaceCss } from "Themes/Tools/Shoelace.js"
+
+const nordDarkCss = ThemeToShoelaceCss(
+	"sl-theme-polar-night", NordPolarNight, NordDarkBody)
 
 const THEMES_DARK = [
 	{ File: "sl-theme-dark", SlClass: "sl-theme-dark", Label: "Default" },
@@ -17,10 +22,21 @@ let hosts: ReactiveControllerHost[] = []
 
 const loadStylesheet = (theme: optionDark | optionLight) => {
 	const url = `/${theme.File}.css`
-	return document.querySelector(`link[href="${url}"]`)
+
+	// temporay kludge while figuring out theme spec
+	if (theme.SlClass === "sl-theme-polar-night") {
+		if ($(document, `#kludge-style`)) return Promise.resolve()
+		const style = document.createElement("style")
+		style.innerHTML = nordDarkCss.cssText
+		style.id = "kludge-style"
+		$(document, "head").appendChild(style)
+		return Promise.resolve()
+	}
+
+	return $(document, `link[href="${url}"]`)
 		? Promise.resolve()
 		: new Promise(resolve => {
-			const link = document.createElement('link')
+			const link = document.createElement("link")
 			link.rel = "stylesheet"
 			link.href = url
 			$(document, "head").appendChild(link)
