@@ -22,8 +22,8 @@ sl-card { flex: 0 0 25rem; }
 	<div style="margin: auto 0; font-weight: 600;">Theme Park</div>
 	<div style="flex-grow: 1;"></div>
 	<currency-picker></currency-picker>
-	<theme-picker-switch></theme-picker-switch>
 	<theme-picker-dropdown></theme-picker-dropdown>
+	<theme-picker-switch></theme-picker-switch>
 </div>
 <div id="card-container">
 	<sl-card>

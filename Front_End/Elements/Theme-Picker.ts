@@ -1,4 +1,4 @@
-import { html, LitElement } from "lit"
+import { css, html, LitElement } from "lit"
 import { Shared } from "Elements/Style.js"
 import { ThemeMode, ThemeProvider } from "Format/Theme.js"
 
@@ -23,26 +23,19 @@ export class ThemePickerDropdown extends LitElement {
 
 export class ThemePickerSwitch extends LitElement {
 	private theme = new ThemeProvider(this)
-	static override get styles() { return [Shared] }
+	static override get styles() { return [
+		Shared, css`:host { display: flex; }`] }
 	override render() {
 		const selected = this.theme.GetMode()
+		const getType = (m: ThemeMode) => m === selected ? "primary" : "default"
 		return html`
-<sl-dropdown>
-	<sl-button slot="trigger" caret type="default">
-		<sl-icon name="${selected === ThemeMode.Light ? "sun" : "moon"}"></sl-icon>
-	</sl-button>
-	<sl-menu @sl-select=${(e: any) => this.theme.SetMode(e.detail.item.modeValue)}>
-		<sl-menu-item
-			?checked=${selected === ThemeMode.Dark}
-			.modeValue=${ThemeMode.Dark}
-			>Dark
-		</sl-menu-item>
-		<sl-menu-item
-			?checked=${selected === ThemeMode.Light}
-			.modeValue=${ThemeMode.Light}
-			>Light
-		</sl-menu-item>
-	</sl-menu>
-</sl-dropdown>`
+<sl-button outline type=${getType(ThemeMode.Light)}
+	@click=${() => this.theme.SetMode(ThemeMode.Light)}
+	><sl-icon name="sun"></sl-icon>
+</sl-button>
+<sl-button outline type=${getType(ThemeMode.Dark)}
+	@click=${() => this.theme.SetMode(ThemeMode.Dark)}
+	><sl-icon name="moon"></sl-icon>
+</sl-button>`
 	}
 }
