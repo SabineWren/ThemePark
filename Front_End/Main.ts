@@ -11,10 +11,6 @@ import { AppRoot } from "Elements/App-Root.js"
 import { CurrencyPicker } from "Elements/Currency-Picker.js"
 import { ThemePicker } from "Elements/Theme-Picker.js"
 
-customElements.define("app-root", AppRoot)
-customElements.define("currency-picker", CurrencyPicker)
-customElements.define("theme-picker", ThemePicker)
-
 registerIconLibrary("custom-icons", {
 	resolver: name => `/images/${name}.svg`,
 	mutator: svg => svg.setAttribute("fill", "currentColor"),
@@ -26,3 +22,7 @@ window.$ = <T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: stri
 	getRoot(ele).querySelector<T>(selector)!
 window.$$ = <T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: string) =>
 	Array.from(getRoot(ele).querySelectorAll<T>(selector)!)
+
+customElements.define("app-root", AppRoot)
+customElements.define("currency-picker", CurrencyPicker)
+customElements.define("theme-picker", ThemePicker)
