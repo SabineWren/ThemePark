@@ -15,13 +15,6 @@ registerIconLibrary("custom-icons", {
 	mutator: svg => svg.setAttribute("fill", "currentColor"),
 })
 
-const getRoot = (ele: ParentNode | HTMLElement) =>
-	(ele as HTMLElement).shadowRoot ?? ele
-window.$ = <T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: string) =>
-	getRoot(ele).querySelector<T>(selector)!
-window.$$ = <T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: string) =>
-	Array.from(getRoot(ele).querySelectorAll<T>(selector)!)
-
 customElements.define("app-root", AppRoot)
 customElements.define("currency-picker", CurrencyPicker)
 customElements.define("theme-picker-dropdown", ThemePickerDropdown)

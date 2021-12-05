@@ -10,6 +10,10 @@ const THEMES_LIGHT = [
 ] as const
 type optionDark = typeof THEMES_DARK[number]
 type optionLight = typeof THEMES_LIGHT[number]
+const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
+const STORAGE_KEY = "theme-park-preference"
+export enum ThemeMode { Dark=1, Light=2 }
+let hosts: ReactiveControllerHost[] = []
 
 const loadStylesheet = (theme: optionDark | optionLight) => {
 	const url = `/${theme.File}.css`
@@ -24,23 +28,31 @@ const loadStylesheet = (theme: optionDark | optionLight) => {
 		})
 }
 
-const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
-export enum ThemeMode { Dark=1, Light=2 }
-const state = {
-	Dark: THEMES_DARK[0] as optionDark,
-	Light: THEMES_LIGHT[0] as optionLight,
-	Mode: MEDIA_PREF_LIGHT.matches ? ThemeMode.Light : ThemeMode.Dark,
-}
-let hosts: ReactiveControllerHost[] = []
 const applyCurrentTheme = () => {
 	const t = state.Mode === ThemeMode.Light ? state.Light : state.Dark
+	localStorage.setItem(STORAGE_KEY, t.SlClass)
 	loadStylesheet(t).then(() => $(document, "body").className = t.SlClass)
 	hosts.forEach(h => h.requestUpdate())
 }
+
+const state = (() => {
+	const savedPref = localStorage.getItem(STORAGE_KEY)
+	const tDark = THEMES_DARK.find(t => t.SlClass === savedPref)
+	const tLight = THEMES_LIGHT.find(t => t.SlClass === savedPref)
+	return {
+		Dark: tDark ?? THEMES_DARK[0],
+		Light: tLight ?? THEMES_LIGHT[0],
+		Mode: tDark ? ThemeMode.Dark
+		: tLight ? ThemeMode.Light
+		: MEDIA_PREF_LIGHT.matches ? ThemeMode.Light
+		: ThemeMode.Dark,
+	}
+})()
 MEDIA_PREF_LIGHT.addEventListener("change", () => {
 	state.Mode = MEDIA_PREF_LIGHT.matches ? ThemeMode.Light : ThemeMode.Dark
 	applyCurrentTheme()
 })
+applyCurrentTheme()
 
 export class ThemeProvider implements ReactiveController {
 	constructor(private host: ReactiveControllerHost) {
@@ -59,9 +71,9 @@ export class ThemeProvider implements ReactiveController {
 	SetMode(m: ThemeMode) {
 		state.Mode = m; applyCurrentTheme() }
 	SetTheme(o: optionDark | optionLight) {
-		const narrowLight = (t: optionDark | optionLight): t is optionLight =>
+		const getIsLight = (t: optionDark | optionLight): t is optionLight =>
 			THEMES_LIGHT.includes(t as optionLight)
-		if (narrowLight(o)) {
+		if (getIsLight(o)) {
 			state.Light = o }
 		else {
 			state.Dark = o }

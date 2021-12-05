@@ -9,7 +9,7 @@ type optionCurrency = typeof CURRENCIES[number]
 
 let hosts: ReactiveControllerHost[] = []
 let selected: optionCurrency = CURRENCIES[0]
-export class CurrencyFormat implements ReactiveController {
+export class CurrencyFormatter implements ReactiveController {
 	constructor(private host: ReactiveControllerHost) {
 		host.addController(this) }
 	hostConnected() {
