@@ -1,6 +1,21 @@
 import { css } from "lit"
 
-export const ToStripPrimary = (cs: Hsl[]) => ({
+export const StripNeutral = (cs: Hsl[]) => ({
+	"--sl-color-neutral-0": cs[0],
+	"--sl-color-neutral-50": cs[1],
+	"--sl-color-neutral-100": cs[2],
+	"--sl-color-neutral-200": cs[3],
+	"--sl-color-neutral-300": cs[4],
+	"--sl-color-neutral-400": cs[5],
+	"--sl-color-neutral-500": cs[6],
+	"--sl-color-neutral-600": cs[7],
+	"--sl-color-neutral-700": cs[8],
+	"--sl-color-neutral-800": cs[9],
+	"--sl-color-neutral-900": cs[10],
+	"--sl-color-neutral-950": cs[11],
+	"--sl-color-neutral-1000": cs[12],
+})
+export const StripPrimary = (cs: Hsl[]) => ({
 	"--sl-color-primary-50": cs[0],
 	"--sl-color-primary-100": cs[1],
 	"--sl-color-primary-200": cs[2],
@@ -13,6 +28,7 @@ export const ToStripPrimary = (cs: Hsl[]) => ({
 	"--sl-color-primary-900": cs[9],
 	"--sl-color-primary-950": cs[10],
 })
+
 
 export const ShoelaceTokensShared = css`
 :root, :host, body {

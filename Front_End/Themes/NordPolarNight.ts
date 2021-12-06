@@ -1,6 +1,7 @@
 import { css, CSSResult } from "lit"
 import { Nord } from "./NordPalette.js"
 import { Hsl, Interpolate } from "./Tools/Lib.js"
+import * as Shoelace from "./Tools/Shoelace.js"
 
 export const NordPolarNightBody = (className: CSSResult) => css`
 body.${className} {
@@ -8,32 +9,22 @@ body.${className} {
 	color: var(--sl-color-neutral-900);
 }`
 
-const neutral = Interpolate([
+const neutrals = Shoelace.StripNeutral(Interpolate([
 	Hsl(220, 16, 16),
 	Nord[0], Nord[1], Nord[2], Nord[3],
 	Nord[4], Nord[5], Nord[6],
 	Hsl(220, 0, 100),
-], 13)
+], 13))
 
-const primary = Interpolate([
+const primaries = Shoelace.StripPrimary(Interpolate([
 	Hsl(200, 35, 25),
 	Nord[8],
 	Hsl(185, 63, 96),
-], 11)
+], 11))
 
 export const NordPolarNight: ThemeTargetShoelace = {
-	// Primary
-	"--sl-color-primary-50": primary[0],
-	"--sl-color-primary-100": primary[1],
-	"--sl-color-primary-200": primary[2],
-	"--sl-color-primary-300": primary[3],
-	"--sl-color-primary-400": primary[4],
-	"--sl-color-primary-500": primary[5],
-	"--sl-color-primary-600": primary[6],
-	"--sl-color-primary-700": primary[7],
-	"--sl-color-primary-800": primary[8],
-	"--sl-color-primary-900": primary[9],
-	"--sl-color-primary-950": primary[10],
+	...neutrals,
+	...primaries,
 
 	// Success
 	"--sl-color-success-50": Nord[14],// TODO
@@ -73,21 +64,6 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	"--sl-color-danger-800": Nord[11],
 	"--sl-color-danger-900": Nord[11],
 	"--sl-color-danger-950": Nord[11],
-
-	// Neutral
-	"--sl-color-neutral-0": neutral[0],
-	"--sl-color-neutral-50": neutral[1],
-	"--sl-color-neutral-100": neutral[2],
-	"--sl-color-neutral-200": neutral[3],
-	"--sl-color-neutral-300": neutral[4],
-	"--sl-color-neutral-400": neutral[5],
-	"--sl-color-neutral-500": neutral[6],
-	"--sl-color-neutral-600": neutral[7],
-	"--sl-color-neutral-700": neutral[8],
-	"--sl-color-neutral-800": neutral[9],
-	"--sl-color-neutral-900": neutral[10],
-	"--sl-color-neutral-950": neutral[11],
-	"--sl-color-neutral-1000": neutral[12],
 
 	// TODO
 	// Elevations (box shadows)
