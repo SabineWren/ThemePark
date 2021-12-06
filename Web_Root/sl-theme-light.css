@@ -1,9 +1,0 @@
-.sl-theme-light {
-	font-family: var(--sl-font-sans);
-	font-size: var(--sl-font-size-medium);
-	font-weight: var(--sl-font-weight-normal);
-	letter-spacing: var(--sl-letter-spacing-normal);
-	background: var(--sl-color-neutral-200);
-	color: var(--sl-color-neutral-1000);
-	line-height: var(--sl-line-height-normal);
-}
