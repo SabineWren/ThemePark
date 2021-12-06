@@ -1,10 +1,12 @@
 import { ReactiveController, ReactiveControllerHost } from "lit"
 import { NordPolarNight } from "Themes/NordPolarNight.js"
+import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
 import { ThemeToCss } from "Themes/Tools/Lib.js"
 
 const nordDark = NordPolarNight("sl-theme-nord-polar-night")
+const nordSnowStorm = NordSnowStorm("sl-theme-nord-snow-storm")
 const shoelaceDark = ShoelaceDark("sl-theme-dark")
 const shoelaceLight = ShoelaceLight("sl-theme-light")
 
@@ -15,7 +17,7 @@ const THEMES_DARK = [
 // "sl-theme-light" "Nord Snow Storm"
 const THEMES_LIGHT = [
 	{ Spec: shoelaceLight, Style: ThemeToCss(shoelaceLight) },
-	{ Spec: nordDark, Style: ThemeToCss(nordDark) },
+	{ Spec: nordSnowStorm, Style: ThemeToCss(nordSnowStorm) },
 ] as const
 type optionDark = typeof THEMES_DARK[number]
 type optionLight = typeof THEMES_LIGHT[number]

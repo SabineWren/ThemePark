@@ -24,10 +24,8 @@ const tokens: ThemeTokensShoelace = {
 
 	// Neutral
 	...Shoelace.StripNeutral([
-		Hsl(220, 16, 16),
 		Nord[0], Nord[1], Nord[2], Nord[3],
 		Nord[4], Nord[5], Nord[6],
-		Hsl(220, 0, 100),
 	]),
 
 	// Primary

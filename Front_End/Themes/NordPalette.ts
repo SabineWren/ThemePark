@@ -44,6 +44,16 @@ export const Nord = {
 	// Light mode: high contrast background
 	[6]: Hsl(218, 27, 94),
 
+	// The Nord docs don't follow their own colour palette
+	// They have a wavey background that changes with page,
+	// and it introduces new colours. See /ports for cards.
+	"light-gutter-bg": Hsl(220, 27, 98),
+	"light-card-bg": Hsl(0, 0, 100),
+	// The background waves invert the contrast for dark, but I consider
+	// that a bug and use their main page body background for gutters
+	// "dark-gutter-bg": Nord[1]
+	// "dark-card-bg": Nord[0]
+
 	/* ***************************************
 		*** Frost (low sat blues) ***
 	*/
