@@ -32,9 +32,8 @@ Shoelace requires a one-time copy of its Bootstrap icons. Copy the shoelace asse
 - Implement full support for Nord Polar Night, as it's the best-documented dark theme that also has a corresponding light theme.
 
 ### TODO Theme Tooling
-I brought in Chroma and created lib functions wrapping it to minimize theme code.
 1. Finish Nord Dark theme (mostly done).
-2. Finish Nord Dark and re-implement defaults using TS.
+2. Port default themes and Nord Light to same template as Nord Dark.
 3. Code-split themes out as JS bundles instead of css files.
 4. Implement all the themes!
 

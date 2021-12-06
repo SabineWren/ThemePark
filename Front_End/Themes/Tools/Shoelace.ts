@@ -1,6 +1,7 @@
 import { css } from "lit"
+import { Hsl, Interpolate } from "Themes/Tools/Lib.js"
 
-export const StripNeutral = (cs: Hsl[]) => ({
+const neutral = (cs: Hsl[]) => ({
 	"--sl-color-neutral-0": cs[0],
 	"--sl-color-neutral-50": cs[1],
 	"--sl-color-neutral-100": cs[2],
@@ -15,7 +16,9 @@ export const StripNeutral = (cs: Hsl[]) => ({
 	"--sl-color-neutral-950": cs[11],
 	"--sl-color-neutral-1000": cs[12],
 })
-export const StripPrimary = (cs: Hsl[]) => ({
+export const StripNeutral = (cs: Hsl[]) => neutral(Interpolate(cs, 13))
+
+const primary = (cs: Hsl[]) => ({
 	"--sl-color-primary-50": cs[0],
 	"--sl-color-primary-100": cs[1],
 	"--sl-color-primary-200": cs[2],
@@ -28,6 +31,7 @@ export const StripPrimary = (cs: Hsl[]) => ({
 	"--sl-color-primary-900": cs[9],
 	"--sl-color-primary-950": cs[10],
 })
+export const StripPrimary = (cs: Hsl[]) => primary(Interpolate(cs, 11))
 
 
 export const ShoelaceTokensShared = css`

@@ -1,6 +1,6 @@
 import { css, CSSResult } from "lit"
 import { Nord } from "./NordPalette.js"
-import { Hsl, Interpolate } from "./Tools/Lib.js"
+import { Hsl } from "./Tools/Lib.js"
 import * as Shoelace from "./Tools/Shoelace.js"
 
 export const NordPolarNightBody = (className: CSSResult) => css`
@@ -9,18 +9,17 @@ body.${className} {
 	color: var(--sl-color-neutral-900);
 }`
 
-const neutrals = Shoelace.StripNeutral(Interpolate([
+const neutrals = Shoelace.StripNeutral([
 	Hsl(220, 16, 16),
 	Nord[0], Nord[1], Nord[2], Nord[3],
 	Nord[4], Nord[5], Nord[6],
 	Hsl(220, 0, 100),
-], 13))
-
-const primaries = Shoelace.StripPrimary(Interpolate([
+])
+const primaries = Shoelace.StripPrimary([
 	Hsl(200, 35, 25),
 	Nord[8],
 	Hsl(185, 63, 96),
-], 11))
+])
 
 export const NordPolarNight: ThemeTargetShoelace = {
 	...neutrals,
