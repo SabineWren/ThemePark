@@ -1,30 +1,31 @@
+import { Hsl } from "./Tools/Lib.js"
 /* https://www.nordtheme.com/
  * https://github.com/arcticicestudio/nord/blob/develop/src/nord.css
  * Not enough whites for Light mode, so use --nord3 or --nord9 for borders
  */
-export const Nord: { [k: number]: Colour } = {
+export const Nord = {
 	/* ***************************************
 		*** Polar Night ***
 	*/
 	// "Used for texts, backgrounds, carets and structuring characters like curly- and square brackets."
 	// Dark mode: high contrast background
 	// Light mode: main text colour
-	[0]: { Hexcode: "#2e3440" },
+	[0]: Hsl(220, 16, 22),
 
 	// "Used as a lighter background color for UI elements like status bars."
 	// Dark mode: low contrast background
 	// Light mode: low contrast text
-	[1]: { Hexcode: "#3b4252" },
+	[1]: Hsl(220, 16, 28),
 
 	// "In the UI scope it may be used as selection- and highlight color."
 	// Dark mode: selection highlight
 	// Light mode: borders
-	[2]: { Hexcode: "#434c5e" },
+	[2]: Hsl(220, 17, 32),
 
 	// "In the UI scope used as pseudoclass color for disabled elements."
 	// Dark mode: Disabled content
 	// Light mode: Disabled content
-	[3]: { Hexcode: "#4c566a" },
+	[3]: Hsl(220, 16, 36),
 
 	/* ***************************************
 		*** Snow Storm ***
@@ -32,35 +33,35 @@ export const Nord: { [k: number]: Colour } = {
 	// "In the UI scope used as semi-light background depending on the theme shading design."
 	// Dark mode: low contrast text
 	// Light mode: low contrast background
-	[4]: { Hexcode: "#d8dee9" },
+	[4]: Hsl(219, 28, 88),
 
 	// "Used as a lighter background color for UI elements like status bars."
 	// nearly indistinguishable from Nord5
-	[5]: { Hexcode: "#e5e9f0" },
+	[5]: Hsl(218, 27, 92),
 
 	// "In the UI scope used as background, selection- and highlight color depending on the theme shading design."
 	// Dark mode: main text colour
 	// Light mode: high contrast background
-	[6]: { Hexcode: "#eceff4" },
+	[6]: Hsl(218, 27, 94),
 
 	/* ***************************************
 		*** Frost (low sat blues) ***
 	*/
 	// "Bluish core color."
-	[7]: { Hexcode: "#8fbcbb" },
+	[7]: Hsl(179, 25, 65),
 
 	// "Bluish core accent color."
 	// "Main color for primary UI elements"
 	// "Can be used for: - Markup quotes - Markup link URLs"
-	[8]: { Hexcode: "#88c0d0" },
+	[8]: Hsl(193, 43, 67),
 
 	// "Bluish core color."
 	// Special text (grey-blue)
-	[9]: { Hexcode: "#81a1c1" },
+	[9]: Hsl(210, 34, 63),
 
 	// "Bluish core color"
 	// Special text (pastel blue)
-	[10]: { Hexcode: "#5e81ac" },
+	[10]: Hsl(213, 32, 52),
 
 	/* ***************************************
 		*** Aurora (pastel colours) ***

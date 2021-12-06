@@ -1,6 +1,6 @@
-type Hsl = { Hue: number; Sat: number; Lightness: number; Alpha?: number }
+type Hsl = { H: number; S: number; L: number; A?: number }
 type HexColour = { Hexcode: string }// include the pound
-type Rgb = { Red: number; Green: number; Blue: number; Alpha?: number }
+type Rgb = { R: number; G: number; B: number; A?: number }
 type Colour = Hsl | HexColour | Rgb | string
 
 type BoxShadow = { XYBlurSpread: string; Colour: Colour }

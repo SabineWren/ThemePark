@@ -21,18 +21,18 @@ body.${className} { ${unsafeCSS(bodyText)} }`
 const getIsHex = (v: ThemeValue): v is HexColour =>
 	(v as HexColour).Hexcode !== undefined
 const getIsHsl = (v: ThemeValue): v is Hsl =>
-	(v as Hsl).Hue !== undefined
+	(v as Hsl).H !== undefined
 const getIsRgb = (v: ThemeValue): v is Rgb =>
-	(v as Rgb).Red !== undefined
+	(v as Rgb).R !== undefined
 
 const vToString = (v: ThemeValue): string => {
 	if (getIsHex(v)) return v.Hexcode
-	if (getIsHsl(v)) return v.Alpha === undefined
-		? `hsl(${v.Hue} ${v.Sat}% ${v.Lightness}%)`
-		: `hsl(${v.Hue} ${v.Sat}% ${v.Lightness}% / ${v.Alpha}%)`
-	if (getIsRgb(v)) return v.Alpha === undefined
-		? `rgb(${v.Red} ${v.Green} ${v.Blue})`
-		: `rgb(${v.Red} ${v.Green} ${v.Blue} / ${v.Alpha}%)`
+	if (getIsHsl(v)) return v.A === undefined
+		? `hsl(${v.H} ${v.S}% ${v.L}%)`
+		: `hsl(${v.H} ${v.S}% ${v.L}% / ${v.A}%)`
+	if (getIsRgb(v)) return v.A === undefined
+		? `rgb(${v.R} ${v.G} ${v.B})`
+		: `rgb(${v.R} ${v.G} ${v.B} / ${v.A}%)`
 	if (typeof v === "string") return v
 	return `${v.XYBlurSpread} ${vToString(v.Colour)}`
 }

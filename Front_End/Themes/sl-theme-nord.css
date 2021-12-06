@@ -1,42 +1,7 @@
 /* https://www.nordtheme.com/
  * https://github.com/arcticicestudio/nord/blob/develop/src/nord.css */
-.sl-theme-snow-storm {
-	font-family: var(--sl-font-sans);
-	font-size: var(--sl-font-size-medium);
-	font-weight: var(--sl-font-weight-normal);
-	letter-spacing: var(--sl-letter-spacing-normal);
-	background: var(--sl-color-neutral-200);
-	color: var(--sl-color-neutral-1000);
-	line-height: var(--sl-line-height-normal);
-}
 :host,
 .sl-theme-snow-storm {
-	--sl-color-neutral-0: hsl(0, 0%, 100%);
-	--sl-color-gray-50: hsl(0, 0%, 100%);
-	--sl-color-gray-100: var(--nord6);
-	--sl-color-gray-200: var(--nord5);
-	--sl-color-gray-300: var(--nord4);
-	--sl-color-gray-400: var(--nord4);/* Palette missing this shade */
-	--sl-color-gray-500: var(--nord3);
-	--sl-color-gray-600: var(--nord2);
-	--sl-color-gray-700: var(--nord2);
-	--sl-color-gray-800: var(--nord1);
-	--sl-color-gray-900: var(--nord1);
-	--sl-color-gray-950: var(--nord1);
-	--sl-color-neutral-1000: hsl(0, 0%, 0%);
-
-	--sl-color-warning-50: var(--nord12);
-	--sl-color-warning-100: var(--nord12);
-	--sl-color-warning-200: var(--nord12);
-	--sl-color-warning-300: var(--nord12);
-	--sl-color-warning-400: var(--nord12);
-	--sl-color-warning-500: var(--nord12);
-	--sl-color-warning-600: var(--nord12);
-	--sl-color-warning-700: var(--nord12);
-	--sl-color-warning-800: var(--nord12);
-	--sl-color-warning-900: var(--nord12);
-	--sl-color-warning-950: var(--nord12);
-
 	/* TODO: THESE ARE COPIED FROM DEFAULT */
 	--sl-shadow-x-small: 0 1px 2px hsl(240 3.8% 46.1% / 6%);
 	--sl-shadow-small: 0 1px 2px hsl(240 3.8% 46.1% / 12%);
