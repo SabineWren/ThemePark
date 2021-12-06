@@ -12,8 +12,4 @@ h1, h2, h3, h4, p {
 	margin-bottom: 0.5rem; }
 p:last-child {
 	margin-bottom: 0; }
-
-sl-button::part(label) {
-	margin: auto;
-}
 `

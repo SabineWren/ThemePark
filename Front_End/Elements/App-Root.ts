@@ -7,9 +7,9 @@ export class AppRoot extends LitElement {
 	display: block;
 	height: 100vw; width: 100%;
 }
-#card-container {
+.flex {
 	display: flex; gap: 1rem; flex-wrap: wrap;
-	margin: 1rem 0; }
+	margin: 1rem 0; justify-content: center; }
 sl-card { flex: 0 0 25rem; }
 `]
 	}
@@ -25,7 +25,7 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-dropdown></theme-picker-dropdown>
 	<theme-picker-switch></theme-picker-switch>
 </div>
-<div id="card-container">
+<div class="flex">
 	<sl-card>
 		<h4>Card: Decorative</h4>
 		<p>Low-contrast background. Themes may decorate with gradients, transparency effects, etc. Themes should darken the centre to improve text contrast.</p>
@@ -40,6 +40,22 @@ sl-card { flex: 0 0 25rem; }
 		<h4>Card: Outline</h4>
 		<p>Similar to Subtle cards. However, this always has a border and never has a box shadow.</p>
 	</sl-card>
+</div>
+<div class="flex">
+	<sl-button type="default">Default</sl-button>
+	<sl-button type="primary">Primary</sl-button>
+	<sl-button type="success">Success</sl-button>
+	<sl-button type="neutral">Neutral</sl-button>
+	<sl-button type="warning">Warning</sl-button>
+	<sl-button type="danger">Danger</sl-button>
+</div>
+<div class="flex">
+	<sl-button type="default" outline>Default</sl-button>
+	<sl-button type="primary" outline>Primary</sl-button>
+	<sl-button type="success" outline>Success</sl-button>
+	<sl-button type="neutral" outline>Neutral</sl-button>
+	<sl-button type="warning" outline>Warning</sl-button>
+	<sl-button type="danger" outline>Danger</sl-button>
 </div>
 `
 	}

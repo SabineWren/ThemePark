@@ -1,5 +1,5 @@
 import * as chroma from "chroma.ts"
-import { css, unsafeCSS, CSSResult } from "lit"
+import { css, unsafeCSS } from "lit"
 
 export const Hsl = (h: number, s: number, l: number, a?: number): Hsl =>
 	({ H: h, S: s, L: l, A: a })
@@ -34,22 +34,16 @@ const vToString = (v: ThemeValue): string => {
 1. Body css, which should just set text colour and background
 2. Theme css, which affects body, root, and hosts
 3. Platform-specific shared css (ex. Shoelace tokens) */
-export const ThemeToCss = (
-	cssClass: string,
-	themeBody: (cn: CSSResult) => CSSResult,
-	themeTokens: ThemeTargetShoelace,
-	cssAllThemes: CSSResult) =>
-{
-	const themeClassName = unsafeCSS(cssClass)
-	const themeTokenText = Object.entries(themeTokens)
+export const ThemeToCss = (spec: ThemeSpecification) => {
+	const themeTokenText = Object.entries(spec.DesignTokens)
 		.map(([k,v]) => `${k}: ${vToString(v)};`)
 		.join("\n")
 	return css`
-${themeBody(themeClassName)}
-
+${spec.HtmlBodyCss}
 :root,
 :host,
-.${themeClassName} { ${unsafeCSS(themeTokenText)} }
-
-${cssAllThemes}`
+.${unsafeCSS(spec.CssName)} {
+	${unsafeCSS(themeTokenText)}
+}
+${spec.PlatformTokens}`
 }

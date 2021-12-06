@@ -1,14 +1,13 @@
 import { css, unsafeCSS } from "lit"
-import { Nord } from "Themes/NordPalette.js"
 import { Hsl } from "Themes/Tools/Lib.js"
 import * as Shoelace from "Themes/Tools/Shoelace.js"
 
-export const NordPolarNight = (className: string): ThemeSpecification => ({
-	Label: "Nord Polar Night",
+export const ShoelaceDark = (className: string): ThemeSpecification => ({
+	Label: "Shoelace Dark",
 	CssName: className,
 	HtmlBodyCss: css`
 body.${unsafeCSS(className)} {
-	background: var(--sl-color-neutral-200);
+	background: var(--sl-color-neutral-0);
 	color: var(--sl-color-neutral-900);
 }`,
 	DesignTokens: tokens,
@@ -16,37 +15,80 @@ body.${unsafeCSS(className)} {
 })
 
 const tokens: ThemeTokensShoelace = {
-	// TODO Danger
 	...Shoelace.StripDanger([
-		Nord[11],
-		Nord[11],
+		Hsl(0, 56, 23.9),
+		Hsl(0.6, 60, 33.9),
+		Hsl(0.9, 67.2, 37.1),
+		Hsl(1.1, 71.3, 43.7),
+		Hsl(1, 76, 52.5),
+		Hsl(0.7, 89.6, 57.2),
+		Hsl(0, 98.6, 67.9),
+		Hsl(0, 100, 72.3),
+		Hsl(0, 100, 85.6),
+		Hsl(0, 100, 90.3),
+		Hsl(0, 100, 95.9),
 	]),
 
 	// Neutral
 	...Shoelace.StripNeutral([
-		Hsl(220, 16, 16),
-		Nord[0], Nord[1], Nord[2], Nord[3],
-		Nord[4], Nord[5], Nord[6],
-		Hsl(220, 0, 100),
+		Hsl(240, 5.9, 11),
+		Hsl(240, 5.1, 15),
+		Hsl(240, 5.7, 18.2),
+		Hsl(240, 4.6, 22),
+		Hsl(240, 5, 27.6),
+		Hsl(240, 5, 35.5),
+		Hsl(240, 3.7, 44),
+		Hsl(240, 5.3, 58),
+		Hsl(240, 5.6, 73),
+		Hsl(240, 7.3, 84),
+		Hsl(240, 9.1, 91.8),
+		Hsl(0, 0, 95),
+		Hsl(0, 0, 100),
 	]),
 
 	// Primary
 	...Shoelace.StripPrimary([
-		Hsl(200, 35, 25),
-		Nord[8],
-		Hsl(185, 63, 96),
+		Hsl(203, 63.8, 20.9),
+		Hsl(203.4, 70.4, 28),
+		Hsl(202.7, 75.8, 30.8),
+		Hsl(203.1, 80.4, 36.1),
+		Hsl(202.1, 80.5, 44.3),
+		Hsl(199.7, 85.9, 47.7),
+		Hsl(198.7, 97.9, 57.2),
+		Hsl(198.7, 100, 70.5),
+		Hsl(198.8, 100, 82.5),
+		Hsl(198.5, 100, 89.9),
+		Hsl(186, 100, 95.5),
 	]),
 
 	// TODO Success
 	...Shoelace.StripSuccess([
-		Nord[14],
-		Nord[14],
+		Hsl(144.3, 53.6, 16),
+		Hsl(143.2, 55.4, 23.5),
+		Hsl(141.5, 58.2, 26.3),
+		Hsl(140.8, 64.2, 31.8),
+		Hsl(140.3, 68, 39.2),
+		Hsl(141.1, 64.9, 43),
+		Hsl(141.6, 72.4, 55.2),
+		Hsl(141.7, 82.7, 70.1),
+		Hsl(141, 90.9, 82.1),
+		Hsl(142, 100, 89.1),
+		Hsl(144, 100, 95.5),
 	]),
 
 	// TODO Warning
 	...Shoelace.StripWarning([
-		Nord[13],
-		Nord[13],
+		Hsl(21.9, 66.3, 21.1),
+		Hsl(21.5, 73.6, 29.7),
+		Hsl(22.3, 77.6, 33.3),
+		Hsl(25.4, 84.2, 39.6),
+		Hsl(31.4, 87.4, 46.7),
+		Hsl(37, 96.6, 48.3),
+		Hsl(43.3, 100, 53.4),
+		Hsl(46.5, 100, 61.1),
+		Hsl(49.3, 100, 73),
+		Hsl(51.8, 100, 85),
+		Hsl(60, 100, 94.6),
 	]),
 
 	// TODO

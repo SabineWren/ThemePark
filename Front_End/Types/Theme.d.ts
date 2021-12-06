@@ -3,7 +3,29 @@ type Colour = Hsl | string
 
 type BoxShadow = { XYBlurSpread: string; Colour: Colour }
 
-type ThemeTargetShoelace = {
+type ThemeSpecification = {
+	// Name user sees in dropdown. Should be unique per mode (light/dark)
+	Label: string
+
+	// Name in kebab-case. Must include light/dark to guarantee uniqueness.
+	// Include the platform prefix to avoid collisions with app developers.
+	CssName: string
+
+	// Use to apply background and text colour to the HTML Body element
+	// TODO This seems like a kludge; find a better solution.
+	HtmlBodyCss: import("lit").CSSResult
+
+	// Defines the theme implementation. Supply at least two colours per entry.
+	// Theme Park uses chroma.ts to interpolate additional platform colours.
+	DesignTokens: ThemeTokensShoelace
+
+	// Import tokens used by more than one theme.
+	// We only support Shoelace for now, so it's a trivial import.
+	// TODO refactor this out. It shouldn't be part of a theme spec.
+	PlatformTokens: import("lit").CSSResult
+}
+
+type ThemeTokensShoelace = {
 	// Primary
 	"--sl-color-primary-50": Colour
 	"--sl-color-primary-100": Colour
@@ -123,4 +145,4 @@ type ThemeTargetShoelace = {
 	"--sl-tooltip-background-color": Colour
 	"--sl-tooltip-color": Colour
 }
-type ThemeValue = ThemeTargetShoelace[keyof ThemeTargetShoelace]
+type ThemeValue = ThemeTokensShoelace[keyof ThemeTokensShoelace]
