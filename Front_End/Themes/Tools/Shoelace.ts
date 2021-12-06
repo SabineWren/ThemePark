@@ -25,22 +25,16 @@ const getIsHsl = (v: ThemeValue): v is Hsl =>
 const getIsRgb = (v: ThemeValue): v is Rgb =>
 	(v as Rgb).Red !== undefined
 
-const colourToString = (c: Colour): string => {
-	if (getIsHex(c)) return c.Hexcode
-	if (getIsHsl(c)) return c.Alpha === undefined
-		? `hsl(${c.Hue} ${c.Sat}% ${c.Lightness}%)`
-		: `hsl(${c.Hue} ${c.Sat}% ${c.Lightness}% / ${c.Alpha}%)`
-	if (getIsRgb(c)) return c.Alpha === undefined
-		? `rgb(${c.Red} ${c.Green} ${c.Blue})`
-		: `rgb(${c.Red} ${c.Green} ${c.Blue} / ${c.Alpha}%)`
-	return c
-}
 const vToString = (v: ThemeValue): string => {
-	if (getIsHex(v)) return colourToString(v)
-	if (getIsHsl(v)) return colourToString(v)
-	if (getIsRgb(v)) return colourToString(v)
+	if (getIsHex(v)) return v.Hexcode
+	if (getIsHsl(v)) return v.Alpha === undefined
+		? `hsl(${v.Hue} ${v.Sat}% ${v.Lightness}%)`
+		: `hsl(${v.Hue} ${v.Sat}% ${v.Lightness}% / ${v.Alpha}%)`
+	if (getIsRgb(v)) return v.Alpha === undefined
+		? `rgb(${v.Red} ${v.Green} ${v.Blue})`
+		: `rgb(${v.Red} ${v.Green} ${v.Blue} / ${v.Alpha}%)`
 	if (typeof v === "string") return v
-	return `${v.XYBlurSpread} ${colourToString(v.Colour)}`
+	return `${v.XYBlurSpread} ${vToString(v.Colour)}`
 }
 
 const nonThemeTokens = css`

@@ -1,12 +1,10 @@
 import { Nord } from "./NordPalette.js"
+import { Hsl, Rgb } from "./Tools/Lib.js"
 
 export const NordDarkBody = `
 background: var(--sl-color-neutral-200);
 color: var(--sl-color-neutral-900);
 `
-
-const overlay = (opacity: number): Rgb =>
-	({ Red: 0, Green: 0, Blue: 0, Alpha: opacity })
 export const NordPolarNight: ThemeTargetShoelace = {
 	// Primary
 	"--sl-color-primary-50": Nord[8],// TODO
@@ -69,31 +67,29 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	"--sl-color-neutral-400": Nord[2],
 	"--sl-color-neutral-500": Nord[3],
 	"--sl-color-neutral-600": Nord[3],
-	"--sl-color-neutral-700": { Hue: 240, Sat: 5.6, Lightness: 73 },
+	"--sl-color-neutral-700": Hsl(240, 5.6, 73),
 	"--sl-color-neutral-800": Nord[4],
 	"--sl-color-neutral-900": Nord[5],
 	"--sl-color-neutral-950": Nord[6],
-	"--sl-color-neutral-1000": { Hue: 0, Sat: 0, Lightness: 100 },
+	"--sl-color-neutral-1000": Hsl(0, 0, 100),
 
 	// TODO
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {
-		XYBlurSpread: "0 1px 2px", Colour: overlay(18) },
+		XYBlurSpread: "0 1px 2px", Colour: Rgb(0, 0, 0, 18) },
 	"--sl-shadow-small": {
-		XYBlurSpread: "0 1px 2px", Colour: overlay(24) },
+		XYBlurSpread: "0 1px 2px", Colour: Rgb(0, 0, 0, 24) },
 	"--sl-shadow-medium": {
-		XYBlurSpread: "0 2px 4px", Colour: overlay(24)},
+		XYBlurSpread: "0 2px 4px", Colour: Rgb(0, 0, 0, 24)},
 	"--sl-shadow-large": {
-		XYBlurSpread: "0 2px 8px", Colour: overlay(24)},
+		XYBlurSpread: "0 2px 8px", Colour: Rgb(0, 0, 0, 24)},
 	"--sl-shadow-x-large": {
-		XYBlurSpread: "0 4px 16px", Colour: overlay(24)},
+		XYBlurSpread: "0 4px 16px", Colour: Rgb(0, 0, 0, 24)},
 
 	// *** Forms ***
 	// TODO
 	"--sl-focus-ring": {
-		XYBlurSpread: "0 0 0 3px",
-		Colour: { Hue: 198.6, Sat: 88.7, Lightness: 44.8, Alpha: 45 },
-	},
+		XYBlurSpread: "0 0 0 3px", Colour: Hsl(198.6, 88.7, 44.8, 45)},
 
 	// TODO
 	"--sl-input-background-color": `var(--sl-color-neutral-0)`,
@@ -130,7 +126,7 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	"--sl-input-help-text-color": `var(--sl-color-neutral-500)`,
 
 	// Overlays
-	"--sl-overlay-background-color": overlay(43),// TODO
+	"--sl-overlay-background-color": Rgb(0, 0, 0, 43),// TODO
 
 	// Panels
 	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,// TODO
