@@ -9,60 +9,36 @@ body.${className} {
 	color: var(--sl-color-neutral-900);
 }`
 
-const neutrals = Shoelace.StripNeutral([
-	Hsl(220, 16, 16),
-	Nord[0], Nord[1], Nord[2], Nord[3],
-	Nord[4], Nord[5], Nord[6],
-	Hsl(220, 0, 100),
-])
-const primaries = Shoelace.StripPrimary([
-	Hsl(200, 35, 25),
-	Nord[8],
-	Hsl(185, 63, 96),
-])
-
 export const NordPolarNight: ThemeTargetShoelace = {
-	...neutrals,
-	...primaries,
+	// TODO Danger
+	...Shoelace.StripDanger([
+		Nord[11],
+	]),
 
-	// Success
-	"--sl-color-success-50": Nord[14],// TODO
-	"--sl-color-success-100": Nord[14],
-	"--sl-color-success-200": Nord[14],
-	"--sl-color-success-300": Nord[14],
-	"--sl-color-success-400": Nord[14],
-	"--sl-color-success-500": Nord[14],
-	"--sl-color-success-600": Nord[14],
-	"--sl-color-success-700": Nord[14],
-	"--sl-color-success-800": Nord[14],
-	"--sl-color-success-900": Nord[14],
-	"--sl-color-success-950": Nord[14],
+	// Neutral
+	...Shoelace.StripNeutral([
+		Hsl(220, 16, 16),
+		Nord[0], Nord[1], Nord[2], Nord[3],
+		Nord[4], Nord[5], Nord[6],
+		Hsl(220, 0, 100),
+	]),
 
-	// Warning
-	"--sl-color-warning-50": Nord[13],// TODO
-	"--sl-color-warning-100": Nord[13],
-	"--sl-color-warning-200": Nord[13],
-	"--sl-color-warning-300": Nord[13],
-	"--sl-color-warning-400": Nord[13],
-	"--sl-color-warning-500": Nord[13],
-	"--sl-color-warning-600": Nord[13],
-	"--sl-color-warning-700": Nord[13],
-	"--sl-color-warning-800": Nord[13],
-	"--sl-color-warning-900": Nord[13],
-	"--sl-color-warning-950": Nord[13],
+	// Primary
+	...Shoelace.StripPrimary([
+		Hsl(200, 35, 25),
+		Nord[8],
+		Hsl(185, 63, 96),
+	]),
 
-	// Danger
-	"--sl-color-danger-50": Nord[11],// TODO
-	"--sl-color-danger-100": Nord[11],
-	"--sl-color-danger-200": Nord[11],
-	"--sl-color-danger-300": Nord[11],
-	"--sl-color-danger-400": Nord[11],
-	"--sl-color-danger-500": Nord[11],
-	"--sl-color-danger-600": Nord[11],
-	"--sl-color-danger-700": Nord[11],
-	"--sl-color-danger-800": Nord[11],
-	"--sl-color-danger-900": Nord[11],
-	"--sl-color-danger-950": Nord[11],
+	// TODO Success
+	...Shoelace.StripSuccess([
+		Nord[14],
+	]),
+
+	// TODO Warning
+	...Shoelace.StripWarning([
+		Nord[13],
+	]),
 
 	// TODO
 	// Elevations (box shadows)
