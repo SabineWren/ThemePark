@@ -1,10 +1,11 @@
 import { Nord } from "./NordPalette.js"
-import { Hsl, Rgb } from "./Tools/Lib.js"
+import { Hsl } from "./Tools/Lib.js"
 
 export const NordLightBody = `
 background: var(--sl-color-neutral-200);
 color: var(--sl-color-neutral-1000);
 `
+/*
 export const NordSnowStorm: ThemeTargetShoelace = {
 	// Primary
 	"--sl-color-primary-50": Nord[8],// TODO
@@ -136,3 +137,4 @@ export const NordSnowStorm: ThemeTargetShoelace = {
 	"--sl-tooltip-background-color": `var(--sl-color-neutral-800)`,// TODO
 	"--sl-tooltip-color": `var(--sl-color-neutral-0)`,// TODO
 }
+*/

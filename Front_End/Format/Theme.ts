@@ -1,9 +1,13 @@
 import { ReactiveController, ReactiveControllerHost } from "lit"
-import { NordDarkBody, NordPolarNight } from "Themes/NordPolarNight.js"
-import { ThemeToShoelaceCss } from "Themes/Tools/Shoelace.js"
+import { NordPolarNightBody, NordPolarNight } from "Themes/NordPolarNight.js"
+import { ShoelaceTokensShared } from "Themes/Tools/Shoelace.js"
+import { ThemeToCss } from "Themes/Tools/Lib.js"
 
-const nordDarkCss = ThemeToShoelaceCss(
-	"sl-theme-polar-night", NordPolarNight, NordDarkBody)
+const nordDarkCss = ThemeToCss(
+	"sl-theme-polar-night",
+	NordPolarNightBody,
+	NordPolarNight,
+	ShoelaceTokensShared)
 
 const THEMES_DARK = [
 	{ File: "sl-theme-dark", SlClass: "sl-theme-dark", Label: "Default" },

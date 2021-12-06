@@ -67,17 +67,17 @@ export const Nord = {
 		*** Aurora (pastel colours) ***
 	*/
 	// "Used for errors"
-	[11]: { Hexcode: "#bf616a" },// Red
+	[11]: Hsl(354, 42, 56),// Red
 
 	// "Used for annotations"
-	[12]: { Hexcode: "#d08770" },// Orange
+	[12]: Hsl(14, 51, 63),// Orange
 
 	// "In the UI scope used for warnings and git/diff renamings."
-	[13]: { Hexcode: "#ebcb8b" },// Yellow
+	[13]: Hsl(40, 71, 73),// Yellow
 
 	// "In the UI scope used for git/diff additions and success visualizations."
-	[14]: { Hexcode: "#a3be8c" },// Green
+	[14]: Hsl(92, 28, 65),// Green
 
 	// "Used for numbers."
-	[15]: { Hexcode: "#b48ead" },// Purple
+	[15]: Hsl(311, 20, 63),// Purple
 } as const

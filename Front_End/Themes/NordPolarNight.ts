@@ -1,5 +1,12 @@
+import { css, CSSResult } from "lit"
 import { Nord } from "./NordPalette.js"
-import { Hsl, Interpolate, Rgb } from "./Tools/Lib.js"
+import { Hsl, Interpolate } from "./Tools/Lib.js"
+
+export const NordPolarNightBody = (className: CSSResult) => css`
+body.${className} {
+	background: var(--sl-color-neutral-200);
+	color: var(--sl-color-neutral-900);
+}`
 
 const neutral = Interpolate([
 	Hsl(220, 16, 16),
@@ -14,10 +21,6 @@ const primary = Interpolate([
 	Hsl(185, 63, 96),
 ], 11)
 
-export const NordDarkBody = `
-background: var(--sl-color-neutral-200);
-color: var(--sl-color-neutral-900);
-`
 export const NordPolarNight: ThemeTargetShoelace = {
 	// Primary
 	"--sl-color-primary-50": primary[0],
@@ -89,15 +92,15 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	// TODO
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {
-		XYBlurSpread: "0 1px 2px", Colour: Rgb(0, 0, 0, 18) },
+		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 18) },
 	"--sl-shadow-small": {
-		XYBlurSpread: "0 1px 2px", Colour: Rgb(0, 0, 0, 24) },
+		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 24) },
 	"--sl-shadow-medium": {
-		XYBlurSpread: "0 2px 4px", Colour: Rgb(0, 0, 0, 24)},
+		XYBlurSpread: "0 2px 4px", Colour: Hsl(0, 0, 0, 24)},
 	"--sl-shadow-large": {
-		XYBlurSpread: "0 2px 8px", Colour: Rgb(0, 0, 0, 24)},
+		XYBlurSpread: "0 2px 8px", Colour: Hsl(0, 0, 0, 24)},
 	"--sl-shadow-x-large": {
-		XYBlurSpread: "0 4px 16px", Colour: Rgb(0, 0, 0, 24)},
+		XYBlurSpread: "0 4px 16px", Colour: Hsl(0, 0, 0, 24)},
 
 	// *** Forms ***
 	// TODO
@@ -139,7 +142,7 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	"--sl-input-help-text-color": `var(--sl-color-neutral-500)`,
 
 	// Overlays
-	"--sl-overlay-background-color": Rgb(0, 0, 0, 43),// TODO
+	"--sl-overlay-background-color": Hsl(0, 0, 0, 43),// TODO
 
 	// Panels
 	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,// TODO

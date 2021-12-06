@@ -1,9 +1,8 @@
 import * as chroma from "chroma.ts"
+import { css, unsafeCSS, CSSResult } from "lit"
 
 export const Hsl = (h: number, s: number, l: number, a?: number): Hsl =>
 	({ H: h, S: s, L: l, A: a })
-export const Rgb = (r: number, g: number, b: number, a?: number): Rgb =>
-	({ R:r, G: g, B: b, A: a })
 
 const wrap = (c: Hsl) => {
 	if (c.H < 0 || c.H > 360) throw new Error(`Invalid Hue ${c.H}`)
@@ -20,3 +19,37 @@ export const Interpolate = (cs: Hsl[], count: number): Hsl[] => chroma
 	.mode("hsl")
 	.colors(count, "hsl")
 	.map(unwrap)
+
+const getIsHsl = (v: ThemeValue): v is Hsl =>
+	(v as Hsl).H !== undefined
+const vToString = (v: ThemeValue): string => {
+	if (getIsHsl(v)) return v.A === undefined
+		? `hsl(${v.H} ${v.S}% ${v.L}%)`
+		: `hsl(${v.H} ${v.S}% ${v.L}% / ${v.A}%)`
+	if (typeof v === "string") return v
+	return `${v.XYBlurSpread} ${vToString(v.Colour)}`
+}
+
+/* Stylesheet has 3 parts:
+1. Body css, which should just set text colour and background
+2. Theme css, which affects body, root, and hosts
+3. Platform-specific shared css (ex. Shoelace tokens) */
+export const ThemeToCss = (
+	cssClass: string,
+	themeBody: (cn: CSSResult) => CSSResult,
+	themeTokens: ThemeTargetShoelace,
+	cssAllThemes: CSSResult) =>
+{
+	const themeClassName = unsafeCSS(cssClass)
+	const themeTokenText = Object.entries(themeTokens)
+		.map(([k,v]) => `${k}: ${vToString(v)};`)
+		.join("\n")
+	return css`
+${themeBody(themeClassName)}
+
+:root,
+:host,
+.${themeClassName} { ${unsafeCSS(themeTokenText)} }
+
+${cssAllThemes}`
+}

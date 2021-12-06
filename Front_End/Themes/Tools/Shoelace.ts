@@ -1,43 +1,20 @@
-import { css, unsafeCSS } from "lit"
+import { css } from "lit"
 
-export const ThemeToShoelaceCss = (
-	cssClass: string,
-	theme: ThemeTargetShoelace,
-	bodyText: string) =>
-{
-	const cssText = Object.entries(theme)
-		.map(([k,v]) => `${k}: ${vToString(v)};`)
-		.join("\n")
-	const className = unsafeCSS(cssClass)
-	const cssParsed = css`
-:root, :host, .${className} {
-	${unsafeCSS(cssText)}
-}`
-	const cssBody = css`
-body.${className} { ${unsafeCSS(bodyText)} }`
-	return css`${cssBody}${cssParsed}${nonThemeTokens}`
-}
+export const ToStripPrimary = (cs: Hsl[]) => ({
+	"--sl-color-primary-50": cs[0],
+	"--sl-color-primary-100": cs[1],
+	"--sl-color-primary-200": cs[2],
+	"--sl-color-primary-300": cs[3],
+	"--sl-color-primary-400": cs[4],
+	"--sl-color-primary-500": cs[5],
+	"--sl-color-primary-600": cs[6],
+	"--sl-color-primary-700": cs[7],
+	"--sl-color-primary-800": cs[8],
+	"--sl-color-primary-900": cs[9],
+	"--sl-color-primary-950": cs[10],
+})
 
-const getIsHex = (v: ThemeValue): v is HexColour =>
-	(v as HexColour).Hexcode !== undefined
-const getIsHsl = (v: ThemeValue): v is Hsl =>
-	(v as Hsl).H !== undefined
-const getIsRgb = (v: ThemeValue): v is Rgb =>
-	(v as Rgb).R !== undefined
-
-const vToString = (v: ThemeValue): string => {
-	if (getIsHex(v)) return v.Hexcode
-	if (getIsHsl(v)) return v.A === undefined
-		? `hsl(${v.H} ${v.S}% ${v.L}%)`
-		: `hsl(${v.H} ${v.S}% ${v.L}% / ${v.A}%)`
-	if (getIsRgb(v)) return v.A === undefined
-		? `rgb(${v.R} ${v.G} ${v.B})`
-		: `rgb(${v.R} ${v.G} ${v.B} / ${v.A}%)`
-	if (typeof v === "string") return v
-	return `${v.XYBlurSpread} ${vToString(v.Colour)}`
-}
-
-const nonThemeTokens = css`
+export const ShoelaceTokensShared = css`
 :root, :host, body {
 	/* Border radii */
 	--sl-border-radius-small: 0.1875rem; /* 3px */
