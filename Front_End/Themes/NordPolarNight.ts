@@ -13,6 +13,7 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	// TODO Danger
 	...Shoelace.StripDanger([
 		Nord[11],
+		Nord[11],
 	]),
 
 	// Neutral
@@ -33,10 +34,12 @@ export const NordPolarNight: ThemeTargetShoelace = {
 	// TODO Success
 	...Shoelace.StripSuccess([
 		Nord[14],
+		Nord[14],
 	]),
 
 	// TODO Warning
 	...Shoelace.StripWarning([
+		Nord[13],
 		Nord[13],
 	]),
 
