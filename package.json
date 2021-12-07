@@ -19,10 +19,10 @@
 		"node": ">= 16.11.1"
 	},
 	"scripts": {
-		"bundle-dist": "rollup --config Front_End/Tooling/Rollup.config.js --failAfterWarnings",
-		"bundle": "rollup --config Front_End/Tooling/Rollup.config.js -w local",
-		"compile-dist": "tsc --project tsconfig.json",
+		"bundle": "rollup --config Front_End/Bundle/Rollup.config.js -w local",
+		"bundle-dist": "rollup --config Front_End/Bundle/Rollup.config.js --failAfterWarnings",
 		"compile": "tsc -w --project tsconfig.json",
-		"lint": "eslint --ext .ts --config Front_End/Tooling/EslintConfig.js Front_End/"
+		"compile-dist": "tsc --project tsconfig.json",
+		"lint": "eslint --ext .ts --config EslintConfig.js Front_End/ Themes/"
 	}
 }

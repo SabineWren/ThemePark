@@ -8,7 +8,6 @@ export const PluginInjectHashIntoHtml = (
 	name: "plugin-inject-hash-into-html",
 	writeBundle: async (_options: NormalizedOutputOptions, bundle: { [fileName: string]: any }) => {
 		const bundleNames = Object.keys(bundle)
-		console.log(bundleNames)
 		const inject = (script: string) =>
 			injectHash(htmlTemplatePath, distDir, bundleNames, script)
 		await Promise.all(scriptsNoExt.map(inject))

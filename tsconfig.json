@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		// ****** Settings necessary for making the build work. ******
 		"allowJs": false,
-		"baseUrl": "Front_End",
+		"baseUrl": "./",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
@@ -13,6 +13,7 @@
 		// 2022 for top level await when the eslint, rollup, etc support it
 		"module": "ES2020",
 		"moduleResolution": "node",
+		"paths": { "*": ["*", "Front_End/*"] },
 		"plugins": [
 			{
 				"name": "ts-lit-plugin",
@@ -35,6 +36,7 @@
 		"typeRoots": [
 			"Front_End/**",
 			"node_modules/@types",
+			"Themes/**",
 		],
 		// ****** Language features for code verification. ******
 		"noImplicitAny": true,
@@ -43,6 +45,6 @@
 		"strictNullChecks": true,
 		"strictFunctionTypes": true
 	},
-	"include": ["Front_End/**/*"],
+	"include": ["EslintConfig.ts", "Front_End/**/*", "Themes/**/*"],
 	"exclude": ["node_modules"]
 }

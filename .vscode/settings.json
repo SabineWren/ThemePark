@@ -1,7 +1,7 @@
 {
 	"editor.insertSpaces": false,
 	"[fsharp]": {"editor.insertSpaces": true },
-	"eslint.options": { "overrideConfigFile": "Front_End/Tooling/EslintConfig.js" },
+	"eslint.options": { "overrideConfigFile": "EslintConfig.js" },
 	"eslint.validate": ["typescript"],
 	"files.exclude": {
 		"**/bin": true,

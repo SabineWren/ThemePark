@@ -1,14 +1,14 @@
 import { css, unsafeCSS } from "lit"
-import { Nord } from "Themes/NordPalette.js"
+import { Nord } from "Themes/Palettes/NordPalette.js"
 import { Hsl } from "Themes/Tools/Lib.js"
 import * as Shoelace from "Themes/Tools/Shoelace.js"
 
-export const NordSnowStorm = (className: string): ThemeSpecification => ({
-	Label: "Nord Snow Storm",
+export const NordPolarNight = (className: string): ThemeSpecification => ({
+	Label: "Nord Polar Night",
 	CssName: className,
 	HtmlBodyCss: css`
 body.${unsafeCSS(className)} {
-	background: var(--sl-color-neutral-0);
+	background: var(--sl-color-neutral-200);
 	color: var(--sl-color-neutral-900);
 }`,
 	DesignTokens: tokens,
@@ -24,17 +24,15 @@ const tokens: ThemeTokensShoelace = {
 
 	// Neutral
 	...Shoelace.StripNeutral([
-		Nord["light-card-bg"],
-		Nord["light-gutter-bg"],
-		Nord[6], Nord[5], Nord[4],
-		Nord[3], Nord[2], Nord[1], Nord[0],
+		Nord[0], Nord[1], Nord[2], Nord[3],
+		Nord[4], Nord[5], Nord[6],
 	]),
 
 	// Primary
 	...Shoelace.StripPrimary([
-		Hsl(185, 63, 96),
-		Nord[8],
 		Hsl(200, 35, 25),
+		Nord[8],
+		Hsl(185, 63, 96),
 	]),
 
 	// TODO Success
@@ -52,15 +50,15 @@ const tokens: ThemeTokensShoelace = {
 	// TODO
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {
-		XYBlurSpread: "0 1px 2px", Colour: Hsl(240, 3.8, 46.1, 6) },
+		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 18) },
 	"--sl-shadow-small": {
-		XYBlurSpread: "0 1px 2px", Colour: Hsl(240, 3.8, 46.1, 12) },
+		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 24) },
 	"--sl-shadow-medium": {
-		XYBlurSpread: "0 2px 4px", Colour: Hsl(240, 3.8, 46.1, 12)},
+		XYBlurSpread: "0 2px 4px", Colour: Hsl(0, 0, 0, 24)},
 	"--sl-shadow-large": {
-		XYBlurSpread: "0 2px 8px", Colour: Hsl(240, 3.8, 46.1, 12)},
+		XYBlurSpread: "0 2px 8px", Colour: Hsl(0, 0, 0, 24)},
 	"--sl-shadow-x-large": {
-		XYBlurSpread: "0 4px 16px", Colour: Hsl(240, 3.8, 46.1, 12)},
+		XYBlurSpread: "0 4px 16px", Colour: Hsl(0, 0, 0, 24)},
 
 	// *** Forms ***
 	// TODO
@@ -102,7 +100,7 @@ const tokens: ThemeTokensShoelace = {
 	"--sl-input-help-text-color": `var(--sl-color-neutral-500)`,
 
 	// Overlays
-	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),// TODO
+	"--sl-overlay-background-color": Hsl(0, 0, 0, 43),// TODO
 
 	// Panels
 	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,// TODO

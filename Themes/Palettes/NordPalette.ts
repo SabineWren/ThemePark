@@ -1,4 +1,4 @@
-import { Hsl } from "./Tools/Lib.js"
+import { Hsl } from "Themes/Tools/Lib.js"
 /* https://www.nordtheme.com/
  * https://github.com/arcticicestudio/nord/blob/develop/src/nord.css
  * Not enough whites for Light mode, so use --nord3 or --nord9 for borders

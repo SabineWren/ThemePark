@@ -1,5 +1,4 @@
 import nodeResolve, { RollupNodeResolveOptions } from "@rollup/plugin-node-resolve"
-import { Plugin } from "rollup"
 import * as Process from "process"
 import { PluginCleanOldFiles, RmDirSync } from "./Clean.js"
 import { PluginInjectHashIntoHtml } from "./InjectHash.js"
@@ -13,7 +12,7 @@ const FORMAT = "esm"// esm = es = module
 const RESOLVE_OPTIONS: RollupNodeResolveOptions = Object.freeze({
 	browser: true,
 	extensions: [".js"],
-	moduleDirectories: ["node_modules", "Front_End"],
+	moduleDirectories: ["node_modules", "Front_End", "./"],
 })
 
 // The internal type declaration for config options is just { [key: string]: unknown; }
@@ -25,12 +24,6 @@ export default (async () => {
 	// Importing a plugin slows the build, even when it's not used.
 	// Source: https://github.com/rollup/rollup/blob/master/docs/999-big-list-of-options.md#plugins
 	const pluginMinify = isLocal ? null : await import("rollup-plugin-terser")
-	const getPlugins = (scriptNoExt: string): Plugin[] => [
-		PluginCleanOldFiles(PATH.Dist_Dir, scriptNoExt),
-		nodeResolve(RESOLVE_OPTIONS),
-		...pluginMinify ? [pluginMinify.terser()] : [],
-		PluginInjectHashIntoHtml(PATH.Html_Template, PATH.Dist_Dir, [scriptNoExt]),
-	]
 
 	const main = {
 		input: "Main.js",
@@ -40,7 +33,12 @@ export default (async () => {
 			format: FORMAT,
 			sourcemap: isLocal,
 		},
-		plugins: getPlugins("Main"),
+		plugins: [
+			PluginCleanOldFiles(PATH.Dist_Dir, "Main"),
+			nodeResolve(RESOLVE_OPTIONS),
+			...pluginMinify ? [pluginMinify.terser()] : [],
+			PluginInjectHashIntoHtml(PATH.Html_Template, PATH.Dist_Dir, ["Main"]),
+		],
 		// We always use a hash, so we don't get facades anyway
 		preserveEntrySignatures: "strict",
 		watch: { buildDelay: 20, clearScreen: false, exclude: "node_modules/**" },
