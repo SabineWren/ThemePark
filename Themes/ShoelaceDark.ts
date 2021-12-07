@@ -61,7 +61,7 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(186, 100, 95.5),
 	]),
 
-	// TODO Success
+	 // Success
 	...Shoelace.StripSuccess([
 		Hsl(144.3, 53.6, 16),
 		Hsl(143.2, 55.4, 23.5),
@@ -76,7 +76,7 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(144, 100, 95.5),
 	]),
 
-	// TODO Warning
+	 // Warning
 	...Shoelace.StripWarning([
 		Hsl(21.9, 66.3, 21.1),
 		Hsl(21.5, 73.6, 29.7),
@@ -91,7 +91,6 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(60, 100, 94.6),
 	]),
 
-	// TODO
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {
 		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 18) },
@@ -105,11 +104,9 @@ const tokens: ThemeTokensShoelace = {
 		XYBlurSpread: "0 4px 16px", Colour: Hsl(0, 0, 0, 24)},
 
 	// *** Forms ***
-	// TODO
 	"--sl-focus-ring": {
 		XYBlurSpread: "0 0 0 3px", Colour: Hsl(198.6, 88.7, 48.4, 45)},
 
-	// TODO
 	"--sl-input-background-color": `var(--sl-color-neutral-0)`,
 	"--sl-input-background-color-hover": `var(--sl-input-background-color)`,
 	"--sl-input-background-color-focus": `var(--sl-input-background-color)`,
@@ -119,7 +116,6 @@ const tokens: ThemeTokensShoelace = {
 	"--sl-input-border-color-focus": `var(--sl-color-primary-500)`,
 	"--sl-input-border-color-disabled": `var(--sl-color-neutral-300)`,
 
-	// TODO
 	"--sl-input-color": `var(--sl-color-neutral-700)`,
 	"--sl-input-color-hover": `var(--sl-color-neutral-700)`,
 	"--sl-input-color-focus": `var(--sl-color-neutral-700)`,
@@ -130,7 +126,6 @@ const tokens: ThemeTokensShoelace = {
 	"--sl-input-placeholder-color": `var(--sl-color-neutral-500)`,
 	"--sl-input-placeholder-color-disabled": `var(--sl-color-neutral-600)`,
 
-	// TODO
 	"--sl-input-filled-background-color": `var(--sl-color-neutral-100)`,
 	"--sl-input-filled-background-color-hover": `var(--sl-color-neutral-100)`,
 	"--sl-input-filled-background-color-focus": `var(--sl-color-neutral-100)`,
@@ -144,13 +139,13 @@ const tokens: ThemeTokensShoelace = {
 	"--sl-input-help-text-color": `var(--sl-color-neutral-500)`,
 
 	// Overlays
-	"--sl-overlay-background-color": Hsl(0, 0, 0, 43),// TODO
+	"--sl-overlay-background-color": Hsl(0, 0, 0, 43),
 
 	// Panels
-	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,// TODO
-	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,// TODO
+	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,
+	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,
 
 	// Tooltips
-	"--sl-tooltip-background-color": `var(--sl-color-neutral-800)`,// TODO
-	"--sl-tooltip-color": `var(--sl-color-neutral-0)`,// TODO
+	"--sl-tooltip-background-color": `var(--sl-color-neutral-800)`,
+	"--sl-tooltip-color": `var(--sl-color-neutral-0)`,
 }

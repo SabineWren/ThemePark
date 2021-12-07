@@ -16,10 +16,11 @@ body.${unsafeCSS(className)} {
 })
 
 const tokens: ThemeTokensShoelace = {
-	// TODO Danger
+	// Danger
 	...Shoelace.StripDanger([
+		Hsl(354, 38, 10),
 		Nord[11],
-		Nord[11],
+		Hsl(354, 100, 80),
 	]),
 
 	// Neutral
@@ -35,16 +36,26 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(185, 63, 96),
 	]),
 
-	// TODO Success
+	// Success
 	...Shoelace.StripSuccess([
+		Hsl(98, 25, 25),
 		Nord[14],
-		Nord[14],
+		Hsl(80, 80, 86),
 	]),
 
-	// TODO Warning
+	// Warning
 	...Shoelace.StripWarning([
-		Nord[13],
-		Nord[13],
+		Hsl(20, 50, 20),
+		Hsl(20, 53, 35),
+		Hsl(28, 58, 45),
+		Hsl(33, 62, 55),
+		Hsl(35, 64, 58),
+		Hsl(37, 66, 60),// button hovered
+		Hsl(40, 71, 73),// Nord[13] button
+		Hsl(44, 100, 83),
+		Hsl(50, 100, 90),
+		Hsl(52, 100, 88),
+		Hsl(60, 100, 95),
 	]),
 
 	// TODO

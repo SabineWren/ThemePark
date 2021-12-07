@@ -14,7 +14,6 @@ const THEMES_DARK = [
 	{ Spec: shoelaceDark, Style: ThemeToCss(shoelaceDark) },
 	{ Spec: nordDark, Style: ThemeToCss(nordDark) },
 ] as const
-// "sl-theme-light" "Nord Snow Storm"
 const THEMES_LIGHT = [
 	{ Spec: shoelaceLight, Style: ThemeToCss(shoelaceLight) },
 	{ Spec: nordSnowStorm, Style: ThemeToCss(nordSnowStorm) },
