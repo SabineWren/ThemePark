@@ -1,14 +1,9 @@
 /*
  * @author Lea Verou 2020 MIT License
- *
- * Chroma works fine with LCH, and can convert to LAB,
- * but has bugged conversion from LCH to XYZ and RGB.
- * Therefore, I copied this code from CSS Land and tested
- * it works with a 3rd party colour converter.
-*/
-// This does NOT PERFORM ANY CLAMPING
-// i.e. it returns RGB syntax, but may exceed sRGB colour space
-export const LCH_to_sRGB = (LCH: TupleTriple): TupleTriple => {
+ * Copied to Theme Park from CSS Land.
+ * Tested with a 3rd party colour converter.
+ */
+export const LCH_to_RGB_Percents = (LCH: TupleTriple): TupleTriple => {
 	// convert an array of CIE LCH values
 	// to CIE Lab, and then to XYZ,
 	// adapt from D50 to D65,

@@ -1,8 +1,31 @@
+import * as chroma from "chroma.ts"
 import { css, html, LitElement} from "lit"
 import { customElement } from "lit/decorators.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
 import { Shared } from "Elements/Style.js"
-import { TokensFromHsl } from "Themes/Tools/ShoelaceTokenGenerator.js"
+
+const tokensFromHsl = (hslInput: string, name: string) => {
+	const colorScale = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+	const baseColour = chroma.color(hslInput)
+	const colours = chroma.scale([
+		baseColour.saturate(0.45).luminance(.95),// 50
+		baseColour,
+		baseColour.desaturate(0.1).luminance(.018),// 950
+	])
+		.mode("lch")
+		.colors(11, "hsl")
+
+	const swatches = colours
+		.map(c => html`<div class="swatch" style="background: ${chroma.hsl(c)}"></div>`)
+	const tokens = colours
+		.map((c,i) => `--sl-color-${name}-${colorScale[i]}: ${hslToString(c)}`)
+		.join("\n")
+	return { Swatches: swatches, Tokens: tokens }
+}
+
+const hslToString = ([h,s,l]: [number, number, number]) =>
+	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
+
 
 const style = css`
 :host {
@@ -71,7 +94,7 @@ export class TokenGenerator extends LitElement {
 		const picker = this.pickerRef.value
 		const name = this.nameRef.value?.value
 		const { Swatches, Tokens } = picker && name
-			? TokensFromHsl(picker.value, name)
+			? tokensFromHsl(picker.value, name)
 			: { Swatches: [], Tokens: [] }
 		const text = `/* Copy & paste into your theme */\n\n${Tokens}`
 		// format="hsl" value="hsl(212, 72%, 59%)"

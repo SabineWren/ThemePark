@@ -1,6 +1,6 @@
 import { css, unsafeCSS } from "lit"
-import { Hsl } from "Themes/Tools/Lib.js"
-import * as Shoelace from "Themes/Tools/Shoelace.js"
+import { Hsl } from "Themes/Lib/Colours.js"
+import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
 export const ShoelaceDark = (className: string): ThemeSpecification => ({
 	Label: "Shoelace Dark",

@@ -3,7 +3,7 @@ import { NordPolarNight } from "Themes/NordPolarNight.js"
 import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
-import { ThemeToCss } from "Themes/Tools/Lib.js"
+import { ThemeToCss } from "Themes/Lib/DesignTokens.js"
 
 const nordDark = NordPolarNight("sl-theme-nord-polar-night")
 const nordSnowStorm = NordSnowStorm("sl-theme-nord-snow-storm")

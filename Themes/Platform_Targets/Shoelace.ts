@@ -1,6 +1,6 @@
 import * as chroma from "chroma.ts"
 import { css } from "lit"
-import { Interpolate } from "Themes/Tools/Lib.js"
+import { Interpolate } from "Themes/Lib/Colours.js"
 
 const danger = (cs: chroma.Color[]) => ({
 	"--sl-color-danger-50": cs[0],
