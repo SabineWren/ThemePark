@@ -2,26 +2,41 @@ type TupleTriple = [number, number, number]
 type Colour = import("chroma.ts").Color | string
 type BoxShadow = { XYBlurSpread: string; Colour: Colour }
 
+/* Stylesheet has 3 parts:
+ * 1. Body css, which normally sets text colour and page background
+ * 2. Theme colours that apply to root, body, and host
+ * 3. Platform-supplied shared css (ex. Shoelace tokens)
+ * This probably isn't a good API, as theme implementors shouldn't
+ * need to care about platform tokens. They will need to override
+ * component parts as well.
+*/
 type ThemeSpecification = {
-	// Name user sees in dropdown. Should be unique per mode (light/dark)
-	Label: string
+	// TODO Not yet implemented. Will be used to modify component styling.
+	// This field might be highly platform-specific.
+	ComponentPartsCss: import("lit").CSSResult
 
 	// Name in kebab-case. Must include light/dark to guarantee uniqueness.
 	// Include the platform prefix to avoid collisions with app developers.
 	CssName: string
 
-	// Use to apply background and text colour to the HTML Body element
-	// TODO This seems like a kludge; find a better solution.
-	HtmlBodyCss: import("lit").CSSResult
-
 	// Defines the theme implementation. Supply at least two colours per entry.
 	// Theme Park uses chroma.ts to interpolate additional platform colours.
 	DesignTokens: ThemeTokensShoelace
 
-	// Import tokens used by more than one theme.
+	// Name user sees in theme-picker dropdown.
+	Label: string
+
+	// TODO Should this be part of the theme spec?
+	// Holds tokens shared across all themes for the platform.
 	// We only support Shoelace for now, so it's a trivial import.
-	// TODO refactor this out. It shouldn't be part of a theme spec.
 	PlatformTokens: import("lit").CSSResult
+
+	// Recommend: --sl-color-neutral-0 to --sl-color-neutral-200
+	TokenColourBackground: string
+
+	// Recommend: --sl-color-neutral-800 to --sl-color-neutral-1000
+	// Dark themes usually prefer lower values to prevent light bleed
+	TokenColourText: string
 }
 
 type ThemeTokensShoelace = {

@@ -1,17 +1,15 @@
-import { css, unsafeCSS } from "lit"
+import { css } from "lit"
 import { Hsl } from "Themes/Lib/Colours.js"
 import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
 export const ShoelaceDark = (className: string): ThemeSpecification => ({
-	Label: "Shoelace Dark",
+	ComponentPartsCss: css``,
 	CssName: className,
-	HtmlBodyCss: css`
-body.${unsafeCSS(className)} {
-	background: var(--sl-color-neutral-0);
-	color: var(--sl-color-neutral-900);
-}`,
 	DesignTokens: tokens,
+	Label: "Shoelace Dark",
 	PlatformTokens: Shoelace.ShoelaceTokensShared,
+	TokenColourBackground: `--sl-color-neutral-0`,
+	TokenColourText: `--sl-color-neutral-900`,
 })
 
 const tokens: ThemeTokensShoelace = {

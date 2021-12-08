@@ -1,18 +1,16 @@
-import { css, unsafeCSS } from "lit"
+import { css } from "lit"
 import { Nord } from "Themes/Palettes/NordPalette.js"
 import { Hsl } from "Themes/Lib/Colours.js"
 import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
 export const NordPolarNight = (className: string): ThemeSpecification => ({
-	Label: "Nord Polar Night",
+	ComponentPartsCss: css``,
 	CssName: className,
-	HtmlBodyCss: css`
-body.${unsafeCSS(className)} {
-	background: var(--sl-color-neutral-200);
-	color: var(--sl-color-neutral-900);
-}`,
 	DesignTokens: tokens,
+	Label: "Nord Polar Night",
 	PlatformTokens: Shoelace.ShoelaceTokensShared,
+	TokenColourBackground: `--sl-color-neutral-200`,
+	TokenColourText: `--sl-color-neutral-900`,
 })
 
 const tokens: ThemeTokensShoelace = {
