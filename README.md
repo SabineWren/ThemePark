@@ -7,34 +7,35 @@ Existing theme specification systems like [Style Dictionary](https://amzn.github
 Bring **[all the themes](#themes)** to the web, bridging the gap between theme creators and app authors.
 
 ## Objectives
-My vision is for web apps to support a huge variety of themes by default:
+Provide a huge variety of themes to apps:
 1. Implement a runtime theme-picker component.
-2. Create a type-safe API Specification for design tokens.
+2. Create a type-safe Theme API Specification and a GUI for implementing them.
 3. Implement **[all the themes](#themes)**.
-4. Compile themes to CSS targeting [Shoelace](https://github.com/shoelace-style/shoelace).
+4. Compile themes to CSS for [Shoelace](https://github.com/shoelace-style/shoelace).
 
 Fonts and icons are not in scope for *Theme Park*. The web already has fantastic support for including 3rd party fonts and icons in your apps.
 
 ## Constraints
 Some themes have complex requirements, such as gradients over card backgrounds or text colours. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
 
-Shoelace requires more shades than any 3rd party theme specifies, which may require mapping individual colours to many shades automatically. That's a [hard problem](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform). Additionally, any change to a theme palette arguably changes it to a new theme. Some shade changes must be okay, because Nord uses non-specified colours on their own home page, such as #fff.
+Shoelace requires more shades than any 3rd party theme specifies, which requires interpolating colours. Any change to a theme palette arguably changes it to a new theme. Some shade changes must be okay, because Nord uses non-specified colours on their own home page, such as #fff.
 
-i.e. I need to programatically extend the shade count but minimize deviance from the colour palette. It might help to first convert theme colors to [LCH](https://css.land/lch/), then clamp them to RGB at build time. That would also future-proof the theme colours for eventual LCH browser support.
+[Colour interpolation](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform) is surprisingly hard. Chroma.js doesn't correctly map from LCH to sRGB, while Color.js doesn't interpolate ranges.
 
-Themes add bytes, and I hope to eventually support a ludicrous number of themes. That requires code-splitting the CSS (already done in theme-picker code).
+Themes add bytes, and I hope to eventually support a ludicrous number of themes. That will require some effort to load quickly. Themes are already code-split, but require JS to load and generate the theme, which won't be viable for production apps.
 
 ## Building
-Shoelace requires a one-time copy of its Bootstrap icons. Copy the shoelace assets directory into Web_Root. Bring your own web server.
+Shoelace requires a one-time copy of its Bootstrap icons, so copy the shoelace assets directory into Web_Root. Bring your own web server.
 
 ### TODO Mock Website
-- Add many components to a mock site to test theming.
-- Implement full support for Nord Polar Night, as it's the best-documented dark theme that also has a corresponding light theme.
+- Add colour pickers for real-time theme editing.
+- Add Hex and RGB support.
+- Add many components to test theming.
 
 ### TODO Theme Tooling
-1. Map remaining colours for Nord themes and re-style elements such as cards.
-2. Code-split themes out as JS bundles instead of css files.
-3. Implement all the themes!
+- Improve colour interpolation, and make it GUI-driven using colour pickers.
+- Map remaining colours for Nord themes and re-style elements such as cards.
+- Implement all the themes!
 
 ## Themes
 Expect this list to grow.
