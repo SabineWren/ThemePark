@@ -1,7 +1,8 @@
+import * as chroma from "chroma.ts"
 import { css } from "lit"
 import { Interpolate } from "Themes/Tools/Lib.js"
 
-const danger = (cs: Hsl[]) => ({
+const danger = (cs: chroma.Color[]) => ({
 	"--sl-color-danger-50": cs[0],
 	"--sl-color-danger-100": cs[1],
 	"--sl-color-danger-200": cs[2],
@@ -14,9 +15,9 @@ const danger = (cs: Hsl[]) => ({
 	"--sl-color-danger-900": cs[9],
 	"--sl-color-danger-950": cs[10],
 })
-export const StripDanger = (cs: Hsl[]) => danger(Interpolate(cs, 11))
+export const StripDanger = (cs: chroma.Color[]) => danger(Interpolate(cs, 11))
 
-const neutral = (cs: Hsl[]) => ({
+const neutral = (cs: chroma.Color[]) => ({
 	"--sl-color-neutral-0": cs[0],
 	"--sl-color-neutral-50": cs[1],
 	"--sl-color-neutral-100": cs[2],
@@ -31,9 +32,9 @@ const neutral = (cs: Hsl[]) => ({
 	"--sl-color-neutral-950": cs[11],
 	"--sl-color-neutral-1000": cs[12],
 })
-export const StripNeutral = (cs: Hsl[]) => neutral(Interpolate(cs, 13))
+export const StripNeutral = (cs: chroma.Color[]) => neutral(Interpolate(cs, 13))
 
-const primary = (cs: Hsl[]) => ({
+const primary = (cs: chroma.Color[]) => ({
 	"--sl-color-primary-50": cs[0],
 	"--sl-color-primary-100": cs[1],
 	"--sl-color-primary-200": cs[2],
@@ -46,9 +47,9 @@ const primary = (cs: Hsl[]) => ({
 	"--sl-color-primary-900": cs[9],
 	"--sl-color-primary-950": cs[10],
 })
-export const StripPrimary = (cs: Hsl[]) => primary(Interpolate(cs, 11))
+export const StripPrimary = (cs: chroma.Color[]) => primary(Interpolate(cs, 11))
 
-const success = (cs: Hsl[]) => ({
+const success = (cs: chroma.Color[]) => ({
 	"--sl-color-success-50": cs[0],
 	"--sl-color-success-100": cs[1],
 	"--sl-color-success-200": cs[2],
@@ -61,9 +62,9 @@ const success = (cs: Hsl[]) => ({
 	"--sl-color-success-900": cs[9],
 	"--sl-color-success-950": cs[10],
 })
-export const StripSuccess = (cs: Hsl[]) => success(Interpolate(cs, 11))
+export const StripSuccess = (cs: chroma.Color[]) => success(Interpolate(cs, 11))
 
-const warning = (cs: Hsl[]) => ({
+const warning = (cs: chroma.Color[]) => ({
 	"--sl-color-warning-50": cs[0],
 	"--sl-color-warning-100": cs[1],
 	"--sl-color-warning-200": cs[2],
@@ -76,7 +77,7 @@ const warning = (cs: Hsl[]) => ({
 	"--sl-color-warning-900": cs[9],
 	"--sl-color-warning-950": cs[10],
 })
-export const StripWarning = (cs: Hsl[]) => warning(Interpolate(cs, 11))
+export const StripWarning = (cs: chroma.Color[]) => warning(Interpolate(cs, 11))
 
 export const ShoelaceTokensShared = css`
 :root, :host, body {

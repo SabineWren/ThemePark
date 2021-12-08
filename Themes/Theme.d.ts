@@ -1,6 +1,5 @@
-type Hsl = { H: number; S: number; L: number; A?: number }
-type Colour = Hsl | string
-
+type TupleTriple = [number, number, number]
+type Colour = import("chroma.ts").Color | string
 type BoxShadow = { XYBlurSpread: string; Colour: Colour }
 
 type ThemeSpecification = {
