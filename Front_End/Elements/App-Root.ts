@@ -25,6 +25,7 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-dropdown></theme-picker-dropdown>
 	<theme-picker-switch></theme-picker-switch>
 </div>
+<token-generator></token-generator>
 <div class="flex">
 	<sl-card>
 		<h4>Card: Decorative</h4>

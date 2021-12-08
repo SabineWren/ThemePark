@@ -23,6 +23,7 @@
 					"no-incompatible-type-binding": "warning",
 					"no-invalid-css": "off",// Breaks with unsafeCSS()
 					"no-missing-import": "off",
+					"no-unknown-attribute": "off",
 					"no-unknown-property": "off",
 					"no-unknown-tag-name": "off",
 					"no-unintended-mixed-binding": "error"
