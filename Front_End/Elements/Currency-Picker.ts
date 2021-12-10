@@ -1,7 +1,9 @@
 import { html, LitElement } from "lit"
+import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { CurrencyFormatter, CURRENCIES, CurrencyToIcon } from "Providers/Currency.js"
 
+@customElement("currency-picker")
 export class CurrencyPicker extends LitElement {
 	private currency = new CurrencyFormatter(this)
 	static override get styles() { return [Shared] }

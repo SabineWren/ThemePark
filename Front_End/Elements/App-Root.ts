@@ -1,6 +1,20 @@
 import { css, html, LitElement } from "lit"
+import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
+import { ColourType, ColourTypes } from "Elements/Token-Generator/Token-Generator.js"
 
+const renderColourPicker = (t: ColourType) => html`
+<sl-tab slot="nav" panel="${t}">
+	<sl-button type="${t}">
+		${t[0].toUpperCase() + t.slice(1)}
+		<sl-icon slot="suffix" name="palette"></sl-icon>
+	</sl-button>
+</sl-tab>
+<sl-tab-panel name="${t}">
+	<token-generator type="${t}"></token-generator>
+</sl-tab-panel>`
+
+@customElement("app-root")
 export class AppRoot extends LitElement {
 	static override get styles() { return [Shared, css`
 :host {
@@ -25,7 +39,9 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-dropdown></theme-picker-dropdown>
 	<theme-picker-switch></theme-picker-switch>
 </div>
-<token-generator></token-generator>
+<sl-tab-group>
+	${ColourTypes.map(c => renderColourPicker(c))}
+</sl-tab-group>
 <div class="flex">
 	<sl-card>
 		<h4>Card: Decorative</h4>

@@ -1,7 +1,9 @@
 import { css, html, LitElement } from "lit"
+import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeMode, ThemeProvider } from "Providers/Theme.js"
 
+@customElement("theme-picker-dropdown")
 export class ThemePickerDropdown extends LitElement {
 	private theme = new ThemeProvider(this)
 	static override get styles() { return [Shared] }
@@ -21,6 +23,7 @@ export class ThemePickerDropdown extends LitElement {
 	}
 }
 
+@customElement("theme-picker-switch")
 export class ThemePickerSwitch extends LitElement {
 	private theme = new ThemeProvider(this)
 	static override get styles() { return [
