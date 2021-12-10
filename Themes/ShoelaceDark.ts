@@ -2,14 +2,14 @@ import { css } from "lit"
 import { Hsl } from "Themes/Lib/Colours.js"
 import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
-export const ShoelaceDark = (className: string): ThemeSpecification => ({
+export const ShoelaceDark = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
-	CssName: className,
+	CssName: "shoelace-dark",
 	DesignTokens: tokens,
+	IsLight: false,
 	Label: "Shoelace Dark",
-	PlatformTokens: Shoelace.ShoelaceTokensShared,
-	TokenColourBackground: `--sl-color-neutral-0`,
-	TokenColourText: `--sl-color-neutral-900`,
+	TokenColourBackground: "--sl-color-neutral-0",
+	TokenColourText: "--sl-color-neutral-900",
 })
 
 const tokens: ThemeTokensShoelace = {

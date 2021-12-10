@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit"
 import { Shared } from "Elements/Style.js"
-import { CurrencyFormatter, CURRENCIES, CurrencyToIcon } from "Format/Currency.js"
+import { CurrencyFormatter, CURRENCIES, CurrencyToIcon } from "Providers/Currency.js"
 
 export class CurrencyPicker extends LitElement {
 	private currency = new CurrencyFormatter(this)

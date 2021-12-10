@@ -7,8 +7,7 @@ const PATH = Object.freeze({
 	Dist_Dir: "Web_Root/dist/",
 	Html_Template: "Front_End/index.html",
 })
-// https://rollupjs.org/guide/en/#outputformat
-const FORMAT = "esm"// esm = es = module
+const FORMAT = "esm"// https://rollupjs.org/guide/en/#outputformat
 const RESOLVE_OPTIONS: RollupNodeResolveOptions = Object.freeze({
 	browser: true,
 	extensions: [".js"],

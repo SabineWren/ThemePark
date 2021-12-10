@@ -11,25 +11,22 @@ type BoxShadow = { XYBlurSpread: string; Colour: Colour }
  * component parts as well.
 */
 type ThemeSpecification = {
-	// TODO Not yet implemented. Will be used to modify component styling.
-	// This field might be highly platform-specific.
+	// Used to style component parts. Platform-specific.
 	ComponentPartsCss: import("lit").CSSResult
 
-	// Name in kebab-case. Must include light/dark to guarantee uniqueness.
-	// Include the platform prefix to avoid collisions with app developers.
+	// Name in kebab-case. Use prefixes to guarantee uniqueness.
+	// ex. Nord Dark for Shoelace: sl-nord-polar-night
 	CssName: string
 
 	// Defines the theme implementation. Supply at least two colours per entry.
 	// Theme Park uses chroma.ts to interpolate additional platform colours.
 	DesignTokens: ThemeTokensShoelace
 
+	// Light and Dark modes show different dropdowns for theme selection
+	IsLight: boolean
+
 	// Name user sees in theme-picker dropdown.
 	Label: string
-
-	// TODO Should this be part of the theme spec?
-	// Holds tokens shared across all themes for the platform.
-	// We only support Shoelace for now, so it's a trivial import.
-	PlatformTokens: import("lit").CSSResult
 
 	// Recommend: --sl-color-neutral-0 to --sl-color-neutral-200
 	TokenColourBackground: string

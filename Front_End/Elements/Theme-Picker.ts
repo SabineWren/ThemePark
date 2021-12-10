@@ -1,6 +1,6 @@
 import { css, html, LitElement } from "lit"
 import { Shared } from "Elements/Style.js"
-import { ThemeMode, ThemeProvider } from "Format/Theme.js"
+import { ThemeMode, ThemeProvider } from "Providers/Theme.js"
 
 export class ThemePickerDropdown extends LitElement {
 	private theme = new ThemeProvider(this)
@@ -9,12 +9,12 @@ export class ThemePickerDropdown extends LitElement {
 		const selected = this.theme.GetTheme()
 		return html`
 <sl-dropdown>
-	<sl-button slot="trigger" caret>${selected.Spec.Label}</sl-button>
+	<sl-button slot="trigger" caret>${selected.Label}</sl-button>
 	<sl-menu
 		@sl-select=${(e: any) => this.theme.SetTheme(e.detail.item.theme)}>
 		${this.theme.GetThemeOptions().map(o => html`
 		<sl-menu-item ?checked=${o === selected} .theme="${o}"
-			>${o.Spec.Label}
+			>${o.Label}
 		</sl-menu-item>`)}
 	</sl-menu>
 </sl-dropdown>`

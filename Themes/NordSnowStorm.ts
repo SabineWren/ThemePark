@@ -3,14 +3,14 @@ import { Nord } from "Themes/Palettes/NordPalette.js"
 import { Hsl } from "Themes/Lib/Colours.js"
 import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
-export const NordSnowStorm = (className: string): ThemeSpecification => ({
+export const NordSnowStorm = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
-	CssName: className,
+	CssName: "sl-nord-snow-storm",
 	DesignTokens: tokens,
+	IsLight: true,
 	Label: "Nord Snow Storm",
-	PlatformTokens: Shoelace.ShoelaceTokensShared,
-	TokenColourBackground: `--sl-color-neutral-0`,
-	TokenColourText: `--sl-color-neutral-900`,
+	TokenColourBackground: "--sl-color-neutral-0",
+	TokenColourText: "--sl-color-neutral-900",
 })
 
 const tokens: ThemeTokensShoelace = {

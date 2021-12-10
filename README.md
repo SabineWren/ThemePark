@@ -13,19 +13,21 @@ Provide a huge variety of themes to apps:
 3. Implement **[all the themes](#themes-first-pass)**.
 4. Compile themes to CSS for [Shoelace](https://github.com/shoelace-style/shoelace).
 
-Fonts and icons are not in scope for *Theme Park*. The web already has fantastic support for including 3rd party fonts and icons in your apps.
+Fonts and icons are not in scope for Theme Park. The web already has fantastic support for including 3rd party fonts and icons in your apps.
 
 ## Constraints
-Some themes have complex requirements, such as gradients over card backgrounds or text colours. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
+Some themes have complex backgrounds, such as SVG images or gradients. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
 
-Shoelace requires more shades than any 3rd party theme specifies, which requires interpolating colours. Any change to a theme palette arguably changes it to a new theme. Some shade changes must be okay, because Nord uses non-specified colours on their own home page, such as #fff.
+Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space.
 
-[Colour interpolation](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform) is surprisingly hard. Chroma.js doesn't correctly map from LCH to sRGB, while Color.js doesn't interpolate ranges.
-
-Themes are already code-split, but require JS to load and generate the theme, which won't be viable for production apps.
+Themes are already code-split, but require JS to load and generate the theme, which won't be viable for production apps. As a stopgap, Theme Park will export Shoelace-compatible stylesheets.
 
 ## Building
-Shoelace requires a one-time copy of its Bootstrap icons, so copy the shoelace assets directory into Web_Root. Bring your own web server.
+Some assets require a one-time copy to the web root:
+1. The Shoelace package 'assets' directory, which contains Bootstrap icons
+2. Themes/Platform_Targets/shoelace-tokens.css
+
+Bring your own web server.
 
 ### TODO Mock Website
 - Add colour pickers for real-time theme editing.

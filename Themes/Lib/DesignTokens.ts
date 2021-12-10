@@ -2,15 +2,12 @@ import * as chroma from "chroma.ts"
 import { css, unsafeCSS } from "lit"
 
 export const ThemeToCss = (spec: ThemeSpecification) => css`
-	${cssBody(spec)}
-	${cssTheme(spec)}
-	${spec.PlatformTokens}`
-
-const cssBody = (spec: ThemeSpecification) => css`
 	body.${unsafeCSS(spec.CssName)} {
 		background: var(${unsafeCSS(spec.TokenColourBackground)});
 		color: var(${unsafeCSS(spec.TokenColourText)});
-	}`
+	}
+	${spec.ComponentPartsCss}
+	${cssTheme(spec)}`
 
 const cssTheme = (spec: ThemeSpecification) => {
 	const themeTokenText = Object.entries(spec.DesignTokens)
