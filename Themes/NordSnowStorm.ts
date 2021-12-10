@@ -15,13 +15,13 @@ export const NordSnowStorm = (): ThemeSpecification => ({
 
 const tokens: ThemeTokensShoelace = {
 	// TODO Danger
-	...Shoelace.StripDanger([
+	...Shoelace.TokenizeDanger([
 		Nord[11],
 		Nord[11],
 	]),
 
 	// Neutral
-	...Shoelace.StripNeutral([
+	...Shoelace.TokenizeNeutral([
 		Nord["light-card-bg"],
 		Nord["light-gutter-bg"],
 		Nord[6], Nord[5], Nord[4],
@@ -29,20 +29,20 @@ const tokens: ThemeTokensShoelace = {
 	]),
 
 	// Primary
-	...Shoelace.StripPrimary([
+	...Shoelace.TokenizePrimary([
 		Hsl(185, 63, 96),
 		Nord[8],
 		Hsl(200, 35, 25),
 	]),
 
 	// TODO Success
-	...Shoelace.StripSuccess([
+	...Shoelace.TokenizeSuccess([
 		Nord[14],
 		Nord[14],
 	]),
 
 	// TODO Warning
-	...Shoelace.StripWarning([
+	...Shoelace.TokenizeWarning([
 		Nord[13],
 		Nord[13],
 	]),

@@ -36,47 +36,7 @@ type ThemeSpecification = {
 	TokenColourText: string
 }
 
-type ThemeTokensShoelace = {
-	// Primary
-	"--sl-color-primary-50": Colour
-	"--sl-color-primary-100": Colour
-	"--sl-color-primary-200": Colour
-	"--sl-color-primary-300": Colour
-	"--sl-color-primary-400": Colour
-	"--sl-color-primary-500": Colour
-	"--sl-color-primary-600": Colour
-	"--sl-color-primary-700": Colour
-	"--sl-color-primary-800": Colour
-	"--sl-color-primary-900": Colour
-	"--sl-color-primary-950": Colour
-
-	// Success
-	"--sl-color-success-50": Colour
-	"--sl-color-success-100": Colour
-	"--sl-color-success-200": Colour
-	"--sl-color-success-300": Colour
-	"--sl-color-success-400": Colour
-	"--sl-color-success-500": Colour
-	"--sl-color-success-600": Colour
-	"--sl-color-success-700": Colour
-	"--sl-color-success-800": Colour
-	"--sl-color-success-900": Colour
-	"--sl-color-success-950": Colour
-
-	// Warning
-	"--sl-color-warning-50": Colour
-	"--sl-color-warning-100": Colour
-	"--sl-color-warning-200": Colour
-	"--sl-color-warning-300": Colour
-	"--sl-color-warning-400": Colour
-	"--sl-color-warning-500": Colour
-	"--sl-color-warning-600": Colour
-	"--sl-color-warning-700": Colour
-	"--sl-color-warning-800": Colour
-	"--sl-color-warning-900": Colour
-	"--sl-color-warning-950": Colour
-
-	//
+type TokensShoelaceDanger = {
 	"--sl-color-danger-50": Colour
 	"--sl-color-danger-100": Colour
 	"--sl-color-danger-200": Colour
@@ -88,8 +48,8 @@ type ThemeTokensShoelace = {
 	"--sl-color-danger-800": Colour
 	"--sl-color-danger-900": Colour
 	"--sl-color-danger-950": Colour
-
-	// Neutral
+}
+type TokensShoelaceNeutral = {
 	"--sl-color-neutral-0": Colour
 	"--sl-color-neutral-50": Colour
 	"--sl-color-neutral-100": Colour
@@ -103,7 +63,52 @@ type ThemeTokensShoelace = {
 	"--sl-color-neutral-900": Colour
 	"--sl-color-neutral-950": Colour
 	"--sl-color-neutral-1000": Colour
-
+}
+type TokensShoelacePrimary = {
+	"--sl-color-primary-50": Colour
+	"--sl-color-primary-100": Colour
+	"--sl-color-primary-200": Colour
+	"--sl-color-primary-300": Colour
+	"--sl-color-primary-400": Colour
+	"--sl-color-primary-500": Colour
+	"--sl-color-primary-600": Colour
+	"--sl-color-primary-700": Colour
+	"--sl-color-primary-800": Colour
+	"--sl-color-primary-900": Colour
+	"--sl-color-primary-950": Colour
+}
+type TokensShoelaceSuccess = {
+	"--sl-color-success-50": Colour
+	"--sl-color-success-100": Colour
+	"--sl-color-success-200": Colour
+	"--sl-color-success-300": Colour
+	"--sl-color-success-400": Colour
+	"--sl-color-success-500": Colour
+	"--sl-color-success-600": Colour
+	"--sl-color-success-700": Colour
+	"--sl-color-success-800": Colour
+	"--sl-color-success-900": Colour
+	"--sl-color-success-950": Colour
+}
+type TokensShoelaceWarning = {
+	"--sl-color-warning-50": Colour
+	"--sl-color-warning-100": Colour
+	"--sl-color-warning-200": Colour
+	"--sl-color-warning-300": Colour
+	"--sl-color-warning-400": Colour
+	"--sl-color-warning-500": Colour
+	"--sl-color-warning-600": Colour
+	"--sl-color-warning-700": Colour
+	"--sl-color-warning-800": Colour
+	"--sl-color-warning-900": Colour
+	"--sl-color-warning-950": Colour
+}
+type ThemeTokensShoelace = TokensShoelaceDanger
+& TokensShoelaceNeutral
+& TokensShoelacePrimary
+& TokensShoelaceSuccess
+& TokensShoelaceWarning
+& {
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": BoxShadow
 	"--sl-shadow-small": BoxShadow

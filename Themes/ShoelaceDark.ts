@@ -13,7 +13,7 @@ export const ShoelaceDark = (): ThemeSpecification => ({
 })
 
 const tokens: ThemeTokensShoelace = {
-	...Shoelace.StripDanger([
+	...Shoelace.TokenizeDanger([
 		Hsl(0, 56, 23.9),
 		Hsl(0.6, 60, 33.9),
 		Hsl(0.9, 67.2, 37.1),
@@ -28,7 +28,7 @@ const tokens: ThemeTokensShoelace = {
 	]),
 
 	// Neutral
-	...Shoelace.StripNeutral([
+	...Shoelace.TokenizeNeutral([
 		Hsl(240, 5.9, 11),
 		Hsl(240, 5.1, 15),
 		Hsl(240, 5.7, 18.2),
@@ -45,7 +45,7 @@ const tokens: ThemeTokensShoelace = {
 	]),
 
 	// Primary
-	...Shoelace.StripPrimary([
+	...Shoelace.TokenizePrimary([
 		Hsl(203, 63.8, 20.9),
 		Hsl(203.4, 70.4, 28),
 		Hsl(202.7, 75.8, 30.8),
@@ -60,7 +60,7 @@ const tokens: ThemeTokensShoelace = {
 	]),
 
 	 // Success
-	...Shoelace.StripSuccess([
+	...Shoelace.TokenizeSuccess([
 		Hsl(144.3, 53.6, 16),
 		Hsl(143.2, 55.4, 23.5),
 		Hsl(141.5, 58.2, 26.3),
@@ -75,7 +75,7 @@ const tokens: ThemeTokensShoelace = {
 	]),
 
 	 // Warning
-	...Shoelace.StripWarning([
+	...Shoelace.TokenizeWarning([
 		Hsl(21.9, 66.3, 21.1),
 		Hsl(21.5, 73.6, 29.7),
 		Hsl(22.3, 77.6, 33.3),

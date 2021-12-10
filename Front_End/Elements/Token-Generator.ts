@@ -26,7 +26,6 @@ const tokensFromHsl = (hslInput: string, name: string) => {
 const hslToString = ([h,s,l]: [number, number, number]) =>
 	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
 
-
 const style = css`
 :host {
 	--spacing: 1.5rem;
