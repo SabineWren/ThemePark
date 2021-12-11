@@ -4,6 +4,7 @@ import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
 import { ThemeToCss } from "Themes/Lib/DesignTokens.js"
+import { TokenizeAll } from "Themes/Platform_Targets/Shoelace.js"
 
 export enum ThemeMode { Dark=1, Light=2 }
 const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
@@ -17,14 +18,16 @@ const THEMES_LIGHT = [
 ] as const
 
 const loadStyles = (theme: ThemeSpecification) => {
-	return $(document, `style#${theme.CssName}`)
-		? Promise.resolve()
-		: new Promise(resolve => {
-			const style = document.createElement("style")
-			style.innerHTML = ThemeToCss(theme).cssText
-			$(document, "head").appendChild(style)
-			resolve(null)
-		})
+	// If editing the theme, need to remove old stylesheet
+	const oldStyle = $(document, `style#${theme.CssName}`)
+	const style = document.createElement("style")
+	style.id = theme.CssName
+
+	const tokens = TokenizeAll(theme.TokensColourTheme)
+	style.innerHTML = ThemeToCss(theme, tokens).cssText
+	$(document, "head").appendChild(style)
+	$(document, "body").className = theme.CssName
+	oldStyle?.remove()
 }
 
 const state = (() => {
@@ -45,7 +48,7 @@ const applyCurrentTheme = () => {
 	store("mode", state.Mode === ThemeMode.Light ? "light" : "dark")
 
 	const t = state.Mode === ThemeMode.Light ? state.Light : state.Dark
-	loadStyles(t).then(() => $(document, "body").className = t.CssName)
+	loadStyles(t)
 	hosts.forEach(h => h.requestUpdate())
 }
 MEDIA_PREF_LIGHT.addEventListener("change", () => {

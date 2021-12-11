@@ -1,19 +1,19 @@
 import { css } from "lit"
 import { Hsl } from "Themes/Lib/Colours.js"
-import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
 export const ShoelaceDark = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "shoelace-dark",
-	DesignTokens: tokens,
 	IsLight: false,
 	Label: "Shoelace Dark",
 	TokenColourBackground: "--sl-color-neutral-0",
 	TokenColourText: "--sl-color-neutral-900",
+	TokensColourTheme: colours,
+	TokensShoelace: tokens,
 })
 
-const tokens: ThemeTokensShoelace = {
-	...Shoelace.TokenizeDanger([
+const colours: ThemeColours = {
+	Danger: [
 		Hsl(0, 56, 23.9),
 		Hsl(0.6, 60, 33.9),
 		Hsl(0.9, 67.2, 37.1),
@@ -25,10 +25,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(0, 100, 85.6),
 		Hsl(0, 100, 90.3),
 		Hsl(0, 100, 95.9),
-	]),
-
-	// Neutral
-	...Shoelace.TokenizeNeutral([
+	],
+	Neutral: [
 		Hsl(240, 5.9, 11),
 		Hsl(240, 5.1, 15),
 		Hsl(240, 5.7, 18.2),
@@ -42,10 +40,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(240, 9.1, 91.8),
 		Hsl(0, 0, 95),
 		Hsl(0, 0, 100),
-	]),
-
-	// Primary
-	...Shoelace.TokenizePrimary([
+	],
+	Primary: [
 		Hsl(203, 63.8, 20.9),
 		Hsl(203.4, 70.4, 28),
 		Hsl(202.7, 75.8, 30.8),
@@ -57,10 +53,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(198.8, 100, 82.5),
 		Hsl(198.5, 100, 89.9),
 		Hsl(186, 100, 95.5),
-	]),
-
-	 // Success
-	...Shoelace.TokenizeSuccess([
+	],
+	Success: [
 		Hsl(144.3, 53.6, 16),
 		Hsl(143.2, 55.4, 23.5),
 		Hsl(141.5, 58.2, 26.3),
@@ -72,10 +66,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(141, 90.9, 82.1),
 		Hsl(142, 100, 89.1),
 		Hsl(144, 100, 95.5),
-	]),
-
-	 // Warning
-	...Shoelace.TokenizeWarning([
+	],
+	Warning: [
 		Hsl(21.9, 66.3, 21.1),
 		Hsl(21.5, 73.6, 29.7),
 		Hsl(22.3, 77.6, 33.3),
@@ -87,8 +79,10 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(49.3, 100, 73),
 		Hsl(51.8, 100, 85),
 		Hsl(60, 100, 94.6),
-	]),
+	],
+}
 
+const tokens: ThemeTokensShoelaceStatic = {
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {
 		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 18) },

@@ -2,19 +2,27 @@ import * as chroma from "chroma.ts"
 import { Interpolate } from "Themes/Lib/Colours.js"
 
 export const TokenizeDanger = (cs: chroma.Color[]) =>
-	tokenize(cs, "danger") as TokensShoelaceDanger
+	tokenize(cs, "danger")
 
 export const TokenizeNeutral = (cs: chroma.Color[]) =>
-	tokenizeNeutral(cs, "neutral") as TokensShoelaceNeutral
+	tokenizeNeutral(cs, "neutral")
 
 export const TokenizePrimary = (cs: chroma.Color[]) =>
-	tokenize(cs, "primary") as TokensShoelacePrimary
+	tokenize(cs, "primary")
 
 export const TokenizeSuccess = (cs: chroma.Color[]) =>
-	tokenize(cs, "success") as TokensShoelaceSuccess
+	tokenize(cs, "success")
 
 export const TokenizeWarning = (cs: chroma.Color[]) =>
-	tokenize(cs, "warning") as TokensShoelaceWarning
+	tokenize(cs, "warning")
+
+export const TokenizeAll = (colours: ThemeColours) => ({
+	...TokenizeDanger(colours.Danger),
+	...TokenizeNeutral(colours.Neutral),
+	...TokenizePrimary(colours.Primary),
+	...TokenizeSuccess(colours.Success),
+	...TokenizeWarning(colours.Warning),
+})
 
 const zip2 = <X,Y>(xs: X[], ys: Y[]) =>
 	xs.map((_,i): [X,Y] => [xs[i], ys[i]])

@@ -1,19 +1,19 @@
 import { css } from "lit"
 import { Hsl } from "Themes/Lib/Colours.js"
-import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
 export const ShoelaceLight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "shoelace-light",
-	DesignTokens: tokens,
 	IsLight: true,
 	Label: "Shoelace Light",
 	TokenColourBackground: "--sl-color-neutral-0",
 	TokenColourText: "--sl-color-neutral-900",
+	TokensColourTheme: colours,
+	TokensShoelace: tokens,
 })
 
-const tokens: ThemeTokensShoelace = {
-	...Shoelace.TokenizeDanger([
+const colours: ThemeColours = {
+	Danger: [
 		Hsl(0, 85.7, 97.3),
 		Hsl(0, 93.3, 94.1),
 		Hsl(0, 96.3, 89.4),
@@ -25,10 +25,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(0, 70, 35.3),
 		Hsl(0, 62.8, 30.6),
 		Hsl(0, 60, 19.6),
-	]),
-
-	// Neutral
-	...Shoelace.TokenizeNeutral([
+	],
+	Neutral: [
 		Hsl(0, 0, 100),
 		Hsl(0, 0, 97.5),
 		Hsl(240, 4.8, 95.9),
@@ -42,10 +40,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(240, 5.9, 10),
 		Hsl(240, 7.3, 8),
 		Hsl(0, 0, 0),
-	]),
-
-	// Primary
-	...Shoelace.TokenizePrimary([
+	],
+	Primary: [
 		Hsl(204, 100, 97.1),
 		Hsl(204, 93.8, 93.7),
 		Hsl(200.6, 94.4, 86.1),
@@ -57,10 +53,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(201, 90, 27.5),
 		Hsl(202, 80.3, 23.9),
 		Hsl(202.3, 73.8, 16.5),
-	]),
-
-	// TODO Success
-	...Shoelace.TokenizeSuccess([
+	],
+	Success: [
 		Hsl(138.5, 76.5, 96.7),
 		Hsl(140.6, 84.2, 92.5),
 		Hsl(141, 78.9, 85.1),
@@ -72,10 +66,8 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(142.8, 64.2, 24.1),
 		Hsl(143.8, 61.2, 20.2),
 		Hsl(144.3, 60.7, 12),
-	]),
-
-	// TODO Warning
-	...Shoelace.TokenizeWarning([
+	],
+	Warning: [
 		Hsl(48, 100, 96.1),
 		Hsl(48, 96.5, 88.8),
 		Hsl(48, 96.6, 76.7),
@@ -87,9 +79,10 @@ const tokens: ThemeTokensShoelace = {
 		Hsl(22.7, 82.5, 31.4),
 		Hsl(21.7, 77.8, 26.5),
 		Hsl(22.9, 74.1, 16.7),
-	]),
+	],
+}
 
-
+const tokens: ThemeTokensShoelaceStatic = {
 	// TODO
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {

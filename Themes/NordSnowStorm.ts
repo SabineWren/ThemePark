@@ -1,52 +1,42 @@
 import { css } from "lit"
 import { Nord } from "Themes/Palettes/NordPalette.js"
 import { Hsl } from "Themes/Lib/Colours.js"
-import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 
 export const NordSnowStorm = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "sl-nord-snow-storm",
-	DesignTokens: tokens,
 	IsLight: true,
 	Label: "Nord Snow Storm",
 	TokenColourBackground: "--sl-color-neutral-0",
 	TokenColourText: "--sl-color-neutral-900",
+	TokensColourTheme: colours,
+	TokensShoelace: tokens,
 })
 
-const tokens: ThemeTokensShoelace = {
-	// TODO Danger
-	...Shoelace.TokenizeDanger([
+const colours: ThemeColours = {
+	Danger: [
 		Nord[11],
-		Nord[11],
-	]),
-
-	// Neutral
-	...Shoelace.TokenizeNeutral([
+	],
+	Neutral: [
 		Nord["light-card-bg"],
 		Nord["light-gutter-bg"],
 		Nord[6], Nord[5], Nord[4],
 		Nord[3], Nord[2], Nord[1], Nord[0],
-	]),
-
-	// Primary
-	...Shoelace.TokenizePrimary([
+	],
+	Primary: [
 		Hsl(185, 63, 96),
 		Nord[8],
 		Hsl(200, 35, 25),
-	]),
-
-	// TODO Success
-	...Shoelace.TokenizeSuccess([
+	],
+	Success: [
 		Nord[14],
-		Nord[14],
-	]),
-
-	// TODO Warning
-	...Shoelace.TokenizeWarning([
+	],
+	Warning: [
 		Nord[13],
-		Nord[13],
-	]),
+	],
+}
 
+const tokens: ThemeTokensShoelaceStatic = {
 	// TODO
 	// Elevations (box shadows)
 	"--sl-shadow-x-small": {
