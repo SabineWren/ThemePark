@@ -35,15 +35,19 @@ sl-card::part(base) {
 }
 .inputs { display: flex; gap: var(--spacing); }
 
+sl-color-picker {
+	--grid-width: 320px;
+	--swatch-size: 30px;
+}
 sl-color-picker::part(base) {
 	box-shadow: none; }
 
-.right { flex: 1 1 28em; }
-sl-textarea::part(textarea) {
-	font-family: var(--sl-font-mono);
-	font-size: 14px;
-	height: 350px;
+table {
+	margin-right: auto;
+	border-collapse: separate;
+	border-spacing: 0;
 }
+td { padding: 0; }
 
 a { color: inherit; }
 a:hover {

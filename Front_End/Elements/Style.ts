@@ -6,6 +6,7 @@ export const Shared = css`
 	min-height: 0;
 	min-width: 0;
 }
+.emph { font-weight: 600; }
 
 h1, h2, h3, h4, p {
 	margin: 0;

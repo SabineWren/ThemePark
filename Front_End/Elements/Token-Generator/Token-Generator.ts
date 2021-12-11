@@ -6,9 +6,6 @@ import { Shared } from "Elements/Style.js"
 import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 
-const hslToString = ([h,s,l]: [number, number, number]) =>
-	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
-
 export const ColourTypes = ["primary", "success", "neutral", "warning", "danger"] as const
 export type ColourType = typeof ColourTypes[number]
 
@@ -38,10 +35,6 @@ export class TokenGenerator extends LitElement {
 		const { Swatches, Tokens } = picker
 			? tokenize(picker.value)
 			: { Swatches: [], Tokens: [] }
-		const tokenStrings = Tokens
-			.map(([k,c]) => `${k}: ${hslToString((c as chroma.Color).hsl())};`)
-			.join("\n")
-		const text = `/* Copy & paste into your theme */\n\n${tokenStrings}`
 		return html`
 <sl-card>
 	<div id="result">${Swatches}</div>
@@ -55,9 +48,7 @@ export class TokenGenerator extends LitElement {
 			></sl-color-picker>
 		</div>
 		<div class="right">
-			<sl-textarea name="tokens" readonly resize="none"
-				value=${text}>
-			</sl-textarea>
+			${renderCss(Tokens)}
 		</div>
 	</div>
 </sl-card>`
@@ -73,6 +64,23 @@ const getTokenizer = (t: ColourType) => {
 	case "warning": return Shoelace.TokenizeWarning
 	}
 }
+
+// Using a table because grid doesn't copy correctly,
+// and has different line breaks across browsers
+const renderCss = (tokens: [string,Colour][]) => html`
+<table>
+	<tr style="font-style: italic; user-select: none; pointer-events: none;">
+		<td colspan="2">Copy & paste into your theme</td>
+	</tr>
+	<tr style="height: 0.5em;"></tr>
+	${tokens.map(([k,c]) => html`
+	<tr>
+		<td style="padding-right: 0.8em;">${k}:</td>
+		<td class="emph">${hslToString((c as chroma.Color).hsl())};</td>
+	</tr>`)}
+</table>`
+const hslToString = ([h,s,l]: [number, number, number]) =>
+	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
 
 /*
 <sl-input name="name"

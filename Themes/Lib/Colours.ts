@@ -24,8 +24,11 @@ export const Hsl = (h: number, s: number, l: number, a?: number): chroma.Color =
 	return chroma.hsl(h, s / 100.0, l / 100.0, aScaled)
 }
 
+const grey = chroma.hsl(0,0,0.5)
+const withMinTwoColours = (cs: chroma.Color[]) =>
+	cs.length >= 2 ? cs : [cs[0] ?? grey, cs[0] ?? grey]
 export const Interpolate = (cs: chroma.Color[], count: number): chroma.Color[] => chroma
-	.scale(cs)
+	.scale(withMinTwoColours(cs))
 	.mode("lch")
 	.colors(count, "lch")
 	.map(c => chroma.lch(c))
