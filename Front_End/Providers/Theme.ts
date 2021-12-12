@@ -3,7 +3,7 @@ import { NordPolarNight } from "Themes/NordPolarNight.js"
 import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
-import { ThemeToCss } from "Themes/Lib/DesignTokens.js"
+import { ThemeColoursToCss, ThemeToCss } from "Themes/Lib/DesignTokens.js"
 import { TokenizeAll } from "Themes/Platform_Targets/Shoelace.js"
 
 export enum ThemeMode { Dark=1, Light=2 }
@@ -17,17 +17,25 @@ const THEMES_LIGHT = [
 	NordSnowStorm(),
 ] as const
 
-const loadStyles = (theme: ThemeSpecification) => {
-	// If editing the theme, need to remove old stylesheet
-	const oldStyle = $(document, `style#${theme.CssName}`)
+const createStyle = (id: string, cssText: string) => {
 	const style = document.createElement("style")
-	style.id = theme.CssName
-
-	const tokens = TokenizeAll(theme.TokensColourTheme)
-	style.innerHTML = ThemeToCss(theme, tokens).cssText
+	style.id = id
+	style.innerHTML = cssText
+	return style
+}
+const loadThemeColours = (colours: ThemeColours, themeName: string) => {
+	const tokens = TokenizeAll(colours)
+	const id = themeName + "-colours"
+	$(document, `style#${id}`)?.remove()
+	const style = createStyle(id, ThemeColoursToCss(tokens).cssText)
+	$(document, "head").appendChild(style)
+}
+const loadStyleTag = (theme: ThemeSpecification) => {
+	loadThemeColours(theme.TokensColourTheme, theme.CssName)
+	const style = createStyle(theme.CssName, ThemeToCss(theme).cssText)
+	$(document, `style#${theme.CssName}`)?.remove()
 	$(document, "head").appendChild(style)
 	$(document, "body").className = theme.CssName
-	oldStyle?.remove()
 }
 
 const state = (() => {
@@ -48,7 +56,7 @@ const applyCurrentTheme = () => {
 	store("mode", state.Mode === ThemeMode.Light ? "light" : "dark")
 
 	const t = state.Mode === ThemeMode.Light ? state.Light : state.Dark
-	loadStyles(t)
+	loadStyleTag(t)
 	hosts.forEach(h => h.requestUpdate())
 }
 MEDIA_PREF_LIGHT.addEventListener("change", () => {
@@ -79,6 +87,10 @@ export class ThemeProvider implements ReactiveController {
 	SetTheme(o: ThemeSpecification) {
 		if (o.IsLight) { state.Light = o }
 		else           { state.Dark  = o }
-		applyCurrentTheme()
+		applyCurrentTheme() }
+	// More performant than resetting the entire theme
+	UpdateTheme() {
+		const theme = this.GetTheme()
+		loadThemeColours(theme.TokensColourTheme, theme.CssName)
 	}
 }

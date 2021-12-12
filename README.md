@@ -23,7 +23,7 @@ Shoelace requires more colour shades than themes supply as tokens, which require
 Theme Park generates themes on-the-fly, but downstream apps will need pre-generated themes and a theme-picker element that code-splits them.
 
 ## Building
-Some assets require a one-time copy to the web root:
+Some assets require a one-time copy to web root:
 1. The Shoelace package 'assets' directory, which contains Bootstrap icons
 2. Themes/Platform_Targets/shoelace-tokens.css
 

@@ -11,32 +11,49 @@ import { Style } from "./Style.js"
 @customElement("token-generator")
 export class TokenGenerator extends LitElement {
 	@property({ reflect: true }) type: SemanticColour
-	private theme = new ThemeProvider(this)
+	private themeProvider = new ThemeProvider(this)
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
 	private index = 0
-	private changeColour() {
-		// Mutate current theme so only page refresh resets
-		const hslInput = this.pickerRef.value!.value
-		const theme = this.theme.GetTheme()
+	private addColour() {
+		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
-		colours[this.index] = chroma.color(hslInput)
-
-		// More performant than re-applying the entire theme
-		const style = $(document, `style#${theme.CssName}`)
-		Object.entries(Tokenize(colours, this.type))
-			.forEach(([k,v]) => style.style.setProperty(k, ColourToCss(v)))
+		const clone = colours[this.index].darker(0)
+		colours.push(clone)
+		this.sortAndSelect(clone)
+		this.themeProvider.UpdateTheme()
 		this.requestUpdate()
 	}
+	private changeColour() {
+		const hslInput = this.pickerRef.value!.value
+		const theme = this.themeProvider.GetTheme()
+		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+		colours[this.index] = chroma.color(hslInput)
+		this.themeProvider.UpdateTheme()
+		this.requestUpdate()
+	}
+	private deleteColour() {
+		const theme = this.themeProvider.GetTheme()
+		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+		colours.splice(this.index, 1)
+		this.index = this.index > 0 ? this.index - 1 : 0
+		this.themeProvider.SetTheme(theme)
+	}
+	private sortAndSelect(toSelect?: chroma.Color) {
+		const theme = this.themeProvider.GetTheme()
+		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+		colours.sort((a,b) => a.lch()[0] - b.lch()[0])
+		const index = toSelect ? colours.indexOf(toSelect) : -1
+		this.index = index >= 0 ? index : 0
+	}
 	override render() {
-		const theme = this.theme.GetTheme()
+		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
 		const tokens = Tokenize(colours, this.type)
 
 		const baseColours = colours
 			.map(c => ({ Css: ColourToCss(c), L: c.lch()[0] }))
-			.sort((a,b) => a.L - b.L)
 		return html`
 <sl-card>
 	<div class="flex" style="gap: 5px;">
@@ -44,9 +61,20 @@ export class TokenGenerator extends LitElement {
 		<div class="swatch" style="background: var(${k});"></div>`)}
 	</div>
 
-	<div class="flex" style="gap: 5px;">
-		${baseColours.map(({ Css }) => html`
-		<div class="swatch" style="background: ${Css};"></div>`)}
+	<div class="flex" style="gap: 5px; align-items: center;">
+		<sl-icon-button name="trash" type="danger"
+			@click=${() => this.deleteColour()}
+		></sl-icon-button>
+		<sl-icon-button name="plus-square" type="success"
+			@click=${() => this.addColour()}
+		></sl-icon-button>
+		${baseColours.map(({ Css, L }, i) => html`
+		<sl-tag
+			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
+			type="${i === this.index ? "danger" : "neutral"}"
+			size="${i === this.index ? "large" : "medium"}"
+			@click=${() => { this.index = i; this.requestUpdate() }}
+		>${L.toFixed(1)}</sl-tag>`)}
 	</div>
 
 	<div class="flex">
@@ -58,7 +86,7 @@ export class TokenGenerator extends LitElement {
 			></sl-color-picker>
 		</div>
 		<div class="right">
-			${renderCss(Object.entries(tokens))}
+			${renderCssText(Object.entries(tokens))}
 		</div>
 	</div>
 </sl-card>`
@@ -67,7 +95,7 @@ export class TokenGenerator extends LitElement {
 
 // Using a table because grid doesn't copy line breaks correctly,
 // and varies copy behavior between browsers
-const renderCss = (tokensCss: [string,ColourPlaceholder][]) => html`
+const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 <table>
 	<tr style="font-style: italic; user-select: none; pointer-events: none;">
 		<td colspan="2">Copy & paste into your theme</td>

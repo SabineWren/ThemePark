@@ -1,27 +1,26 @@
 import * as chroma from "chroma.ts"
 import { css, unsafeCSS } from "lit"
 
-export const ThemeToCss = (
-	spec: ThemeSpecification,
-	tokensColours: ThemeColourTokens,
-) => {
-	const tokens = { ...tokensColours, ...spec.TokensShoelace }
-	const themeTokenText = Object.entries(tokens)
+const tokenToText = (tokens: { [k: string]: ColourTokenValue }) =>
+	Object.entries(tokens)
 		.map(([k,v]) => `${k}: ${vToString(v)};`)
 		.join("\n")
+export const ThemeColoursToCss = (colourTokens: ThemeColourTokens) => css`
+:root {
+	${unsafeCSS(tokenToText(colourTokens))}
+}`
 
-	return css`
-	body.${unsafeCSS(spec.CssName)} {
-		background: var(${unsafeCSS(spec.TokenColourBackground)});
-		color: var(${unsafeCSS(spec.TokenColourText)});
-	}
-	${spec.ComponentPartsCss}
-	:root,
-	:host,
-	.${unsafeCSS(spec.CssName)} {
-		${unsafeCSS(themeTokenText)}
-	}`
+export const ThemeToCss = (spec: ThemeSpecification) => css`
+body.${unsafeCSS(spec.CssName)} {
+	background: var(${unsafeCSS(spec.TokenColourBackground)});
+	color: var(${unsafeCSS(spec.TokenColourText)});
 }
+${spec.ComponentPartsCss}
+:root,
+:host,
+.${unsafeCSS(spec.CssName)} {
+	${unsafeCSS(tokenToText(spec.TokensShoelace))}
+}`
 
 export const ColourToCss = (c: chroma.Color) => {
 	const [h1,s1,l1] = c.hsl()
