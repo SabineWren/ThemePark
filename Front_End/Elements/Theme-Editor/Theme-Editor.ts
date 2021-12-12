@@ -5,13 +5,14 @@ import { createRef, Ref, ref } from "lit/directives/ref.js"
 import { throttle } from "@shoelace-style/shoelace/dist/internal/throttle.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
-import { ColourToCss } from "Themes/Lib/DesignTokens.js"
+import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
 import { SlKeyPc, Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 
 @customElement("theme-editor")
 export class TokenGenerator extends LitElement {
 	@property({ reflect: true }) type: SemanticColour
+	private format: "hex" | "rgb" | "hsl" = "hsl"
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
 	private updateThemeColours = throttle(() => this.themeProvider.UpdateTheme(), 50)
@@ -35,8 +36,11 @@ export class TokenGenerator extends LitElement {
 	private colourDelete() {
 		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+		if (colours.length <= 1) { return }
 		colours.splice(this.index, 1)
-		this.index = this.index > 0 ? this.index - 1 : 0
+		this.index = this.index < colours.length
+			? this.index
+			: this.index - 1
 		this.themeProvider.SetTheme(theme)
 	}
 	private colourSort() {
@@ -57,7 +61,7 @@ export class TokenGenerator extends LitElement {
 		const tokens = Tokenize(colours, this.type)
 
 		const baseColours = colours
-			.map(c => ({ Css: ColourToCss(c), L: c.lch()[0] }))
+			.map(c => ({ Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
 		return html`
 <sl-card>
 	<div class="flex" style="gap: 5px;">
@@ -95,10 +99,26 @@ export class TokenGenerator extends LitElement {
 			<sl-color-picker inline
 				${ref(this.pickerRef)}
 				@sl-change=${() => this.colourChange()}
-				format="hsl" value="${baseColours[this.index].Css}"
+				format="${this.format}"
+				value="${ToStringHslCommas(baseColours[this.index].Colour)}"
 			></sl-color-picker>
 		</div>
 		<div class="right">
+			<div class="no-select" style="display: flex; flex-direction: column; gap: 0.5em;">
+			<div>
+				<sl-tooltip content="Export base colours as Theme Park specification.">
+					<sl-button type="success" size="small" outline
+						>Export Theme
+					</sl-button>
+				</sl-tooltip>
+				<sl-tooltip content="Export entire theme compiled to Shoelace design tokens. A complete app also requires shoelace-tokens.css">
+					<sl-button type="success" size="small" outline
+						>Export Stylesheet
+					</sl-button>
+				</sl-tooltip>
+			</div>
+			<div class="no-click ital">... or Copy & paste colour tokens</div>
+			</div>
 			${renderCssText(Object.entries(tokens))}
 		</div>
 	</div>
@@ -110,9 +130,6 @@ export class TokenGenerator extends LitElement {
 // and varies copy behavior between browsers
 const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 <table>
-	<tr style="font-style: italic; user-select: none; pointer-events: none;">
-		<td colspan="2">Copy & paste into your theme</td>
-	</tr>
 	<tr style="height: 0.5em;"></tr>
 	${tokensCss.map(([k,c]) => html`
 	<tr>

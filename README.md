@@ -30,7 +30,6 @@ Some assets require a one-time copy to web root:
 Back end coming soon.
 
 ### TODO
-- Finish implementing real-time theme editing.
 - Add Hex and RGB support.
 - Add new part tokens for advanced theming, such as card background SVGs.
 - Add many components to test theming.

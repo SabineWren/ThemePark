@@ -1,6 +1,18 @@
 import * as chroma from "chroma.ts"
 import { ToSrgbColourSpace } from "./Clamp_sRGB.js"
 
+// ***** Colour Math *****
+const grey = chroma.hsl(0,0,0.5)
+const withMinTwoColours = (cs: chroma.Color[]) =>
+	cs.length >= 2 ? cs : [cs[0] ?? grey, cs[0] ?? grey]
+export const Interpolate = (cs: chroma.Color[], count: number): chroma.Color[] => chroma
+	.scale(withMinTwoColours(cs))
+	.mode("lch")
+	.colors(count, "lch")
+	.map(c => chroma.lch(c))
+	.map(c => ToSrgbColourSpace(c))
+
+// ***** Colour Parsers *****
 const assert = (msg: string, isValid: boolean) => {
 	if (!isValid) throw new Error(msg) }
 const assertA = (a?: number) => assert(
@@ -24,12 +36,21 @@ export const Hsl = (h: number, s: number, l: number, a?: number): chroma.Color =
 	return chroma.hsl(h, s / 100.0, l / 100.0, aScaled)
 }
 
-const grey = chroma.hsl(0,0,0.5)
-const withMinTwoColours = (cs: chroma.Color[]) =>
-	cs.length >= 2 ? cs : [cs[0] ?? grey, cs[0] ?? grey]
-export const Interpolate = (cs: chroma.Color[], count: number): chroma.Color[] => chroma
-	.scale(withMinTwoColours(cs))
-	.mode("lch")
-	.colors(count, "lch")
-	.map(c => chroma.lch(c))
-	.map(c => ToSrgbColourSpace(c))
+// ***** Colour Formatters *****
+const toHsla = (c: chroma.Color): [number,number,number,number] => {
+	const [h1,s1,l1] = c.hsl()
+	const r1 = (n: number) => Math.round(n * 10) / 10
+	return [r1(h1), r1(s1 * 100), r1(l1 * 100), r1(c.alpha() * 100)]
+}
+export const ToStringHsl = (c: chroma.Color) => {
+	const [h,s,l,a] = toHsla(c)
+	return a < 100
+		? `hsl(${h} ${s}% ${l}% / ${a}%)`
+		: `hsl(${h} ${s}% ${l}%)`
+}
+export const ToStringHslCommas = (c: chroma.Color) => {
+	const [h,s,l,a] = toHsla(c)
+	return a < 100
+		? `hsla(${h}, ${s}%, ${l}%, ${a}%)`
+		: `hsl(${h}, ${s}%, ${l}%)`
+}
