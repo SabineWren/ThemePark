@@ -15,7 +15,7 @@ export class TokenGenerator extends LitElement {
 	private format: "hex" | "rgb" | "hsl" = "hsl"
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
-	private updateThemeColours = throttle(() => this.themeProvider.UpdateTheme(), 50)
+	private updateThemeThrottled = throttle(() => this.themeProvider.UpdateTheme(), 50)
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
 	private index = 0
@@ -30,7 +30,7 @@ export class TokenGenerator extends LitElement {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
 		colours[this.index] = chroma.color(pickerColour)
-		this.updateThemeColours()
+		this.updateThemeThrottled()
 		this.requestUpdate()
 	}
 	private colourDelete() {
@@ -41,13 +41,15 @@ export class TokenGenerator extends LitElement {
 		this.index = this.index < colours.length
 			? this.index
 			: this.index - 1
-		this.themeProvider.SetTheme(theme)
+		this.themeProvider.UpdateTheme()
+		this.requestUpdate()
 	}
 	private colourSort() {
 		const colours = this.getColours()
 		const selection = colours[this.index]
 		colours.sort((a,b) => a.lch()[0] - b.lch()[0])
 		this.index = colours.indexOf(selection)
+		this.themeProvider.UpdateTheme()
 		this.requestUpdate()
 	}
 	private getColours() {
