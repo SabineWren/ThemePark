@@ -13,11 +13,12 @@ import "@shoelace-style/shoelace/dist/components/tab-group/tab-group.js"
 import "@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js"
 import "@shoelace-style/shoelace/dist/components/tag/tag.js"
 // import "@shoelace-style/shoelace/dist/components/textarea/textarea.js"
+import "@shoelace-style/shoelace/dist/components/tooltip/tooltip.js"
 import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import "Elements/App-Root.js"
 import "Elements/Currency-Picker.js"
 import "Elements/Theme-Picker.js"
-import "Elements/Token-Generator/Token-Generator.js"
+import "Front_End/Elements/Theme-Editor/Theme-Editor.js"
 
 registerIconLibrary("custom-icons", {
 	resolver: name => `/images/${name}.svg`,

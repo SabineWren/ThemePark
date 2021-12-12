@@ -2,50 +2,54 @@ import * as chroma from "chroma.ts"
 import { html, LitElement} from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
+import { throttle } from "@shoelace-style/shoelace/dist/internal/throttle.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 import { ColourToCss } from "Themes/Lib/DesignTokens.js"
 import { SlKeyPc, Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 
-@customElement("token-generator")
+@customElement("theme-editor")
 export class TokenGenerator extends LitElement {
 	@property({ reflect: true }) type: SemanticColour
-	private themeProvider = new ThemeProvider(this)
 	private pickerRef: Ref<SlColorPicker> = createRef()
+	private themeProvider = new ThemeProvider(this)
+	private updateThemeColours = throttle(() => this.themeProvider.UpdateTheme(), 50)
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
 	private index = 0
-	private addColour() {
-		const theme = this.themeProvider.GetTheme()
-		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+	private colourAdd() {
+		const colours = this.getColours()
 		const clone = colours[this.index].darker(0)
-		colours.push(clone)
-		this.sortAndSelect(clone)
+		colours.splice(this.index, 0, clone)
 		this.themeProvider.UpdateTheme()
 		this.requestUpdate()
 	}
-	private changeColour() {
-		const hslInput = this.pickerRef.value!.value
-		const theme = this.themeProvider.GetTheme()
-		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
-		colours[this.index] = chroma.color(hslInput)
-		this.themeProvider.UpdateTheme()
+	private colourChange() {
+		const pickerColour = this.pickerRef.value!.value
+		const colours = this.getColours()
+		colours[this.index] = chroma.color(pickerColour)
+		this.updateThemeColours()
 		this.requestUpdate()
 	}
-	private deleteColour() {
+	private colourDelete() {
 		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
 		colours.splice(this.index, 1)
 		this.index = this.index > 0 ? this.index - 1 : 0
 		this.themeProvider.SetTheme(theme)
 	}
-	private sortAndSelect(toSelect?: chroma.Color) {
-		const theme = this.themeProvider.GetTheme()
-		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+	private colourSort() {
+		const colours = this.getColours()
+		const selection = colours[this.index]
 		colours.sort((a,b) => a.lch()[0] - b.lch()[0])
-		const index = toSelect ? colours.indexOf(toSelect) : -1
-		this.index = index >= 0 ? index : 0
+		this.index = colours.indexOf(selection)
+		this.requestUpdate()
+	}
+	private getColours() {
+		const theme = this.themeProvider.GetTheme()
+		const key = SlKeyPc(this.type)
+		return theme.TokensColourTheme[key]
 	}
 	override render() {
 		const theme = this.themeProvider.GetTheme()
@@ -62,12 +66,21 @@ export class TokenGenerator extends LitElement {
 	</div>
 
 	<div class="flex" style="gap: 5px; align-items: center;">
-		<sl-icon-button name="trash" type="danger"
-			@click=${() => this.deleteColour()}
-		></sl-icon-button>
-		<sl-icon-button name="plus-square" type="success"
-			@click=${() => this.addColour()}
-		></sl-icon-button>
+		<sl-tooltip content="Delete Colour (refresh page to reset)">
+			<sl-icon-button name="trash" type="danger"
+				@click=${() => this.colourDelete()}
+			></sl-icon-button>
+		</sl-tooltip>
+		<sl-tooltip content="Add Colour (refresh page to reset)">
+			<sl-icon-button name="plus-square" type="success"
+				@click=${() => this.colourAdd()}
+			></sl-icon-button>
+		</sl-tooltip>
+		<sl-tooltip content="Sort by LCH brightness">
+			<sl-icon-button name="sort-numeric-up" type="success"
+				@click=${() => this.colourSort()}
+			></sl-icon-button>
+		</sl-tooltip>
 		${baseColours.map(({ Css, L }, i) => html`
 		<sl-tag
 			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
@@ -81,7 +94,7 @@ export class TokenGenerator extends LitElement {
 		<div class="left">
 			<sl-color-picker inline
 				${ref(this.pickerRef)}
-				@sl-change=${() => this.changeColour()}
+				@sl-change=${() => this.colourChange()}
 				format="hsl" value="${baseColours[this.index].Css}"
 			></sl-color-picker>
 		</div>

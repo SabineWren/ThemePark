@@ -32,6 +32,7 @@ sl-icon-button { margin-right: 0.5em; }
 sl-icon-button::part(base) { padding: 0; font-size: 1.4rem; }
 sl-icon-button[type="danger"]::part(base) { color: var(--sl-color-danger-600); }
 sl-icon-button[type="success"]::part(base) { color: var(--sl-color-success-600); }
+sl-tag::part(base):hover { cursor: pointer; }
 sl-tag::part(base) { background: var(--background); }
 sl-tag::part(content) { color: var(--colour); }
 

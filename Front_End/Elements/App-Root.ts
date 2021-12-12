@@ -11,7 +11,7 @@ const renderColourPicker = (t: SemanticColour) => html`
 	</sl-button>
 </sl-tab>
 <sl-tab-panel name="${t}">
-	<token-generator type="${t}"></token-generator>
+	<theme-editor type="${t}"></theme-editor>
 </sl-tab-panel>`
 
 @customElement("app-root")
