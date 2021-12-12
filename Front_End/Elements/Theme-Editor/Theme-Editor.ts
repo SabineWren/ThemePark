@@ -66,34 +66,33 @@ export class TokenGenerator extends LitElement {
 			.map(c => ({ Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
 		return html`
 <sl-card>
-	<div class="flex" style="gap: 5px;">
-		${Object.keys(tokens).map(k => html`
-		<div class="swatch" style="background: var(${k});"></div>`)}
-	</div>
-
 	<div class="flex" style="gap: 5px; align-items: center;">
-		<sl-tooltip content="Delete Colour (refresh page to reset)">
-			<sl-icon-button name="trash" type="danger"
-				@click=${() => this.colourDelete()}
-			></sl-icon-button>
-		</sl-tooltip>
-		<sl-tooltip content="Add Colour (refresh page to reset)">
-			<sl-icon-button name="plus-square" type="success"
-				@click=${() => this.colourAdd()}
-			></sl-icon-button>
-		</sl-tooltip>
+		<sl-icon-button name="trash" type="danger"
+			@click=${() => this.colourDelete()}
+		></sl-icon-button>
+		<sl-icon-button name="plus-square" type="success"
+			@click=${() => this.colourAdd()}
+		></sl-icon-button>
 		<sl-tooltip content="Sort by LCH brightness">
 			<sl-icon-button name="sort-numeric-up" type="success"
 				@click=${() => this.colourSort()}
 			></sl-icon-button>
 		</sl-tooltip>
-		${baseColours.map(({ Css, L }, i) => html`
-		<sl-tag
-			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-			type="${i === this.index ? "danger" : "neutral"}"
-			size="${i === this.index ? "large" : "medium"}"
-			@click=${() => { this.index = i; this.requestUpdate() }}
-		>${L.toFixed(1)}</sl-tag>`)}
+		${baseColours.map(({ Colour, Css, L }, i) => html`
+		<sl-tooltip content="${toStringLchCommas(Colour)}">
+			<sl-tag
+				style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
+				type="${i === this.index ? "danger" : "neutral"}"
+				size="${i === this.index ? "large" : "medium"}"
+				?pill=${i === this.index}
+				@click=${() => { this.index = i; this.requestUpdate() }}
+			>${L.toFixed(1)}</sl-tag>
+		</sl-tooltip>`)}
+	</div>
+
+	<div class="flex" style="gap: 5px;">
+		${Object.keys(tokens).map(k => html`
+		<div class="swatch" style="background: var(${k});"></div>`)}
 	</div>
 
 	<div class="flex">
@@ -106,8 +105,7 @@ export class TokenGenerator extends LitElement {
 			></sl-color-picker>
 		</div>
 		<div class="right">
-			<div class="no-select" style="display: flex; flex-direction: column; gap: 0.5em;">
-			<div>
+			<div class="no-select" style="display: flex; gap: 0.5em; margin-bottom: 0.5em;">
 				<sl-tooltip content="Export base colours as Theme Park specification.">
 					<sl-button type="success" size="small" outline
 						>Export Theme
@@ -118,8 +116,6 @@ export class TokenGenerator extends LitElement {
 						>Export Stylesheet
 					</sl-button>
 				</sl-tooltip>
-			</div>
-			<div class="no-click ital">... or Copy & paste colour tokens</div>
 			</div>
 			${renderCssText(Object.entries(tokens))}
 		</div>
@@ -132,6 +128,9 @@ export class TokenGenerator extends LitElement {
 // and varies copy behavior between browsers
 const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 <table>
+	<tr class="ital no-click no-select">
+		<td colspan="2">... or Copy & paste colour tokens</td>
+	</tr>
 	<tr style="height: 0.5em;"></tr>
 	${tokensCss.map(([k,c]) => html`
 	<tr>
@@ -141,3 +140,8 @@ const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 </table>`
 const hslToString = ([h,s,l]: [number, number, number]) =>
 	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
+
+const toStringLchCommas = (colour: chroma.Color) => {
+	const [l,c,h] = colour.lch()
+	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
+}

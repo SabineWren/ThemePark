@@ -37,19 +37,19 @@ export const Hsl = (h: number, s: number, l: number, a?: number): chroma.Color =
 }
 
 // ***** Colour Formatters *****
-const toHsla = (c: chroma.Color): [number,number,number,number] => {
-	const [h1,s1,l1] = c.hsl()
+const toHsla = (colour: chroma.Color): [number,number,number,number] => {
+	const [h1,s1,l1] = colour.hsl()
 	const r1 = (n: number) => Math.round(n * 10) / 10
-	return [r1(h1), r1(s1 * 100), r1(l1 * 100), r1(c.alpha() * 100)]
+	return [r1(h1), r1(s1 * 100), r1(l1 * 100), r1(colour.alpha() * 100)]
 }
-export const ToStringHsl = (c: chroma.Color) => {
-	const [h,s,l,a] = toHsla(c)
+export const ToStringHsl = (colour: chroma.Color) => {
+	const [h,s,l,a] = toHsla(colour)
 	return a < 100
 		? `hsl(${h} ${s}% ${l}% / ${a}%)`
 		: `hsl(${h} ${s}% ${l}%)`
 }
-export const ToStringHslCommas = (c: chroma.Color) => {
-	const [h,s,l,a] = toHsla(c)
+export const ToStringHslCommas = (colour: chroma.Color) => {
+	const [h,s,l,a] = toHsla(colour)
 	return a < 100
 		? `hsla(${h}, ${s}%, ${l}%, ${a}%)`
 		: `hsl(${h}, ${s}%, ${l}%)`
