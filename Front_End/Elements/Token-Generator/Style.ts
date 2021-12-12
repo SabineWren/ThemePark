@@ -7,12 +7,8 @@ export const Style = css`
 	--spacing: 1.5rem;
 	--swatch-size: 62px;
 }
-h1 {
-	font-size: 1.5rem;
-	font-weight: 300;
-	text-align: center;
-	margin: 0 0 var(--spacing) 0;
-}
+.flex { display: flex; gap: var(--spacing); }
+
 sl-card {
 	margin: 0 auto; }
 sl-card::part(base) {
@@ -20,20 +16,17 @@ sl-card::part(base) {
 	border: none;
 	box-shadow: var(--sl-shadow-large);
 }
-
-#result {
-	display: flex;
-	gap: 5px;
-	margin-bottom: var(--spacing);
+sl-card::part(body) {
+	display: flex; flex-direction: column; gap: var(--spacing);
 }
 
+#swatches { gap: 5px }
 .swatch {
 	display: inline-block;
 	width: var(--swatch-size);
 	height: var(--swatch-size);
 	border-radius: 2px;
 }
-.inputs { display: flex; gap: var(--spacing); }
 
 sl-color-picker {
 	--grid-width: 320px;
@@ -45,17 +38,6 @@ sl-color-picker::part(base) {
 table {
 	margin-right: auto;
 	border-collapse: separate;
-	border-spacing: 0;
-}
+	border-spacing: 0; }
 td { padding: 0; }
-
-a { color: inherit; }
-a:hover {
-	color: rgb(var(--sl-color-primary-600)); }
-
-footer {
-	text-align: center;
-	margin-top: calc(var(--spacing) / 2);
-}
-small:not(:first-child):before { content: '·'; }
 `

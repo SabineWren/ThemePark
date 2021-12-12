@@ -8,36 +8,34 @@ Bring **[all the themes](#themes-first-pass)** to the web, bridging the gap betw
 
 ## Objectives
 Provide a huge variety of themes to apps:
-1. Implement a runtime theme-picker component.
-2. Create a type-safe Theme API Specification and a GUI for implementing them.
-3. Implement **[all the themes](#themes-first-pass)**.
-4. Compile themes to CSS for [Shoelace](https://github.com/shoelace-style/shoelace).
+1. Define a theme format algorithmically mappable to multiple platforms.
+2. Provide a GUI to theme designers for specifying themes.
+3. Compile themes to CSS for [Shoelace](https://github.com/shoelace-style/shoelace).
+4. Implement **[all the themes](#themes-first-pass)**.
 
-Fonts and icons are not in scope for Theme Park. The web already has fantastic support for including 3rd party fonts and icons in your apps.
+App developers will eventually need a portable theme-picker element, complete with code splitting and persistence. Fonts and icons are not in scope for Theme Park. The web already has fantastic support for including 3rd party fonts and icons in your apps.
 
 ## Constraints
 Some themes have complex backgrounds, such as SVG images or gradients. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
 
 Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space.
 
-Themes are already code-split, but require JS to load and generate the theme, which won't be viable for production apps. As a stopgap, Theme Park will export Shoelace-compatible stylesheets.
+Theme Park generates themes on-the-fly, but downstream apps will need pre-generated themes and a theme-picker element that code-splits them.
 
 ## Building
 Some assets require a one-time copy to the web root:
 1. The Shoelace package 'assets' directory, which contains Bootstrap icons
 2. Themes/Platform_Targets/shoelace-tokens.css
 
-Bring your own web server.
+Back end coming soon.
 
-### TODO Mock Website
-- Add colour pickers for real-time theme editing.
+### TODO
+- Finish implementing real-time theme editing.
 - Add Hex and RGB support.
+- Add new part tokens for advanced theming, such as card background SVGs.
 - Add many components to test theming.
-
-### TODO Theme Tooling
-- Improve colour interpolation, and make it GUI-driven using colour pickers.
-- Map remaining colours for Nord themes and re-style elements such as cards.
-- Implement all the themes!
+- Map remaining colours for Nord themes.
+- Export themes from GUI (both CSS and raw specification)
 
 ### Themes First Pass
 1. [Nord](https://nordtheme.com) Polar Night (dim), Snow Storm (light)

@@ -1,9 +1,9 @@
 import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
-import { ColourType, ColourTypes } from "Elements/Token-Generator/Token-Generator.js"
+import { ColourTypes } from "Themes/Platform_Targets/Shoelace.js"
 
-const renderColourPicker = (t: ColourType) => html`
+const renderColourPicker = (t: SemanticColour) => html`
 <sl-tab slot="nav" panel="${t}">
 	<sl-button type="${t}">
 		${t[0].toUpperCase() + t.slice(1)}

@@ -23,7 +23,7 @@ export const ThemeToCss = (
 	}`
 }
 
-const colourToCss = (c: chroma.Color) => {
+export const ColourToCss = (c: chroma.Color) => {
 	const [h1,s1,l1] = c.hsl()
 	const r1 = (n: number) => Math.round(n * 10) / 10
 	const [h,s,l] = [r1(h1), r1(s1 * 100), r1(l1 * 100)]
@@ -35,7 +35,7 @@ const colourToCss = (c: chroma.Color) => {
 const getIsColour = (v: ColourTokenValue): v is chroma.Color =>
 	(v as chroma.Color).alpha !== undefined
 const vToString = (v: ColourTokenValue): string => {
-	if (getIsColour(v)) return colourToCss(v)
+	if (getIsColour(v)) return ColourToCss(v)
 	if (typeof v === "string") return v
 	return `${v.XYBlurSpread} ${vToString(v.Colour)}`
 }

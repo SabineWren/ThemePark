@@ -4,76 +4,69 @@ import { customElement, property } from "lit/decorators.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
-import * as Shoelace from "Themes/Platform_Targets/Shoelace.js"
+import { ColourToCss } from "Themes/Lib/DesignTokens.js"
+import { SlKeyPc, Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
-
-export const ColourTypes = ["primary", "success", "neutral", "warning", "danger"] as const
-export type ColourType = typeof ColourTypes[number]
 
 @customElement("token-generator")
 export class TokenGenerator extends LitElement {
-	@property({ reflect: true }) type: ColourType
+	@property({ reflect: true }) type: SemanticColour
 	private theme = new ThemeProvider(this)
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
+	private index = 0
 	private changeColour() {
+		// Mutate current theme so only page refresh resets
 		const hslInput = this.pickerRef.value!.value
-		const colour = chroma.color(hslInput)
 		const theme = this.theme.GetTheme()
-		const key = getKey(this.type)
-		theme.TokensColourTheme[key][0] = colour
-		this.theme.SetTheme(theme)
+		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+		colours[this.index] = chroma.color(hslInput)
+
+		// More performant than re-applying the entire theme
+		const style = $(document, `style#${theme.CssName}`)
+		Object.entries(Tokenize(colours, this.type))
+			.forEach(([k,v]) => style.style.setProperty(k, ColourToCss(v)))
+		this.requestUpdate()
 	}
 	override render() {
 		const theme = this.theme.GetTheme()
-		const key = getKey(this.type)
-		const tokens = getTokenizer(this.type)(theme.TokensColourTheme[key])
-		const tokensCss = Object.entries(tokens)
-		const swatches = tokensCss
-			.map(([k,_v]) => k)
-			.map(k => html`<div class="swatch" style="background: var(${k});"></div>`)
+		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
+		const tokens = Tokenize(colours, this.type)
+
+		const baseColours = colours
+			.map(c => ({ Css: ColourToCss(c), L: c.lch()[0] }))
+			.sort((a,b) => a.L - b.L)
 		return html`
 <sl-card>
-	<div id="result">${swatches}</div>
+	<div class="flex" style="gap: 5px;">
+		${Object.keys(tokens).map(k => html`
+		<div class="swatch" style="background: var(${k});"></div>`)}
+	</div>
 
-	<div class="inputs">
+	<div class="flex" style="gap: 5px;">
+		${baseColours.map(({ Css }) => html`
+		<div class="swatch" style="background: ${Css};"></div>`)}
+	</div>
+
+	<div class="flex">
 		<div class="left">
 			<sl-color-picker inline
 				${ref(this.pickerRef)}
 				@sl-change=${() => this.changeColour()}
-				format="hsl" value="hsl(199, 88%, 50%)"
+				format="hsl" value="${baseColours[this.index].Css}"
 			></sl-color-picker>
 		</div>
 		<div class="right">
-			${renderCss(tokensCss)}
+			${renderCss(Object.entries(tokens))}
 		</div>
 	</div>
 </sl-card>`
 	}
 }
 
-const getTokenizer = (t: ColourType) => {
-	switch (t) {
-	case "danger": return Shoelace.TokenizeDanger
-	case "neutral": return Shoelace.TokenizeNeutral
-	case "primary": return Shoelace.TokenizePrimary
-	case "success": return Shoelace.TokenizeSuccess
-	case "warning": return Shoelace.TokenizeWarning
-	}
-}
-const getKey = (t: ColourType): keyof ThemeColours => {
-	switch (t) {
-	case "danger": return "Danger"
-	case "neutral": return "Neutral"
-	case "primary": return "Primary"
-	case "success": return "Success"
-	case "warning": return "Warning"
-	}
-}
-
-// Using a table because grid doesn't copy correctly,
-// and has different line breaks across browsers
+// Using a table because grid doesn't copy line breaks correctly,
+// and varies copy behavior between browsers
 const renderCss = (tokensCss: [string,ColourPlaceholder][]) => html`
 <table>
 	<tr style="font-style: italic; user-select: none; pointer-events: none;">
@@ -88,13 +81,3 @@ const renderCss = (tokensCss: [string,ColourPlaceholder][]) => html`
 </table>`
 const hslToString = ([h,s,l]: [number, number, number]) =>
 	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
-
-/*
-<sl-input name="name"
-				${ref(this.nameRef)}
-				@sl-input=${() => this.requestUpdate()}
-				placeholder="Colour Name (ex. primary)"
-				value="primary" size="small">
-					<sl-icon slot="suffix" name="palette"></sl-icon>
-			</sl-input>
-*/

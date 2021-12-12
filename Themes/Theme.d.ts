@@ -4,6 +4,9 @@ type BoxShadow = { XYBlurSpread: string; Colour: ColourPlaceholder }
 type ColourTokenValue = BoxShadow | ColourPlaceholder
 type ThemeColourTokens = { [k: string]: import("chroma.ts").Color }
 
+type SemanticColoursTuple = readonly ["primary", "success", "neutral", "warning", "danger"]
+type SemanticColour = SemanticColoursTuple[number]
+
 /* Stylesheet has 3 parts:
  * 1. Body css, which normally sets text colour and page background
  * 2. Theme colours that apply to root, body, and host
