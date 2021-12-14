@@ -9,10 +9,13 @@ import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
 import { SlKeyPc, Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 
+const toStringRgb = (c: chroma.Color) => {
+	const [r,g,b] = c.rgb()
+	return `rgb(${r}, ${g}, ${b})` }
+
 @customElement("theme-editor")
 export class TokenGenerator extends LitElement {
 	@property({ reflect: true }) type: SemanticColour
-	private format: "hex" | "rgb" | "hsl" = "hsl"
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
 	private updateThemeThrottled = throttle(() => this.themeProvider.UpdateTheme(), 50)
@@ -64,6 +67,12 @@ export class TokenGenerator extends LitElement {
 
 		const baseColours = colours
 			.map(c => ({ Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
+		const selectedColour = baseColours[this.index].Colour
+
+		const format = this.pickerRef.value?.format ?? "hsl"
+		const value = format === "hex" ? selectedColour.hex()
+			: format === "rgb" ? toStringRgb(selectedColour)
+			: ToStringHslCommas(selectedColour)
 		return html`
 <sl-card>
 	<div class="flex" style="gap: 5px; align-items: center;">
@@ -100,8 +109,8 @@ export class TokenGenerator extends LitElement {
 			<sl-color-picker inline
 				${ref(this.pickerRef)}
 				@sl-change=${() => this.colourChange()}
-				format="${this.format}"
-				value="${ToStringHslCommas(baseColours[this.index].Colour)}"
+				format="${format}"
+				value="${value}"
 			></sl-color-picker>
 		</div>
 		<div class="right">
