@@ -47,16 +47,16 @@ Back end coming soon.
 
 [Embark](https://embark-theme.github.io) is similar to Dracula, but the palette offers both saturated and pastel colours. Technically has a Firefox port, although I'm still classifying it as an IDE theme due to limited GUI examples.
 
-[Solarized](https://ethanschoonover.com/solarized/#usage-development) grunge, dim
+[Solarized](https://ethanschoonover.com/solarized/#usage-development) sepia, dim
 
-[Gruvbox](https://github.com/morhetz/gruvbox) dark, grunge
+[Gruvbox](https://github.com/morhetz/gruvbox) dark, sepia
 
-[Gruvbox Material](https://github.com/sainnhe/gruvbox-material) palette swap with reduced saturation: dark, grunge
+[Gruvbox Material](https://github.com/sainnhe/gruvbox-material) palette swap with reduced saturation: dark, sepia
 
 [Gruvbox Srcery](https://srcery-colors.github.io/) palette swap with increased saturation: dark
 
 [Pinkmare](https://github.com/Matsuuu/pinkmare) dark. Pastel hues of red/pink/purple
 
-[Everforest](https://github.com/sainnhe/everforest) grunge, dim. Green pastel (see its inspirations as well)
+[Everforest](https://github.com/sainnhe/everforest) sepia, dim. Green pastel (see its inspirations as well)
 
 [Miramare](https://github.com/franbach/miramare) merges Everforest with Gruvbox, and in turn inspired Pinkmare

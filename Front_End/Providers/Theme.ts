@@ -39,12 +39,12 @@ const loadStyleTag = (theme: ThemeSpecification) => {
 }
 
 const state = (() => {
-	const getVal = (k: string) => localStorage.getItem("theme-park-" + k)
-	const mode = getVal("mode")
+	const load = (k: string) => localStorage.getItem("theme-park-" + k)
+	const mode = load("mode")
 	const isLight = mode === null ? MEDIA_PREF_LIGHT.matches : mode === "light"
 	return {
-		Dark: THEMES_DARK.find(t => t.CssName === getVal("dark")) ?? THEMES_DARK[0],
-		Light: THEMES_LIGHT.find(t => t.CssName === getVal("light")) ?? THEMES_LIGHT[0],
+		Dark: THEMES_DARK.find(t => t.CssName === load("dark")) ?? THEMES_DARK[0],
+		Light: THEMES_LIGHT.find(t => t.CssName === load("light")) ?? THEMES_LIGHT[0],
 		Mode: isLight ? ThemeMode.Light : ThemeMode.Dark,
 	}
 })()
@@ -70,8 +70,7 @@ applyCurrentTheme()
 export class ThemeProvider implements ReactiveController {
 	constructor(private host: ReactiveControllerHost) {
 		host.addController(this) }
-	hostConnected() {
-		hosts.push(this.host) }
+	hostConnected() { hosts.push(this.host) }
 	hostDisconnected() {
 		hosts = hosts.filter(h => h !== this.host) }
 
@@ -91,6 +90,5 @@ export class ThemeProvider implements ReactiveController {
 	// More performant than resetting the entire theme
 	UpdateTheme() {
 		const theme = this.GetTheme()
-		loadThemeColours(theme.TokensColourTheme, theme.CssName)
-	}
+		loadThemeColours(theme.TokensColourTheme, theme.CssName) }
 }

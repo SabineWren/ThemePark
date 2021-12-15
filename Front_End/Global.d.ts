@@ -6,8 +6,8 @@ interface Node {
 }
 
 // All global functions defined in Main.ts
-declare function $<T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: string): T
-declare function $$<T extends HTMLElement>(ele: ParentNode | HTMLElement, selector: string): T[]
+declare function $<T = HTMLElement>(ele: ParentNode | HTMLElement, selector: string): T
+declare function $$<T = HTMLElement>(ele: ParentNode | HTMLElement, selector: string): T[]
 
 declare type SlAlert = import("@shoelace-style/shoelace/dist/shoelace.js").SlAlert
 declare type SlAnimatedImage = import("@shoelace-style/shoelace/dist/shoelace.js").SlAnimatedImage
