@@ -5,7 +5,7 @@ interface Node {
 	getRootNode(options?: GetRootNodeOptions): ShadowRoot
 }
 
-// All global functions defined in Main.ts
+// See index.html head
 declare function $<T = HTMLElement>(ele: ParentNode | HTMLElement, selector: string): T
 declare function $$<T = HTMLElement>(ele: ParentNode | HTMLElement, selector: string): T[]
 

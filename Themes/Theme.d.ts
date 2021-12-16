@@ -64,6 +64,14 @@ type ThemeTokensShoelaceStatic = {
 	// *** Forms ***
 	"--sl-focus-ring": BoxShadow
 
+	// Overlays
+	"--sl-overlay-background-color": ColourPlaceholder
+
+	// Panels
+	"--sl-panel-background-color": ColourPlaceholder
+	"--sl-panel-border-color": ColourPlaceholder
+
+	/*
 	"--sl-input-background-color": ColourPlaceholder
 	"--sl-input-background-color-hover": ColourPlaceholder
 	"--sl-input-background-color-focus": ColourPlaceholder
@@ -95,16 +103,10 @@ type ThemeTokensShoelaceStatic = {
 	// can default to var(--sl-color-neutral-500)
 	"--sl-input-help-text-color": ColourPlaceholder
 
-	// Overlays
-	"--sl-overlay-background-color": ColourPlaceholder
-
-	// Panels
-	"--sl-panel-background-color": ColourPlaceholder
-	"--sl-panel-border-color": ColourPlaceholder
-
 	// Tooltips
 	"--sl-tooltip-background-color": ColourPlaceholder
 	"--sl-tooltip-color": ColourPlaceholder
+	*/
 }
 
 type ThemeTokensShoelace = ThemeColourTokens & ThemeTokensShoelaceStatic

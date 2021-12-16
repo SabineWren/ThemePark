@@ -51,52 +51,13 @@ const tokens: ThemeTokensShoelaceStatic = {
 		XYBlurSpread: "0 4px 16px", Colour: Hsl(240, 3.8, 46.1, 12)},
 
 	// *** Forms ***
-	// TODO
 	"--sl-focus-ring": {
-		XYBlurSpread: "0 0 0 3px", Colour: Hsl(198.6, 88.7, 48.4, 45)},
-
-	// TODO
-	"--sl-input-background-color": `var(--sl-color-neutral-0)`,
-	"--sl-input-background-color-hover": `var(--sl-input-background-color)`,
-	"--sl-input-background-color-focus": `var(--sl-input-background-color)`,
-	"--sl-input-background-color-disabled": `var(--sl-color-neutral-100)`,
-	"--sl-input-border-color": `var(--sl-color-neutral-300)`,
-	"--sl-input-border-color-hover": `var(--sl-color-neutral-400)`,
-	"--sl-input-border-color-focus": `var(--sl-color-primary-500)`,
-	"--sl-input-border-color-disabled": `var(--sl-color-neutral-300)`,
-
-	// TODO
-	"--sl-input-color": `var(--sl-color-neutral-700)`,
-	"--sl-input-color-hover": `var(--sl-color-neutral-700)`,
-	"--sl-input-color-focus": `var(--sl-color-neutral-700)`,
-	"--sl-input-color-disabled": `var(--sl-color-neutral-900)`,
-	"--sl-input-icon-color": `var(--sl-color-neutral-500)`,
-	"--sl-input-icon-color-hover": `var(--sl-color-neutral-600)`,
-	"--sl-input-icon-color-focus": `var(--sl-color-neutral-600)`,
-	"--sl-input-placeholder-color": `var(--sl-color-neutral-500)`,
-	"--sl-input-placeholder-color-disabled": `var(--sl-color-neutral-600)`,
-
-	// TODO
-	"--sl-input-filled-background-color": `var(--sl-color-neutral-100)`,
-	"--sl-input-filled-background-color-hover": `var(--sl-color-neutral-100)`,
-	"--sl-input-filled-background-color-focus": `var(--sl-color-neutral-100)`,
-	"--sl-input-filled-background-color-disabled": `var(--sl-color-neutral-100)`,
-	"--sl-input-filled-color": `var(--sl-color-neutral-800)`,
-	"--sl-input-filled-color-hover": `var(--sl-color-neutral-800)`,
-	"--sl-input-filled-color-focus": `var(--sl-color-neutral-700)`,
-	"--sl-input-filled-color-disabled": `var(--sl-color-neutral-800)`,
-
-	// can default to var(--sl-color-neutral-500)
-	"--sl-input-help-text-color": `var(--sl-color-neutral-500)`,
+		XYBlurSpread: "0 0 0 3px", Colour: Hsl(198.6, 88.7, 48.4, 40)},
 
 	// Overlays
-	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),// TODO
+	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),
 
 	// Panels
-	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,// TODO
-	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,// TODO
-
-	// Tooltips
-	"--sl-tooltip-background-color": `var(--sl-color-neutral-800)`,// TODO
-	"--sl-tooltip-color": `var(--sl-color-neutral-0)`,// TODO
+	"--sl-panel-background-color": `var(--sl-color-neutral-0)`,
+	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,
 }
