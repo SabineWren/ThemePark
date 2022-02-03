@@ -1,8 +1,10 @@
+type Colour = import("chroma.ts").Color
+
 type TupleTriple = [number, number, number]
-type ColourPlaceholder = string | import("chroma.ts").Color
+type ColourPlaceholder = string | Colour
 type BoxShadow = { XYBlurSpread: string; Colour: ColourPlaceholder }
 type ColourTokenValue = BoxShadow | ColourPlaceholder
-type ThemeColourTokens = { [k: string]: import("chroma.ts").Color }
+type ThemeColourTokens = { [k: string]: Colour }
 
 type SemanticColoursTuple = readonly ["primary", "success", "neutral", "warning", "danger"]
 type SemanticColour = SemanticColoursTuple[number]
@@ -46,12 +48,20 @@ type ThemeSpecification = {
 	TokensShoelace: ThemeTokensShoelaceStatic
 }
 
+// Light theme order: Light -> Dark
+// Dark theme order: Dark -> Light
+type ColourRange = {
+	CMin_Start_Bg: Colour
+	C500_Button_Bg: Colour
+	C600_Button_BgHover: Colour
+	CMax_End_Text: Colour
+}
 type ThemeColours = {
-	Danger: import("chroma.ts").Color[]
-	Neutral: import("chroma.ts").Color[]
-	Primary: import("chroma.ts").Color[]
-	Success: import("chroma.ts").Color[]
-	Warning: import("chroma.ts").Color[]
+	Danger: Colour[]
+	Neutral: Colour[]
+	Primary: ColourRange
+	Success: Colour[]
+	Warning: Colour[]
 }
 type ThemeTokensShoelaceStatic = {
 	// Elevations (box shadows)

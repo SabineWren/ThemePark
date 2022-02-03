@@ -6,7 +6,7 @@ import { throttle } from "@shoelace-style/shoelace/dist/internal/throttle.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
-import { SlKeyPc, Tokenize } from "Themes/Platform_Targets/Shoelace.js"
+import { SlKeyPc, Tokenize, TokenizeRange } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 
 const toStringRgb = (c: chroma.Color) => {
@@ -22,37 +22,16 @@ export class TokenGenerator extends LitElement {
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
 	private index = 0
-	private colourAdd() {
-		const colours = this.getColours()
-		const clone = colours[this.index].darker(0)
-		colours.splice(this.index, 0, clone)
-		this.themeProvider.UpdateTheme()
-		this.requestUpdate()
-	}
+	private rangeKey: keyof ColourRange = "CMin_Start_Bg"
 	private colourChange() {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
-		colours[this.index] = chroma.color(pickerColour)
+		if (Array.isArray(colours)) {
+			colours[this.index] = chroma.color(pickerColour)
+		} else {
+			colours[this.rangeKey] = chroma.color(pickerColour)
+		}
 		this.updateThemeThrottled()
-		this.requestUpdate()
-	}
-	private colourDelete() {
-		const theme = this.themeProvider.GetTheme()
-		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
-		if (colours.length <= 1) { return }
-		colours.splice(this.index, 1)
-		this.index = this.index < colours.length
-			? this.index
-			: this.index - 1
-		this.themeProvider.UpdateTheme()
-		this.requestUpdate()
-	}
-	private colourSort() {
-		const colours = this.getColours()
-		const selection = colours[this.index]
-		colours.sort((a,b) => a.lch()[0] - b.lch()[0])
-		this.index = colours.indexOf(selection)
-		this.themeProvider.UpdateTheme()
 		this.requestUpdate()
 	}
 	private getColours() {
@@ -63,9 +42,12 @@ export class TokenGenerator extends LitElement {
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
-		const tokens = Tokenize(colours, this.type)
+		const tokens = Array.isArray(colours)
+			? Tokenize(colours, this.type)
+			: TokenizeRange(colours, this.type)
 
-		const baseColours = colours
+		const coloursArray = Array.isArray(colours) ? colours : Object.values(colours)
+		const baseColours = coloursArray
 			.map(c => ({ Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
 		const selectedColour = baseColours[this.index].Colour
 
@@ -76,23 +58,12 @@ export class TokenGenerator extends LitElement {
 		return html`
 <sl-card>
 	<div class="flex" style="gap: 5px; align-items: center;">
-		<sl-icon-button name="trash" type="danger"
-			@click=${() => this.colourDelete()}
-		></sl-icon-button>
-		<sl-icon-button name="plus-square" type="success"
-			@click=${() => this.colourAdd()}
-		></sl-icon-button>
-		<sl-tooltip content="Sort by LCH brightness">
-			<sl-icon-button name="sort-numeric-up" type="success"
-				@click=${() => this.colourSort()}
-			></sl-icon-button>
-		</sl-tooltip>
 		${baseColours.map(({ Colour, Css, L }, i) => html`
 		<sl-tooltip content="${toStringLchCommas(Colour)}">
 			<sl-tag
 				style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
 				type="${i === this.index ? "danger" : "neutral"}"
-				size="${i === this.index ? "large" : "medium"}"
+				size="medium"
 				?pill=${i === this.index}
 				@click=${() => { this.index = i; this.requestUpdate() }}
 			>${L.toFixed(1)}</sl-tag>
@@ -154,3 +125,8 @@ const toStringLchCommas = (colour: chroma.Color) => {
 	const [l,c,h] = colour.lch()
 	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
 }
+
+/*
+<sl-tooltip content="Sort by LCH brightness">
+</sl-tooltip>
+*/

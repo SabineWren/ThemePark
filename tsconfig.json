@@ -9,8 +9,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"importHelpers": true,
 		"lib": ["ESNext", "dom"],
-		// 2021 for pipes and pattern matching
-		// 2022 for top level await when the eslint, rollup, etc support it
+		// Future useful features (2022?): pipes, pattern matching
+		// Top level await when the eslint, rollup, and node support it
 		"module": "ES2020",
 		"moduleResolution": "node",
 		"paths": { "*": ["*", "Front_End/*"] },

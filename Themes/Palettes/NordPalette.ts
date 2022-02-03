@@ -63,6 +63,8 @@ export const Nord = {
 	// "Main color for primary UI elements"
 	// "Can be used for: - Markup quotes - Markup link URLs"
 	[8]: Hsl(193, 43, 67),
+	// Official site uses 63, but it's not much contrast
+	Dark8: Hsl(193, 43, 60),
 
 	// "Bluish core color."
 	// Special text (grey-blue)

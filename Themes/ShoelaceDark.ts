@@ -41,7 +41,13 @@ const colours: ThemeColours = {
 		Hsl(0, 0, 95),
 		Hsl(0, 0, 100),
 	],
-	Primary: [
+	Primary: {
+		CMin_Start_Bg: Hsl(203, 63.8, 20.9),
+		C500_Button_Bg: Hsl(199.7, 85.9, 47.7),
+		C600_Button_BgHover: Hsl(198.7, 97.9, 57.2),
+		CMax_End_Text: Hsl(186, 100, 95.5),
+	},
+	/* Primary: [
 		Hsl(203, 63.8, 20.9),
 		Hsl(203.4, 70.4, 28),
 		Hsl(202.7, 75.8, 30.8),
@@ -53,7 +59,7 @@ const colours: ThemeColours = {
 		Hsl(198.8, 100, 82.5),
 		Hsl(198.5, 100, 89.9),
 		Hsl(186, 100, 95.5),
-	],
+	],*/
 	Success: [
 		Hsl(144.3, 53.6, 16),
 		Hsl(143.2, 55.4, 23.5),

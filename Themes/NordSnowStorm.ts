@@ -23,11 +23,12 @@ const colours: ThemeColours = {
 		Nord[6], Nord[5], Nord[4],
 		Nord[3], Nord[2], Nord[1], Nord[0],
 	],
-	Primary: [
-		Hsl(185, 63, 96),
-		Nord[8],
-		Hsl(200, 35, 25),
-	],
+	Primary: {
+		CMin_Start_Bg: Hsl(185, 63, 96),
+		C500_Button_Bg: Nord.Dark8,
+		C600_Button_BgHover: Nord[8],
+		CMax_End_Text: Hsl(200, 35, 25),
+	},
 	Success: [
 		Nord[14],
 	],
