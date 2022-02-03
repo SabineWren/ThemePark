@@ -51,17 +51,17 @@ type ThemeSpecification = {
 // Light theme order: Light -> Dark
 // Dark theme order: Dark -> Light
 type ColourRange = {
-	CMin_Start_Bg: Colour
+	CMin: Colour
 	C500: Colour
 	C600: Colour
-	CMax_End_Text: Colour
+	CMax: Colour
 }
 type ThemeColours = {
-	Danger: Colour[]
-	Neutral: Colour[]
-	Primary: ColourRange
-	Success: Colour[]
-	Warning: Colour[]
+	danger: ColourRange
+	neutral: ColourRange
+	primary: ColourRange
+	success: ColourRange
+	warning: ColourRange
 }
 type ThemeTokensShoelaceStatic = {
 	// Elevations (box shadows)

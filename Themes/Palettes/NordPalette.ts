@@ -62,9 +62,9 @@ export const Nord = {
 	// "Bluish core accent color."
 	// "Main color for primary UI elements"
 	// "Can be used for: - Markup quotes - Markup link URLs"
-	[8]: Hsl(193, 43, 67),
+	Blue8: Hsl(193, 43, 67),
 	// Official site uses 63, but it's not much contrast
-	Dark8: Hsl(193, 43, 60),
+	Blue8Dark: Hsl(193, 43, 60),
 
 	// "Bluish core color."
 	// Special text (grey-blue)
@@ -78,16 +78,19 @@ export const Nord = {
 		*** Aurora (pastel colours) ***
 	*/
 	// "Used for errors"
-	[11]: Hsl(354, 42, 56),// Red
+	C11_Red: Hsl(354, 42, 56),
+	C11_RedDark: Hsl(354, 42, 50),// Unofficial
 
 	// "Used for annotations"
 	[12]: Hsl(14, 51, 63),// Orange
 
 	// "In the UI scope used for warnings and git/diff renamings."
-	[13]: Hsl(40, 71, 73),// Yellow
+	Yellow13: Hsl(40, 71, 73),
+	Yellow13Dark: Hsl(40, 71, 52),
 
 	// "In the UI scope used for git/diff additions and success visualizations."
-	[14]: Hsl(92, 28, 65),// Green
+	Green14: Hsl(92, 28, 65),
+	Green14Dark: Hsl(92, 28, 53),// Unofficial
 
 	// "Used for numbers."
 	[15]: Hsl(311, 20, 63),// Purple

@@ -1,7 +1,6 @@
 import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
-import { ColourTypes } from "Themes/Platform_Targets/Shoelace.js"
 
 const renderColourPicker = (t: SemanticColour) => html`
 <sl-tab slot="nav" panel="${t}">
@@ -11,7 +10,7 @@ const renderColourPicker = (t: SemanticColour) => html`
 	</sl-button>
 </sl-tab>
 <sl-tab-panel name="${t}">
-	<theme-editor type="${t}"></theme-editor>
+	<theme-editor variant="${t}"></theme-editor>
 </sl-tab-panel>`
 
 @customElement("app-root")
@@ -28,6 +27,7 @@ sl-card { flex: 0 0 25rem; }
 `]
 	}
 	override render() {
+		const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 		return html`
 <div style="display: flex;">
 	<div style="height: var(--sl-input-height-medium);">
@@ -40,7 +40,7 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-switch></theme-picker-switch>
 </div>
 <sl-tab-group>
-	${ColourTypes.map(c => renderColourPicker(c))}
+	${variants.map(c => renderColourPicker(c))}
 </sl-tab-group>
 <div class="flex">
 	<sl-card>

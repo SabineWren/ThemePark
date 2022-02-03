@@ -6,7 +6,7 @@ import { throttle } from "@shoelace-style/shoelace/dist/internal/throttle.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
-import { SlKeyPc, Tokenize, TokenizeRange } from "Themes/Platform_Targets/Shoelace.js"
+import { Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 
 const toStringRgb = (c: chroma.Color) => {
@@ -15,41 +15,32 @@ const toStringRgb = (c: chroma.Color) => {
 
 @customElement("theme-editor")
 export class TokenGenerator extends LitElement {
-	@property({ reflect: true }) type: SemanticColour
+	@property({ reflect: true }) variant: keyof ThemeColours
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
 	private updateThemeThrottled = throttle(() => this.themeProvider.UpdateTheme(), 50)
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
-	private index = 0
-	private rangeKey: keyof ColourRange = "CMin_Start_Bg"
+	private rangeKey: keyof ColourRange = "CMin"
 	private colourChange() {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
-		if (Array.isArray(colours)) {
-			colours[this.index] = chroma.color(pickerColour)
-		} else {
-			colours[this.rangeKey] = chroma.color(pickerColour)
-		}
+		colours[this.rangeKey] = chroma.color(pickerColour)
 		this.updateThemeThrottled()
 		this.requestUpdate()
 	}
 	private getColours() {
 		const theme = this.themeProvider.GetTheme()
-		const key = SlKeyPc(this.type)
-		return theme.TokensColourTheme[key]
+		return theme.TokensColourTheme[this.variant]
 	}
 	override render() {
 		const theme = this.themeProvider.GetTheme()
-		const colours = theme.TokensColourTheme[SlKeyPc(this.type)]
-		const tokens = Array.isArray(colours)
-			? Tokenize(colours, this.type)
-			: TokenizeRange(colours, this.type)
-
-		const coloursArray = Array.isArray(colours) ? colours : Object.values(colours)
-		const baseColours = coloursArray
-			.map(c => ({ Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
-		const selectedColour = baseColours[this.index].Colour
+		const colours = theme.TokensColourTheme[this.variant]
+		const tokens = Tokenize(this.variant, colours)
+		const baseColours = Object.entries(colours).map(([k,c]) =>
+			({ key: k as keyof ColourRange, Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
+		const selectedColour = baseColours
+			.find(c => c.key === this.rangeKey)!.Colour
 
 		const format = this.pickerRef.value?.format ?? "hsl"
 		const value = format === "hex" ? selectedColour.hex()
@@ -58,21 +49,23 @@ export class TokenGenerator extends LitElement {
 		return html`
 <sl-card>
 	<div class="flex" style="gap: 5px; align-items: center;">
-		${baseColours.map(({ Colour, Css, L }, i) => html`
+		${baseColours.map(({ key, Colour, Css, L }) => html`
 		<sl-tooltip content="${toStringLchCommas(Colour)}">
 			<sl-tag
 				style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-				type="${i === this.index ? "danger" : "neutral"}"
+				type="${this.variant}"
 				size="medium"
-				?pill=${i === this.index}
-				@click=${() => { this.index = i; this.requestUpdate() }}
+				?pill=${key === this.rangeKey}
+				@click=${() => { this.rangeKey = key; this.requestUpdate() }}
 			>${L.toFixed(1)}</sl-tag>
 		</sl-tooltip>`)}
 	</div>
 
 	<div class="flex" style="gap: 5px;">
-		${Object.keys(tokens).map(k => html`
-		<div class="swatch" style="background: var(${k});"></div>`)}
+		${Object.entries(tokens).map(([k,v]) => html`
+		<sl-tooltip content="${toStringLchCommas(v)}">
+			<div class="swatch" style="background: var(${k});"></div>
+		</sl-tooltip>`)}
 	</div>
 
 	<div class="flex">
@@ -106,6 +99,7 @@ export class TokenGenerator extends LitElement {
 
 // Using a table because grid doesn't copy line breaks correctly,
 // and varies copy behavior between browsers
+// TODO this adds tabs. Maybe just use a textarea and add a space?
 const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 <table>
 	<tr class="ital no-click no-select">
@@ -125,8 +119,3 @@ const toStringLchCommas = (colour: chroma.Color) => {
 	const [l,c,h] = colour.lch()
 	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
 }
-
-/*
-<sl-tooltip content="Sort by LCH brightness">
-</sl-tooltip>
-*/

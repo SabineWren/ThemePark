@@ -14,27 +14,37 @@ export const NordSnowStorm = (): ThemeSpecification => ({
 })
 
 const colours: ThemeColours = {
-	Danger: [
-		Nord[11],
-	],
-	Neutral: [
-		Nord["light-card-bg"],
-		Nord["light-gutter-bg"],
-		Nord[6], Nord[5], Nord[4],
-		Nord[3], Nord[2], Nord[1], Nord[0],
-	],
-	Primary: {
-		CMin_Start_Bg: Hsl(185, 63, 96),
-		C500: Nord[8],
-		C600: Nord.Dark8,
-		CMax_End_Text: Hsl(200, 35, 25),
+	danger: {
+		CMin: Hsl(354, 100, 80),
+		C500: Nord.C11_Red,
+		C600: Nord.C11_RedDark,
+		CMax: Hsl(354, 38, 10),
 	},
-	Success: [
-		Nord[14],
-	],
-	Warning: [
-		Nord[13],
-	],
+	// TODO create some greys for Nord
+	neutral: {
+		CMin: Nord[6],
+		C500: Nord[5],
+		C600: Nord[4],
+		CMax: Nord[0],
+	},
+	primary: {
+		CMin: Hsl(185, 63, 96),
+		C500: Nord.Blue8,
+		C600: Nord.Blue8Dark,
+		CMax: Hsl(200, 35, 25),
+	},
+	success: {
+		CMin: Hsl(80, 80, 86),
+		C500: Nord.Green14,
+		C600: Nord.Green14Dark,
+		CMax: Hsl(98, 25, 25),
+	},
+	warning: {
+		CMin: Hsl(60, 100, 95),
+		C500: Nord.Yellow13,
+		C600: Nord.Yellow13Dark,
+		CMax: Hsl(20, 50, 20),
+	},
 }
 
 const tokens: ThemeTokensShoelaceStatic = {

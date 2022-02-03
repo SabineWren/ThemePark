@@ -14,38 +14,37 @@ export const NordPolarNight = (): ThemeSpecification => ({
 })
 
 const colours: ThemeColours = {
-	Danger: [
-		Hsl(354, 38, 10), Nord[11],
-		Hsl(354, 100, 80),
-	],
-	Neutral: [
-		Nord[0], Nord[1], Nord[2], Nord[3],
-		Nord[4], Nord[5], Nord[6],
-	],
-	Primary: {
-		CMin_Start_Bg: Hsl(200, 35, 25),
-		C500: Nord.Dark8,
-		C600: Nord[8],
-		CMax_End_Text: Hsl(185, 63, 96),
+	danger: {
+		CMin: Hsl(354, 38, 10),
+		C500: Nord.C11_RedDark,
+		C600: Nord.C11_Red,
+		CMax: Hsl(354, 100, 80),
 	},
-	Success: [
-		Hsl(98, 25, 25),
-		Nord[14],
-		Hsl(80, 80, 86),
-	],
-	Warning: [
-		Hsl(20, 50, 20),
-		Hsl(20, 53, 35),
-		Hsl(28, 58, 45),
-		Hsl(33, 62, 55),
-		Hsl(35, 64, 58),
-		Hsl(37, 66, 60),// button hovered
-		Hsl(40, 71, 73),// Nord[13] button
-		Hsl(44, 100, 83),
-		Hsl(50, 100, 90),
-		Hsl(52, 100, 88),
-		Hsl(60, 100, 95),
-	],
+	// TODO create some greys for Nord
+	neutral: {
+		CMin: Nord[0],
+		C500: Nord[2],
+		C600: Nord[3],
+		CMax: Nord[6],
+	},
+	primary: {
+		CMin: Hsl(200, 35, 25),
+		C500: Nord.Blue8Dark,
+		C600: Nord.Blue8,
+		CMax: Hsl(185, 63, 96),
+	},
+	success: {
+		CMin: Hsl(98, 25, 25),
+		C500: Nord.Green14Dark,
+		C600: Nord.Green14,
+		CMax: Hsl(80, 80, 86),
+	},
+	warning: {
+		CMin: Hsl(20, 50, 20),
+		C500: Nord.Yellow13Dark,
+		C600: Nord.Yellow13,
+		CMax: Hsl(60, 100, 95),
+	},
 }
 
 const tokens: ThemeTokensShoelaceStatic = {
