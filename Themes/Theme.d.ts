@@ -52,8 +52,8 @@ type ThemeSpecification = {
 // Dark theme order: Dark -> Light
 type ColourRange = {
 	CMin_Start_Bg: Colour
-	C500_Button_Bg: Colour
-	C600_Button_BgHover: Colour
+	C500: Colour
+	C600: Colour
 	CMax_End_Text: Colour
 }
 type ThemeColours = {

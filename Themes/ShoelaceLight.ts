@@ -43,8 +43,8 @@ const colours: ThemeColours = {
 	],
 	Primary: {
 		CMin_Start_Bg: Hsl(204, 100, 97.1),
-		C500_Button_Bg: Hsl(198.6, 88.7, 48.4),
-		C600_Button_BgHover: Hsl(200.4, 98, 39.4),
+		C500: Hsl(198.6, 88.7, 48.4),
+		C600: Hsl(200.4, 98, 39.4),
 		CMax_End_Text: Hsl(202.3, 73.8, 16.5),
 	},
 	/* Primary: [

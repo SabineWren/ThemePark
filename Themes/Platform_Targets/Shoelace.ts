@@ -25,8 +25,8 @@ export const Tokenize = (cs: chroma.Color[], t: SemanticColour) =>
 	t === "neutral" ? tokenize13(cs, t) : tokenize11(cs, t)
 export const TokenizeRange = (range: ColourRange, token: string) => {
 	const start1 = range.CMin_Start_Bg
-	const end1 = range.C500_Button_Bg
-	const start2 = range.C600_Button_BgHover
+	const end1 = range.C500
+	const start2 = range.C600
 	const end2 = range.CMax_End_Text
 	const r1 = tokenizeFactory([50,100, 200, 300, 400, 500])([start1, end1], token)
 	const r2 = tokenizeFactory([600, 700, 800, 900, 950])([start2, end2], token)

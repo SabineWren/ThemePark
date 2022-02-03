@@ -24,8 +24,8 @@ const colours: ThemeColours = {
 	],
 	Primary: {
 		CMin_Start_Bg: Hsl(200, 35, 25),
-		C500_Button_Bg: Nord.Dark8,
-		C600_Button_BgHover: Nord[8],
+		C500: Nord.Dark8,
+		C600: Nord[8],
 		CMax_End_Text: Hsl(185, 63, 96),
 	},
 	Success: [
