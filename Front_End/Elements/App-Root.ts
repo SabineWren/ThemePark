@@ -31,7 +31,7 @@ sl-card { flex: 0 0 25rem; }
 		return html`
 <div style="display: flex;">
 	<div style="height: var(--sl-input-height-medium);">
-		<img style="height: 100%; padding: 0.4rem;" src="/images/logo.svg"/>
+		<img style="height: 100%; padding: 0.4rem;" src="/logo.svg"/>
 	</div>
 	<div style="margin: auto 0; font-weight: 600;">Theme Park</div>
 	<div style="flex-grow: 1;"></div>

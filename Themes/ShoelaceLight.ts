@@ -66,6 +66,6 @@ const tokens: ThemeTokensShoelaceStatic = {
 	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),
 
 	// Panels
-	"--sl-panel-background-color": `var(--sl-color-neutral-0)`,
+	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,
 	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,
 }
