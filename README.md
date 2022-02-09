@@ -30,11 +30,14 @@ Some assets require a one-time copy to web root:
 Back end coming soon.
 
 ### TODO
-- Add Hex and RGB support.
-- Add new part tokens for advanced theming, such as card background SVGs.
+- Create 'input' and 'output' colour sections (i.e. add labels and move buttons)
+- Add high/low contrast mode: page bg
+- Add high/low contrast mode: panel bg
+- Resize and redesign colour picker and token output; Move export buttons
+- Expand theme API to include dropshadows and overlays
+- Implement exports (both CSS and raw specification)
 - Add many components to test theming.
-- Map remaining colours for Nord themes.
-- Export themes from GUI (both CSS and raw specification)
+- Add support for card background SVGs and gradients
 
 ### Themes First Pass
 1. [Nord](https://nordtheme.com) Polar Night (dim), Snow Storm (light)
