@@ -18,7 +18,7 @@ const RESOLVE_OPTIONS: RollupNodeResolveOptions = Object.freeze({
 // https://github.com/rollup/rollup/blob/master/src/utils/options/options.ts
 export default (async () => {
 	RmDirSync(PATH.Dist_Dir)
-	const isLocal = Process.argv.includes("local")
+	const isLocal = Process.argv.includes("--config-local")
 
 	// Importing a plugin slows the build, even when it's not used.
 	// Source: https://github.com/rollup/rollup/blob/master/docs/999-big-list-of-options.md#plugins

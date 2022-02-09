@@ -5,7 +5,7 @@ export const ShoelaceDark = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "shoelace-dark",
 	IsLight: false,
-	Label: "Shoelace Dark",
+	Label: "Shoelace - Dark",
 	TokenColourBackground: "--sl-color-neutral-0",
 	TokenColourText: "--sl-color-neutral-900",
 	TokensColourTheme: colours,

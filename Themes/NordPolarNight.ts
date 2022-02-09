@@ -6,7 +6,7 @@ export const NordPolarNight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "sl-nord-polar-night",
 	IsLight: false,
-	Label: "Nord Polar Night",
+	Label: "Nord - Polar Night",
 	TokenColourBackground: "--sl-color-neutral-200",
 	TokenColourText: "--sl-color-neutral-900",
 	TokensColourTheme: colours,
@@ -15,35 +15,34 @@ export const NordPolarNight = (): ThemeSpecification => ({
 
 const colours: ThemeColours = {
 	danger: {
-		CMin: Hsl(354, 38, 10),
-		C500: Nord.C11_RedDark,
+		CMin: Nord.C11_RedCustom1,
+		C500: Nord.C11_RedCustom2,
 		C600: Nord.C11_Red,
-		CMax: Hsl(354, 100, 80),
+		CMax: Nord.C11_RedCustom4,
 	},
-	// TODO create some greys for Nord
 	neutral: {
-		CMin: Nord[0],
-		C500: Nord[2],
-		C600: Nord[3],
-		CMax: Nord[6],
+		CMin: Nord.Black,
+		C500: Nord.GreyDark1,
+		C600: Nord.GreyDark2,
+		CMax: Nord.White,
 	},
 	primary: {
-		CMin: Hsl(200, 35, 25),
-		C500: Nord.Blue8Dark,
+		CMin: Nord.Blue8Custom1,
+		C500: Nord.Blue8Custom2,
 		C600: Nord.Blue8,
-		CMax: Hsl(185, 63, 96),
+		CMax: Nord.Blue8Custom4,
 	},
 	success: {
-		CMin: Hsl(98, 25, 25),
-		C500: Nord.Green14Dark,
+		CMin: Nord.Green14Custom1,
+		C500: Nord.Green14Custom2,
 		C600: Nord.Green14,
-		CMax: Hsl(80, 80, 86),
+		CMax: Nord.Green14Custom4,
 	},
 	warning: {
-		CMin: Hsl(20, 50, 20),
-		C500: Nord.Yellow13Dark,
+		CMin: Nord.Yellow13Custom1,
+		C500: Nord.Yellow13Custom2,
 		C600: Nord.Yellow13,
-		CMax: Hsl(60, 100, 95),
+		CMax: Nord.Yellow13Custom4,
 	},
 }
 

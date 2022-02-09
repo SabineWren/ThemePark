@@ -5,7 +5,7 @@ export const ShoelaceLight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "shoelace-light",
 	IsLight: true,
-	Label: "Shoelace Light",
+	Label: "Shoelace - Light",
 	TokenColourBackground: "--sl-color-neutral-0",
 	TokenColourText: "--sl-color-neutral-900",
 	TokensColourTheme: colours,
@@ -26,7 +26,7 @@ const colours: ThemeColours = {
 		CMax: Hsl(0, 0, 0),
 	},
 	primary: {
-		CMin: Hsl(204, 100, 97.1),
+		CMin: Hsl(204, 100, 93.1),
 		C500: Hsl(198.6, 88.7, 48.4),
 		C600: Hsl(200.4, 98, 39.4),
 		CMax: Hsl(202.3, 73.8, 16.5),

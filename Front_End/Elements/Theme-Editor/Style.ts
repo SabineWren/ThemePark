@@ -13,7 +13,6 @@ sl-card {
 	margin: 0 auto; }
 sl-card::part(base) {
 	--padding: var(--spacing);
-	border: none;
 	box-shadow: var(--sl-shadow-large);
 }
 sl-card::part(body) {

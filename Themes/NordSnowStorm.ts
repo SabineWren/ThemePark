@@ -6,8 +6,8 @@ export const NordSnowStorm = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	CssName: "sl-nord-snow-storm",
 	IsLight: true,
-	Label: "Nord Snow Storm",
-	TokenColourBackground: "--sl-color-neutral-0",
+	Label: "Nord - Snow Storm",
+	TokenColourBackground: "--sl-color-neutral-50",
 	TokenColourText: "--sl-color-neutral-900",
 	TokensColourTheme: colours,
 	TokensShoelace: tokens,
@@ -15,35 +15,34 @@ export const NordSnowStorm = (): ThemeSpecification => ({
 
 const colours: ThemeColours = {
 	danger: {
-		CMin: Hsl(354, 100, 80),
+		CMin: Nord.C11_RedCustom4,
 		C500: Nord.C11_Red,
-		C600: Nord.C11_RedDark,
-		CMax: Hsl(354, 38, 10),
+		C600: Nord.C11_RedCustom2,
+		CMax: Nord.C11_RedCustom1,
 	},
-	// TODO create some greys for Nord
 	neutral: {
-		CMin: Nord[6],
-		C500: Nord[5],
-		C600: Nord[4],
-		CMax: Nord[0],
+		CMin: Nord.White,
+		C500: Nord.GreyDark2,
+		C600: Nord.GreyDark1,
+		CMax: Nord.Black,
 	},
 	primary: {
-		CMin: Hsl(185, 63, 96),
+		CMin: Nord.Blue8Custom4,
 		C500: Nord.Blue8,
-		C600: Nord.Blue8Dark,
-		CMax: Hsl(200, 35, 25),
+		C600: Nord.Blue8Custom2,
+		CMax: Nord.Blue8Custom1,
 	},
 	success: {
-		CMin: Hsl(80, 80, 86),
+		CMin: Nord.Green14Custom4,
 		C500: Nord.Green14,
-		C600: Nord.Green14Dark,
-		CMax: Hsl(98, 25, 25),
+		C600: Nord.Green14Custom2,
+		CMax: Nord.Green14Custom1,
 	},
 	warning: {
-		CMin: Hsl(60, 100, 95),
+		CMin: Nord.Yellow13Custom4,
 		C500: Nord.Yellow13,
-		C600: Nord.Yellow13Dark,
-		CMax: Hsl(20, 50, 20),
+		C600: Nord.Yellow13Custom2,
+		CMax: Nord.Yellow13Custom1,
 	},
 }
 

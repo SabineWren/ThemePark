@@ -1,8 +1,12 @@
 import { Hsl } from "Themes/Lib/Colours.js"
 /* https://www.nordtheme.com/
  * https://github.com/arcticicestudio/nord/blob/develop/src/nord.css
- * Not enough whites for Light mode, so use --nord3 or --nord9 for borders
- */
+ *
+ * The official nord site often deviates from its own colours,
+ * and official Nord colours don't map well to Shoelace.
+ * The numbered colours are official, but often unused here.
+ * The custom ones are in the 'spirit' of Nord.
+*/
 export const Nord = {
 	/* ***************************************
 		*** Polar Night ***
@@ -27,6 +31,9 @@ export const Nord = {
 	// Light mode: Disabled content
 	[3]: Hsl(220, 16, 36),
 
+	GreyDark1: Hsl(220, 17, 42),
+	GreyDark2: Hsl(220, 17, 60),
+
 	/* ***************************************
 		*** Snow Storm ***
 	*/
@@ -48,10 +55,12 @@ export const Nord = {
 	// They have a wavey background that changes with page,
 	// and it introduces new colours. See /community for cards.
 	// The background waves invert the contrast for dark mode on /ports
-	"light-gutter-bg": Hsl(220, 27, 98),
-	"light-card-bg": Hsl(0, 0, 100),
+	// "light-gutter-bg": Hsl(220, 27, 98),
+	// "light-card-bg": Hsl(0, 0, 100),
 	// "dark-gutter-bg": Nord[1]
 	// "dark-card-bg": Nord[0]
+	White: Hsl(220, 27, 98),
+	Black: Hsl(220, 16, 15),
 
 	/* ***************************************
 		*** Frost (low sat blues) ***
@@ -62,9 +71,11 @@ export const Nord = {
 	// "Bluish core accent color."
 	// "Main color for primary UI elements"
 	// "Can be used for: - Markup quotes - Markup link URLs"
+	Blue8Custom1: Hsl(200, 35, 21),
+	// Official site uses Hsl(193, 43, 63) on hover, but it's low contrast
+	Blue8Custom2: Hsl(193, 43, 55),
 	Blue8: Hsl(193, 43, 67),
-	// Official site uses 63, but it's not much contrast
-	Blue8Dark: Hsl(193, 43, 60),
+	Blue8Custom4: Hsl(185, 73, 92),
 
 	// "Bluish core color."
 	// Special text (grey-blue)
@@ -78,20 +89,26 @@ export const Nord = {
 		*** Aurora (pastel colours) ***
 	*/
 	// "Used for errors"
+	C11_RedCustom1: Hsl(354, 38, 10),
+	C11_RedCustom2: Hsl(354, 42, 50),
 	C11_Red: Hsl(354, 42, 56),
-	C11_RedDark: Hsl(354, 42, 50),// Unofficial
+	C11_RedCustom4: Hsl(354, 100, 80),
 
 	// "Used for annotations"
-	[12]: Hsl(14, 51, 63),// Orange
+	Orange12: Hsl(14, 51, 63),
 
 	// "In the UI scope used for warnings and git/diff renamings."
+	Yellow13Custom1: Hsl(20, 50, 20),
+	Yellow13Custom2: Hsl(40, 71, 52),
 	Yellow13: Hsl(40, 71, 73),
-	Yellow13Dark: Hsl(40, 71, 52),
+	Yellow13Custom4: Hsl(60, 100, 95),
 
 	// "In the UI scope used for git/diff additions and success visualizations."
+	Green14Custom1: Hsl(98, 25, 25),
+	Green14Custom2: Hsl(92, 28, 53),
 	Green14: Hsl(92, 28, 65),
-	Green14Dark: Hsl(92, 28, 53),// Unofficial
+	Green14Custom4: Hsl(80, 80, 86),
 
 	// "Used for numbers."
-	[15]: Hsl(311, 20, 63),// Purple
+	Purple15: Hsl(311, 20, 63),
 } as const
