@@ -3,11 +3,12 @@ import { Hsl } from "Themes/Lib/Colours.js"
 
 export const ShoelaceLight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
+	ContrastBody: 0,
+	ContrastPanel: 0,
+	ContrastText: 900,
 	CssName: "shoelace-light",
 	IsLight: true,
 	Label: "Shoelace - Light",
-	TokenColourBackground: "--sl-color-neutral-0",
-	TokenColourText: "--sl-color-neutral-900",
 	TokensColourTheme: colours,
 	TokensShoelace: tokens,
 })
@@ -64,8 +65,4 @@ const tokens: ThemeTokensShoelaceStatic = {
 
 	// Overlays
 	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),
-
-	// Panels
-	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,
-	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,
 }

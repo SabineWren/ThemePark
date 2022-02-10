@@ -17,9 +17,18 @@ type ButtonVariant = SemanticColoursTuple[number]
  * need to care about platform tokens. They will need to override
  * component parts as well.
 */
+
 type ThemeSpecification = {
 	// Used to style component parts. Platform-specific.
 	ComponentPartsCss: import("lit").CSSResult
+
+	// Lower numbers for contrast make text more accessible
+	// Higher numbers make light themes more sepia or grey
+	// Higher numbers make dark themes more dim instead of dark
+	ContrastBody: | 0 | 50 | 100 | 200
+	ContrastPanel: | 0 | 50 | 100 | 200
+	// Dark themes usually prefer lower values to prevent light bleed
+	ContrastText: | 800 | 900 | 950 | 1000
 
 	// Name in kebab-case. Use prefixes to guarantee uniqueness.
 	// ex. Nord Dark for Shoelace: sl-nord-polar-night
@@ -30,13 +39,6 @@ type ThemeSpecification = {
 
 	// Name user sees in theme-picker dropdown.
 	Label: string
-
-	// Recommend: --sl-color-neutral-0 to --sl-color-neutral-200
-	TokenColourBackground: string
-
-	// Recommend: --sl-color-neutral-800 to --sl-color-neutral-1000
-	// Dark themes usually prefer lower values to prevent light bleed
-	TokenColourText: string
 
 	// Defines the theme implementation.
 	// Theme Park interpolates using LCH, then clamps to sRGB.
@@ -76,10 +78,6 @@ type ThemeTokensShoelaceStatic = {
 
 	// Overlays
 	"--sl-overlay-background-color": ColourPlaceholder
-
-	// Panels
-	"--sl-panel-background-color": ColourPlaceholder
-	"--sl-panel-border-color": ColourPlaceholder
 
 	/*
 	"--sl-input-background-color": ColourPlaceholder

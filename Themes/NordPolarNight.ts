@@ -4,11 +4,12 @@ import { Hsl } from "Themes/Lib/Colours.js"
 
 export const NordPolarNight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
+	ContrastBody: 200,
+	ContrastPanel: 50,
+	ContrastText: 900,
 	CssName: "sl-nord-polar-night",
 	IsLight: false,
 	Label: "Nord - Polar Night",
-	TokenColourBackground: "--sl-color-neutral-200",
-	TokenColourText: "--sl-color-neutral-900",
 	TokensColourTheme: colours,
 	TokensShoelace: tokens,
 })
@@ -65,8 +66,4 @@ const tokens: ThemeTokensShoelaceStatic = {
 
 	// Overlays
 	"--sl-overlay-background-color": Hsl(0, 0, 0, 43),
-
-	// Panels
-	"--sl-panel-background-color": `var(--sl-color-neutral-50)`,
-	"--sl-panel-border-color": `var(--sl-color-neutral-200)`,
 }
