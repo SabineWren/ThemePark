@@ -4,7 +4,7 @@ import { Hsl } from "Themes/Lib/Colours.js"
 export const ShoelaceDark = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	ContrastBody: 0,
-	ContrastButton: 600,
+	// ContrastButtonHover: 500,
 	ContrastPanel: 50,
 	ContrastText: 900,
 	CssName: "shoelace-dark",

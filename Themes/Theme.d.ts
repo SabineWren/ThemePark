@@ -23,7 +23,6 @@ type ThemeSpecification = {
 	ComponentPartsCss: import("lit").CSSResult
 
 	ContrastBody: | 0 | 50 | 100 | 200
-	ContrastButton: | 500 | 600
 	ContrastPanel: | 0 | 50 | 100 | 200
 	// Dark themes usually prefer lower values to prevent light bleed
 	ContrastText: | 800 | 900 | 950 | 1000

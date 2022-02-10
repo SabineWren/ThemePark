@@ -18,15 +18,15 @@ export class TokenGenerator extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColours
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
-	private updateThemeThrottled = throttle(() => this.themeProvider.UpdateTheme(), 50)
+	private updateThemeColoursThrottled = throttle(() => this.themeProvider.ReapplyThemeColours(), 50)
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
 	private rangeKey: keyof ColourRange = "Min"
-	private colourChange() {
+	private editColour() {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
 		colours[this.rangeKey] = chroma.color(pickerColour)
-		this.updateThemeThrottled()
+		this.updateThemeColoursThrottled()
 		this.requestUpdate()
 	}
 	private getColours() {
@@ -46,6 +46,11 @@ export class TokenGenerator extends LitElement {
 		const value = format === "hex" ? selectedColour.hex()
 			: format === "rgb" ? toStringRgb(selectedColour)
 			: ToStringHslCommas(selectedColour)
+
+		const renderContrastText = (c: 800 | 900 | 950 | 1000) => html`
+		<sl-button ?outline=${theme.ContrastText === c}
+			@click=${() => { theme.ContrastText = c; this.themeProvider.ReapplyTheme() }}>${c}
+		</sl-button>`
 		return html`
 <sl-card>
 	<sl-tab-group placement="start" id="colour-keys">
@@ -85,17 +90,10 @@ export class TokenGenerator extends LitElement {
 	<div class="toggle-btn">
 		Text Contrast
 		<sl-button-group>
-			<sl-button ?outline=${theme.ContrastText === 800}>800</sl-button>
-			<sl-button ?outline=${theme.ContrastText === 900}>900</sl-button>
-			<sl-button ?outline=${theme.ContrastText === 950}>950</sl-button>
-			<sl-button ?outline=${theme.ContrastText === 1000}>1000</sl-button>
-		</sl-button-group>
-	</div>
-	<div class="toggle-btn">
-		Button Hover
-		<sl-button-group>
-			<sl-button ?outline=${theme.ContrastButton === 500}>${theme.IsLight ? "Darker" : "Lighter"}</sl-button>
-			<sl-button ?outline=${theme.ContrastButton === 600}>${theme.IsLight ? "Lighter" : "Darker"}</sl-button>
+			${renderContrastText(800)}
+			${renderContrastText(900)}
+			${renderContrastText(950)}
+			${renderContrastText(1000)}
 		</sl-button-group>
 	</div>
 
@@ -110,7 +108,7 @@ export class TokenGenerator extends LitElement {
 		<div class="left">
 			<sl-color-picker inline
 				${ref(this.pickerRef)}
-				@sl-change=${() => this.colourChange()}
+				@sl-change=${() => this.editColour()}
 				format="${format}"
 				value="${value}"
 			></sl-color-picker>
@@ -138,8 +136,8 @@ export class TokenGenerator extends LitElement {
 const getColourName = (theme: ThemeSpecification, key: keyof ColourRange): string => {
 	switch (key) {
 	case "Min": return theme.IsLight ? "Lightest" : "Darkest"
-	case "C500": return theme.ContrastButton === 600 ? "Button Hover" : "Button Background"
-	case "C600": return theme.ContrastButton === 600 ? "Button Background" : "Button Hover"
+	case "C500": return "Button Hover"
+	case "C600": return "Button Background"
 	case "Max": return theme.IsLight ? "Darkest" : "Lightest"
 	}
 }

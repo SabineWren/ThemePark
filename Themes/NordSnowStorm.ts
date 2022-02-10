@@ -5,7 +5,7 @@ import { Hsl } from "Themes/Lib/Colours.js"
 export const NordSnowStorm = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	ContrastBody: 50,
-	ContrastButton: 500,
+	// ContrastButtonHover: 600,
 	ContrastPanel: 0,
 	ContrastText: 900,
 	CssName: "sl-nord-snow-storm",

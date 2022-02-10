@@ -2,10 +2,8 @@
 A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target.
 
 ### TODO
-- Create 'input' and 'output' colour sections (i.e. add labels and move buttons)
-- Add high/low contrast mode: page bg
-- Add high/low contrast mode: panel bg
-- Resize and redesign colour picker and token output; Move export buttons
+- Finish redesign of editor layout
+- Finish implementing contrast modes for body and panel
 - Expand theme API to include dropshadows and overlays
 - Implement exports (both CSS and raw specification)
 - Add many components to test theming.

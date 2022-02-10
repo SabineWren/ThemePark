@@ -5,7 +5,7 @@ import { Hsl } from "Themes/Lib/Colours.js"
 export const NordPolarNight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	ContrastBody: 200,
-	ContrastButton: 600,
+	// ContrastButtonHover: 500,
 	ContrastPanel: 50,
 	ContrastText: 900,
 	CssName: "sl-nord-polar-night",

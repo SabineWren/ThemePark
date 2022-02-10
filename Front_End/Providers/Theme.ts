@@ -81,14 +81,21 @@ export class ThemeProvider implements ReactiveController {
 		return state.Mode === ThemeMode.Light ? THEMES_LIGHT : THEMES_DARK }
 
 	SetMode(m: ThemeMode) {
-		state.Mode = m
-		applyCurrentTheme() }
+		state.Mode = m; applyCurrentTheme() }
 	SetTheme(o: ThemeSpecification) {
 		if (o.IsLight) { state.Light = o }
 		else           { state.Dark  = o }
-		applyCurrentTheme() }
-	// More performant than resetting the entire theme
-	UpdateTheme() {
+		applyCurrentTheme()
+	}
+
+	ReapplyTheme() {
 		const theme = this.GetTheme()
-		loadThemeColours(theme.TokensColourTheme, theme.CssName) }
+		loadStyleTag(theme)
+		hosts.forEach(h => h.requestUpdate())
+	}
+	// More performant than resetting the entire theme
+	ReapplyThemeColours() {
+		const theme = this.GetTheme()
+		loadThemeColours(theme.TokensColourTheme, theme.CssName)
+	}
 }
