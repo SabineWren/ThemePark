@@ -2,17 +2,6 @@ import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 
-const renderColourPicker = (t: SemanticColour) => html`
-<sl-tab slot="nav" panel="${t}">
-	<sl-button type="${t}">
-		${t[0].toUpperCase() + t.slice(1)}
-		<sl-icon slot="suffix" name="palette"></sl-icon>
-	</sl-button>
-</sl-tab>
-<sl-tab-panel name="${t}">
-	<theme-editor variant="${t}"></theme-editor>
-</sl-tab-panel>`
-
 @customElement("app-root")
 export class AppRoot extends LitElement {
 	static override get styles() { return [Shared, css`
@@ -29,18 +18,26 @@ sl-card { flex: 0 0 25rem; }
 	override render() {
 		const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 		return html`
-<div style="display: flex;">
-	<div style="height: var(--sl-input-height-medium);">
-		<img style="height: 100%; padding: 0.4rem;" src="/logo.svg"/>
-	</div>
-	<div style="margin: auto 0; font-weight: 600;">Theme Park</div>
-	<div style="flex-grow: 1;"></div>
-	<theme-picker-dropdown></theme-picker-dropdown>
+<div style="display: flex; align-items: flex-start; flex-direction: row-reverse; flex-wrap: wrap;">
 	<theme-picker-switch></theme-picker-switch>
+	<theme-picker-dropdown></theme-picker-dropdown>
+	<sl-button variant="default" href="https://github.com/SabineWren/Theme-Park" target="_blank">
+		<sl-icon slot="prefix" name="github"></sl-icon>
+		Theme Park
+	</sl-button>
+	<sl-tab-group style="margin: 0 auto;">
+		${variants.map((t: ButtonVariant) => html`
+		<sl-tab slot="nav" panel="${t}">
+			<sl-button type="${t}">
+				${t[0].toUpperCase() + t.slice(1)}
+				<sl-icon slot="suffix" name="palette"></sl-icon>
+			</sl-button>
+		</sl-tab>
+		<sl-tab-panel name="${t}">
+			<theme-editor variant="${t}"></theme-editor>
+		</sl-tab-panel>`)}
+	</sl-tab-group>
 </div>
-<sl-tab-group>
-	${variants.map(c => renderColourPicker(c))}
-</sl-tab-group>
 <div class="flex">
 	<sl-card>
 		<h4>Card: Decorative</h4>

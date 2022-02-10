@@ -19,7 +19,7 @@ import "Elements/App-Root.js"
 import "Elements/Theme-Picker.js"
 import "Front_End/Elements/Theme-Editor/Theme-Editor.js"
 
-registerIconLibrary("custom-icons", {
-	resolver: name => `/images/${name}.svg`,
+registerIconLibrary("custom", {
+	resolver: name => `/assets/custom/${name}.svg`,
 	mutator: svg => svg.setAttribute("fill", "currentColor"),
 })

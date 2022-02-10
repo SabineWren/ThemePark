@@ -7,7 +7,7 @@ type ColourTokenValue = BoxShadow | ColourPlaceholder
 type ThemeColourTokens = { [k: string]: Colour }
 
 type SemanticColoursTuple = readonly ["primary", "success", "neutral", "warning", "danger"]
-type SemanticColour = SemanticColoursTuple[number]
+type ButtonVariant = SemanticColoursTuple[number]
 
 /* Stylesheet has 3 parts:
  * 1. Body css, which normally sets text colour and page background
