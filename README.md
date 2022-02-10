@@ -33,9 +33,7 @@ Some themes have complex backgrounds, such as SVG images or gradients. The API s
 Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space.
 
 ## Building
-Some assets require a one-time copy to web root:
-1. The Shoelace package 'assets' directory, which contains Bootstrap icons
-2. Themes/Platform_Targets/shoelace-tokens.css
+The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Remaining steps defined in package.json scripts.
 
 ### Themes First Pass
 1. [Nord](https://nordtheme.com) Polar Night (dim), Snow Storm (light)
