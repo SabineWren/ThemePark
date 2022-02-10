@@ -2,7 +2,6 @@ import * as chroma from "chroma.ts"
 import { html, LitElement} from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
-import { throttle } from "@shoelace-style/shoelace/dist/internal/throttle.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
@@ -18,7 +17,7 @@ export class TokenGenerator extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColours
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
-	private updateThemeColoursThrottled = throttle(() => this.themeProvider.ReapplyThemeColours(), 50)
+	private reapplyColoursThrottled = throttleFactory(() => this.themeProvider.ReapplyThemeColours())
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
 	private rangeKey: keyof ColourRange = "Min"
@@ -26,7 +25,7 @@ export class TokenGenerator extends LitElement {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
 		colours[this.rangeKey] = chroma.color(pickerColour)
-		this.updateThemeColoursThrottled()
+		this.reapplyColoursThrottled()
 		this.requestUpdate()
 	}
 	private getColours() {
@@ -70,7 +69,7 @@ export class TokenGenerator extends LitElement {
 			<sl-tooltip placement="right" content="${toStringLchCommas(Colour)}">
 				<sl-tag
 					style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-					type="${this.variant}"
+					variant="${this.variant}"
 					size="medium"
 					>${L.toFixed(1)}
 				</sl-tag>
@@ -126,7 +125,7 @@ export class TokenGenerator extends LitElement {
 			${renderCssText(Object.entries(tokens))}
 
 			<sl-button-group style="margin-top: 0.5em;">
-				<sl-button type="success" size="small" outline>Save Theme</sl-button>
+				<sl-button variant="success" size="small" outline>Save Theme</sl-button>
 				<sl-dropdown placement="bottom-end">
 					<sl-button slot="trigger" type="success" size="small" outline caret></sl-button>
 					<sl-menu>
@@ -175,4 +174,14 @@ const hslToString = ([h,s,l]: [number, number, number]) =>
 const toStringLchCommas = (colour: chroma.Color) => {
 	const [l,c,h] = colour.lch()
 	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
+}
+
+const throttleFactory = (foo: () => any) => {
+	let isThrottled = false
+	const fire = () => { foo(); isThrottled = false }
+	return () => {
+		if (isThrottled) { return }
+		isThrottled = true
+		setTimeout(fire, 50)
+	}
 }

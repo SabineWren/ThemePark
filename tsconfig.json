@@ -30,7 +30,7 @@
 				}
 			}
 		],
-		"skipLibCheck": false,
+		"skipLibCheck": true,
 		"sourceMap": true,
 		"sourceRoot": "Front_End",
 		"target": "ES2020",

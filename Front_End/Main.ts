@@ -15,12 +15,15 @@ import "@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js"
 import "@shoelace-style/shoelace/dist/components/tag/tag.js"
 // import "@shoelace-style/shoelace/dist/components/textarea/textarea.js"
 import "@shoelace-style/shoelace/dist/components/tooltip/tooltip.js"
+// @ts-ignore
 import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import "Elements/App-Root.js"
 import "Elements/Theme-Picker.js"
 import "Front_End/Elements/Theme-Editor/Theme-Editor.js"
 
 registerIconLibrary("custom", {
+	// @ts-ignore
 	resolver: name => `/assets/custom/${name}.svg`,
+	// @ts-ignore
 	mutator: svg => svg.setAttribute("fill", "currentColor"),
 })

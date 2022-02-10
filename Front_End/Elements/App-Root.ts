@@ -28,7 +28,7 @@ sl-card { flex: 0 0 25rem; }
 	<sl-tab-group style="margin: 0 auto;">
 		${variants.map((t: ButtonVariant) => html`
 		<sl-tab slot="nav" panel="${t}">
-			<sl-button type="${t}">
+			<sl-button variant="${t}">
 				${t[0].toUpperCase() + t.slice(1)}
 				<sl-icon slot="suffix" name="palette"></sl-icon>
 			</sl-button>
@@ -55,20 +55,20 @@ sl-card { flex: 0 0 25rem; }
 	</sl-card>
 </div>
 <div class="flex">
-	<sl-button type="default">Default</sl-button>
-	<sl-button type="primary">Primary</sl-button>
-	<sl-button type="success">Success</sl-button>
-	<sl-button type="neutral">Neutral</sl-button>
-	<sl-button type="warning">Warning</sl-button>
-	<sl-button type="danger">Danger</sl-button>
+	<sl-button variant="default">Default</sl-button>
+	<sl-button variant="primary">Primary</sl-button>
+	<sl-button variant="success">Success</sl-button>
+	<sl-button variant="neutral">Neutral</sl-button>
+	<sl-button variant="warning">Warning</sl-button>
+	<sl-button variant="danger">Danger</sl-button>
 </div>
 <div class="flex">
-	<sl-button type="default" outline>Default</sl-button>
-	<sl-button type="primary" outline>Primary</sl-button>
-	<sl-button type="success" outline>Success</sl-button>
-	<sl-button type="neutral" outline>Neutral</sl-button>
-	<sl-button type="warning" outline>Warning</sl-button>
-	<sl-button type="danger" outline>Danger</sl-button>
+	<sl-button variant="default" outline>Default</sl-button>
+	<sl-button variant="primary" outline>Primary</sl-button>
+	<sl-button variant="success" outline>Success</sl-button>
+	<sl-button variant="neutral" outline>Neutral</sl-button>
+	<sl-button variant="warning" outline>Warning</sl-button>
+	<sl-button variant="danger" outline>Danger</sl-button>
 </div>
 `
 	}
