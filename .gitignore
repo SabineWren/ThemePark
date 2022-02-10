@@ -3,7 +3,6 @@
 *.js
 Web_Root/assets
 Web_Root/dist
-Web_Root/*.css
 
 # Dependencies
 node_modules
