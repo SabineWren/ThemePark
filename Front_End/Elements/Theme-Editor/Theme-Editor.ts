@@ -21,7 +21,7 @@ export class TokenGenerator extends LitElement {
 	private updateThemeThrottled = throttle(() => this.themeProvider.UpdateTheme(), 50)
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
-	private rangeKey: keyof ColourRange = "CMin"
+	private rangeKey: keyof ColourRange = "Min"
 	private colourChange() {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
@@ -48,18 +48,21 @@ export class TokenGenerator extends LitElement {
 			: ToStringHslCommas(selectedColour)
 		return html`
 <sl-card>
-	<div class="flex" style="gap: 5px; align-items: center;">
+	<sl-tab-group placement="start" id="colour-keys">
 		${baseColours.map(({ key, Colour, Css, L }) => html`
-		<sl-tooltip content="${toStringLchCommas(Colour)}">
-			<sl-tag
-				style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-				type="${this.variant}"
-				size="medium"
-				?pill=${key === this.rangeKey}
-				@click=${() => { this.rangeKey = key; this.requestUpdate() }}
-			>${L.toFixed(1)}</sl-tag>
-		</sl-tooltip>`)}
-	</div>
+		<sl-tab slot="nav"
+			@click=${() => { this.rangeKey = key; this.requestUpdate() }}>
+			<div style="width: 100%; margin-right: 1em;">${getColourName(theme, key)}</div>
+			<sl-tooltip placement="right" content="${toStringLchCommas(Colour)}">
+				<sl-tag
+					style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
+					type="${this.variant}"
+					size="medium"
+					>${L.toFixed(1)}
+				</sl-tag>
+			</sl-tooltip>
+		</sl-tab>`)}
+	</sl-tab-group>
 
 	<div class="flex" style="gap: 5px;">
 		${Object.entries(tokens).map(([k,v]) => html`
@@ -94,6 +97,15 @@ export class TokenGenerator extends LitElement {
 		</div>
 	</div>
 </sl-card>`
+	}
+}
+
+const getColourName = (theme: ThemeSpecification, key: keyof ColourRange): string => {
+	switch (key) {
+	case "Min": return theme.IsLight ? "Lightest" : "Darkest"
+	case "C500": return theme.ContrastButton === 600 ? "Button Hover" : "Button Background"
+	case "C600": return theme.ContrastButton === 600 ? "Button Background" : "Button Hover"
+	case "Max": return theme.IsLight ? "Darkest" : "Lightest"
 	}
 }
 

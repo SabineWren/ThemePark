@@ -5,6 +5,7 @@ import { Hsl } from "Themes/Lib/Colours.js"
 export const NordSnowStorm = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	ContrastBody: 50,
+	ContrastButton: 500,
 	ContrastPanel: 0,
 	ContrastText: 900,
 	CssName: "sl-nord-snow-storm",
@@ -16,34 +17,34 @@ export const NordSnowStorm = (): ThemeSpecification => ({
 
 const colours: ThemeColours = {
 	danger: {
-		CMin: Nord.C11_RedCustom4,
+		Min: Nord.C11_RedCustom4,
 		C500: Nord.C11_Red,
 		C600: Nord.C11_RedCustom2,
-		CMax: Nord.C11_RedCustom1,
+		Max: Nord.C11_RedCustom1,
 	},
 	neutral: {
-		CMin: Nord.White,
+		Min: Nord.White,
 		C500: Nord.GreyDark2,
 		C600: Nord.GreyDark1,
-		CMax: Nord.Black,
+		Max: Nord.Black,
 	},
 	primary: {
-		CMin: Nord.Blue8Custom4,
+		Min: Nord.Blue8Custom4,
 		C500: Nord.Blue8,
 		C600: Nord.Blue8Custom2,
-		CMax: Nord.Blue8Custom1,
+		Max: Nord.Blue8Custom1,
 	},
 	success: {
-		CMin: Nord.Green14Custom4,
+		Min: Nord.Green14Custom4,
 		C500: Nord.Green14,
 		C600: Nord.Green14Custom2,
-		CMax: Nord.Green14Custom1,
+		Max: Nord.Green14Custom1,
 	},
 	warning: {
-		CMin: Nord.Yellow13Custom4,
+		Min: Nord.Yellow13Custom4,
 		C500: Nord.Yellow13,
 		C600: Nord.Yellow13Custom2,
-		CMax: Nord.Yellow13Custom1,
+		Max: Nord.Yellow13Custom1,
 	},
 }
 

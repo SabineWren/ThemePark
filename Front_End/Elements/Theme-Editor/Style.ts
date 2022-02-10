@@ -19,6 +19,11 @@ sl-card::part(body) {
 	display: flex; flex-direction: column; gap: var(--spacing);
 }
 
+sl-tab-group#colour-keys sl-tab::part(base) {
+	width: 100%;
+	padding: 0.5rem;
+}
+
 #swatches { gap: 5px }
 .swatch {
 	display: inline-block;

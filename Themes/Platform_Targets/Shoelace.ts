@@ -8,8 +8,8 @@ export const Tokenize = (token: keyof ThemeColours, colours: ColourRange) => {
 	const r1 = token === "neutral" ? [0, ...rangeStart] : rangeStart
 	const r2 = token === "neutral" ? [...rangeEnd, 1000] : rangeEnd
 	return {
-		...tokenizeRange(token, r1, [colours.CMin, colours.C500]),
-		...tokenizeRange(token, r2, [colours.C600, colours.CMax]),
+		...tokenizeRange(token, r1, [colours.Min, colours.C500]),
+		...tokenizeRange(token, r2, [colours.C600, colours.Max]),
 	}
 }
 export const TokenizeAll = (cs: ThemeColours) => Object.entries(cs)

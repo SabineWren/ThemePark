@@ -22,10 +22,8 @@ type ThemeSpecification = {
 	// Used to style component parts. Platform-specific.
 	ComponentPartsCss: import("lit").CSSResult
 
-	// Lower numbers for contrast make text more accessible
-	// Higher numbers make light themes more sepia or grey
-	// Higher numbers make dark themes more dim instead of dark
 	ContrastBody: | 0 | 50 | 100 | 200
+	ContrastButton: | 500 | 600
 	ContrastPanel: | 0 | 50 | 100 | 200
 	// Dark themes usually prefer lower values to prevent light bleed
 	ContrastText: | 800 | 900 | 950 | 1000
@@ -53,10 +51,10 @@ type ThemeSpecification = {
 // Light theme order: Light -> Dark
 // Dark theme order: Dark -> Light
 type ColourRange = {
-	CMin: Colour
+	Min: Colour
 	C500: Colour
 	C600: Colour
-	CMax: Colour
+	Max: Colour
 }
 type ThemeColours = {
 	danger: ColourRange

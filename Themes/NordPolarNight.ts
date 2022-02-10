@@ -5,6 +5,7 @@ import { Hsl } from "Themes/Lib/Colours.js"
 export const NordPolarNight = (): ThemeSpecification => ({
 	ComponentPartsCss: css``,
 	ContrastBody: 200,
+	ContrastButton: 600,
 	ContrastPanel: 50,
 	ContrastText: 900,
 	CssName: "sl-nord-polar-night",
@@ -16,34 +17,34 @@ export const NordPolarNight = (): ThemeSpecification => ({
 
 const colours: ThemeColours = {
 	danger: {
-		CMin: Nord.C11_RedCustom1,
+		Min: Nord.C11_RedCustom1,
 		C500: Nord.C11_RedCustom2,
 		C600: Nord.C11_Red,
-		CMax: Nord.C11_RedCustom4,
+		Max: Nord.C11_RedCustom4,
 	},
 	neutral: {
-		CMin: Nord.Black,
+		Min: Nord.Black,
 		C500: Nord.GreyDark1,
 		C600: Nord.GreyDark2,
-		CMax: Nord.White,
+		Max: Nord.White,
 	},
 	primary: {
-		CMin: Nord.Blue8Custom1,
+		Min: Nord.Blue8Custom1,
 		C500: Nord.Blue8Custom2,
 		C600: Nord.Blue8,
-		CMax: Nord.Blue8Custom4,
+		Max: Nord.Blue8Custom4,
 	},
 	success: {
-		CMin: Nord.Green14Custom1,
+		Min: Nord.Green14Custom1,
 		C500: Nord.Green14Custom2,
 		C600: Nord.Green14,
-		CMax: Nord.Green14Custom4,
+		Max: Nord.Green14Custom4,
 	},
 	warning: {
-		CMin: Nord.Yellow13Custom1,
+		Min: Nord.Yellow13Custom1,
 		C500: Nord.Yellow13Custom2,
 		C600: Nord.Yellow13,
-		CMax: Nord.Yellow13Custom4,
+		Max: Nord.Yellow13Custom4,
 	},
 }
 
