@@ -19,11 +19,21 @@ sl-card::part(body) {
 	display: flex; flex-direction: column; gap: var(--spacing);
 }
 
+/* Input Controls */
 sl-tab-group#colour-keys sl-tab::part(base) {
 	width: 100%;
-	padding: 0.5rem;
+	padding: 0.5rem; }
+sl-tag::part(base):hover { cursor: pointer; }
+sl-tag::part(base) { background: var(--background); }
+sl-tag::part(content) { color: var(--colour); }
+
+.toggle-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
+/* Output */
 #swatches { gap: 5px }
 .swatch {
 	display: inline-block;
@@ -31,14 +41,6 @@ sl-tab-group#colour-keys sl-tab::part(base) {
 	height: var(--swatch-size);
 	border-radius: 2px;
 }
-
-sl-icon-button { margin-right: 0.5em; }
-sl-icon-button::part(base) { padding: 0; font-size: 1.4rem; }
-sl-icon-button[type="danger"]::part(base) { color: var(--sl-color-danger-600); }
-sl-icon-button[type="success"]::part(base) { color: var(--sl-color-success-600); }
-sl-tag::part(base):hover { cursor: pointer; }
-sl-tag::part(base) { background: var(--background); }
-sl-tag::part(content) { color: var(--colour); }
 
 sl-color-picker {
 	--grid-width: 320px;
@@ -52,4 +54,6 @@ table {
 	border-collapse: separate;
 	border-spacing: 0; }
 td { padding: 0; }
+
+a { color: inherit; text-decoration: inherit; }
 `

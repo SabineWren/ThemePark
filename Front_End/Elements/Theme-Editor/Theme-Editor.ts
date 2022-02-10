@@ -64,6 +64,41 @@ export class TokenGenerator extends LitElement {
 		</sl-tab>`)}
 	</sl-tab-group>
 
+	<div class="toggle-btn">
+		Body Contrast
+		<sl-button-group>
+			<sl-button ?outline=${theme.ContrastBody === 0}>0</sl-button>
+			<sl-button ?outline=${theme.ContrastBody === 50}>50</sl-button>
+			<sl-button ?outline=${theme.ContrastBody === 100}>100</sl-button>
+			<sl-button ?outline=${theme.ContrastBody === 200}>200</sl-button>
+		</sl-button-group>
+	</div>
+	<div class="toggle-btn">
+		Panel Contrast
+		<sl-button-group>
+			<sl-button ?outline=${theme.ContrastPanel === 0}>0</sl-button>
+			<sl-button ?outline=${theme.ContrastPanel === 50}>50</sl-button>
+			<sl-button ?outline=${theme.ContrastPanel === 100}>100</sl-button>
+			<sl-button ?outline=${theme.ContrastPanel === 200}>200</sl-button>
+		</sl-button-group>
+	</div>
+	<div class="toggle-btn">
+		Text Contrast
+		<sl-button-group>
+			<sl-button ?outline=${theme.ContrastText === 800}>800</sl-button>
+			<sl-button ?outline=${theme.ContrastText === 900}>900</sl-button>
+			<sl-button ?outline=${theme.ContrastText === 950}>950</sl-button>
+			<sl-button ?outline=${theme.ContrastText === 1000}>1000</sl-button>
+		</sl-button-group>
+	</div>
+	<div class="toggle-btn">
+		Button Hover
+		<sl-button-group>
+			<sl-button ?outline=${theme.ContrastButton === 500}>${theme.IsLight ? "Darker" : "Lighter"}</sl-button>
+			<sl-button ?outline=${theme.ContrastButton === 600}>${theme.IsLight ? "Lighter" : "Darker"}</sl-button>
+		</sl-button-group>
+	</div>
+
 	<div class="flex" style="gap: 5px;">
 		${Object.entries(tokens).map(([k,v]) => html`
 		<sl-tooltip content="${toStringLchCommas(v)}">
@@ -81,18 +116,18 @@ export class TokenGenerator extends LitElement {
 			></sl-color-picker>
 		</div>
 		<div class="right">
-			<div class="no-select" style="display: flex; gap: 0.5em; margin-bottom: 0.5em;">
-				<sl-tooltip content="Export base colours as Theme Park specification.">
-					<sl-button type="success" size="small" outline
-						>Export Theme
-					</sl-button>
-				</sl-tooltip>
-				<sl-tooltip content="Export entire theme compiled to Shoelace design tokens. A complete app also requires shoelace-tokens.css">
-					<sl-button type="success" size="small" outline
-						>Export Stylesheet
-					</sl-button>
-				</sl-tooltip>
-			</div>
+
+		<sl-button-group style="margin-bottom: 0.5em;">
+			<sl-button type="success" size="small" outline>Save Theme</sl-button>
+			<sl-dropdown placement="bottom-end">
+				<sl-button slot="trigger" type="success" size="small" outline caret></sl-button>
+				<sl-menu>
+					<sl-menu-item>Export Shoelace Colour Tokens</sl-menu-item>
+					<sl-menu-item><a href="/shoelace-tokens.css" download>Export Shoelace Shared CSS</a></sl-menu-item>
+				</sl-menu>
+			</sl-dropdown>
+		</sl-button-group>
+
 			${renderCssText(Object.entries(tokens))}
 		</div>
 	</div>
