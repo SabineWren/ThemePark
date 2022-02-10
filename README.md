@@ -3,7 +3,6 @@ A pre-alpha app for creating GUI themes and exporting them to a target platform.
 
 ### TODO
 - Finish redesign of editor layout
-- Finish implementing contrast modes for body and panel
 - Expand theme API to include dropshadows and overlays
 - Implement exports (both CSS and raw specification)
 - Add many components to test theming.

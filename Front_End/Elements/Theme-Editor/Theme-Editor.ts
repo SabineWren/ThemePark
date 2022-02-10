@@ -47,10 +47,19 @@ export class TokenGenerator extends LitElement {
 			: format === "rgb" ? toStringRgb(selectedColour)
 			: ToStringHslCommas(selectedColour)
 
+		const renderContrastBody = (c: 0 | 50 | 100 | 200) => html`
+		<sl-button ?outline=${theme.ContrastBody === c}
+			@click=${() => { theme.ContrastBody = c; this.themeProvider.ReapplyTheme() }}>${c}
+		</sl-button>`
+		const renderContrastPanel = (c: 0 | 50 | 100 | 200) => html`
+		<sl-button ?outline=${theme.ContrastPanel === c}
+			@click=${() => { theme.ContrastPanel = c; this.themeProvider.ReapplyTheme() }}>${c}
+		</sl-button>`
 		const renderContrastText = (c: 800 | 900 | 950 | 1000) => html`
 		<sl-button ?outline=${theme.ContrastText === c}
 			@click=${() => { theme.ContrastText = c; this.themeProvider.ReapplyTheme() }}>${c}
 		</sl-button>`
+
 		return html`
 <sl-card>
 	<sl-tab-group placement="start" id="colour-keys">
@@ -72,19 +81,19 @@ export class TokenGenerator extends LitElement {
 	<div class="toggle-btn">
 		Body Contrast
 		<sl-button-group>
-			<sl-button ?outline=${theme.ContrastBody === 0}>0</sl-button>
-			<sl-button ?outline=${theme.ContrastBody === 50}>50</sl-button>
-			<sl-button ?outline=${theme.ContrastBody === 100}>100</sl-button>
-			<sl-button ?outline=${theme.ContrastBody === 200}>200</sl-button>
+			${renderContrastBody(0)}
+			${renderContrastBody(50)}
+			${renderContrastBody(100)}
+			${renderContrastBody(200)}
 		</sl-button-group>
 	</div>
 	<div class="toggle-btn">
 		Panel Contrast
 		<sl-button-group>
-			<sl-button ?outline=${theme.ContrastPanel === 0}>0</sl-button>
-			<sl-button ?outline=${theme.ContrastPanel === 50}>50</sl-button>
-			<sl-button ?outline=${theme.ContrastPanel === 100}>100</sl-button>
-			<sl-button ?outline=${theme.ContrastPanel === 200}>200</sl-button>
+			${renderContrastPanel(0)}
+			${renderContrastPanel(50)}
+			${renderContrastPanel(100)}
+			${renderContrastPanel(200)}
 		</sl-button-group>
 	</div>
 	<div class="toggle-btn">
