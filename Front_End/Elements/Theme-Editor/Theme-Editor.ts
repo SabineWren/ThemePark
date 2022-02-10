@@ -123,19 +123,18 @@ export class TokenGenerator extends LitElement {
 			></sl-color-picker>
 		</div>
 		<div class="right">
-
-		<sl-button-group style="margin-bottom: 0.5em;">
-			<sl-button type="success" size="small" outline>Save Theme</sl-button>
-			<sl-dropdown placement="bottom-end">
-				<sl-button slot="trigger" type="success" size="small" outline caret></sl-button>
-				<sl-menu>
-					<sl-menu-item>Export Shoelace Colour Tokens</sl-menu-item>
-					<sl-menu-item><a href="/shoelace-tokens.css" download>Export Shoelace Shared CSS</a></sl-menu-item>
-				</sl-menu>
-			</sl-dropdown>
-		</sl-button-group>
-
 			${renderCssText(Object.entries(tokens))}
+
+			<sl-button-group style="margin-top: 0.5em;">
+				<sl-button type="success" size="small" outline>Save Theme</sl-button>
+				<sl-dropdown placement="bottom-end">
+					<sl-button slot="trigger" type="success" size="small" outline caret></sl-button>
+					<sl-menu>
+						<sl-menu-item>Export Shoelace Colour Tokens</sl-menu-item>
+						<sl-menu-item><a href="/shoelace-tokens.css" download>Export Shoelace Shared CSS</a></sl-menu-item>
+					</sl-menu>
+				</sl-dropdown>
+			</sl-button-group>
 		</div>
 	</div>
 </sl-card>`
@@ -152,12 +151,16 @@ const getColourName = (theme: ThemeSpecification, key: keyof ColourRange): strin
 }
 
 // Using a table because grid doesn't copy line breaks correctly,
-// and varies copy behavior between browsers
-// TODO this adds tabs. Maybe just use a textarea and add a space?
+// and varies clipboard behavior between browsers.
+// We strip the tabs that table cells generate on copy.
 const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
-<table>
+<table @copy=${(e: ClipboardEvent) => {
+	const text = window.getSelection()?.toString().replace(/\t/g, " ") ?? ""
+	e.clipboardData?.setData("text/plain", text)
+	e.preventDefault()
+}}>
 	<tr class="ital no-click no-select">
-		<td colspan="2">... or Copy & paste colour tokens</td>
+		<td colspan="2">Copy & paste colour tokens</td>
 	</tr>
 	<tr style="height: 0.5em;"></tr>
 	${tokensCss.map(([k,c]) => html`
