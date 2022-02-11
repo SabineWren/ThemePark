@@ -26,7 +26,6 @@ declare type SlDialog = import("@shoelace-style/shoelace/dist/shoelace.js").SlDi
 declare type SlDivider = import("@shoelace-style/shoelace/dist/shoelace.js").SlDivider
 declare type SlDrawer = import("@shoelace-style/shoelace/dist/shoelace.js").SlDrawer
 declare type SlDropdown = import("@shoelace-style/shoelace/dist/shoelace.js").SlDropdown
-declare type SlForm = import("@shoelace-style/shoelace/dist/shoelace.js").SlForm
 declare type SlFormatBytes = import("@shoelace-style/shoelace/dist/shoelace.js").SlFormatBytes
 declare type SlFormatDate = import("@shoelace-style/shoelace/dist/shoelace.js").SlFormatDate
 declare type SlFormatNumber = import("@shoelace-style/shoelace/dist/shoelace.js").SlFormatNumber

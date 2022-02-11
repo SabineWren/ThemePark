@@ -13,7 +13,7 @@
 		// Top level await when the eslint, rollup, and node support it
 		"module": "ES2020",
 		"moduleResolution": "node",
-		"paths": { "*": ["*", "Front_End/*"] },
+		"paths": { "*": ["*", "Front_End/*"], "~/*": ["node_modules/@shoelace-style/shoelace/dist/*"] },
 		"plugins": [
 			{
 				"name": "ts-lit-plugin",
