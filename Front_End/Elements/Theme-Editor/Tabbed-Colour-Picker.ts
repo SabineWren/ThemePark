@@ -35,7 +35,7 @@ export class TabbedColourPicker extends LitElement {
 	static override get styles() { return [Shared, css`
 :host { display: flex; gap: var(--spacing); }
 
-sl-tab::part(base) { width: 100%; padding: 0.5rem; }
+sl-tab::part(base) { width: 100%; }
 sl-tag { min-width: unset; }
 sl-tag::part(base):hover { cursor: pointer; }
 sl-tag::part(base) { background: var(--background); }
@@ -45,8 +45,8 @@ sl-color-picker {
 	--grid-width: 320px;
 	--swatch-size: 30px;
 }
-sl-color-picker::part(base) {
-	width: 100%; min-width: 25rem;
+sl-color-picker, sl-color-picker::part(base) {
+	width: 25rem;
 	box-shadow: none; }
 sl-color-picker::part(swatches) { display: none; }
 	`] }
@@ -67,7 +67,9 @@ sl-color-picker::part(swatches) { display: none; }
 	${baseColours.map(({ key, Css, L }) => html`
 	<sl-tab slot="nav"
 		@click=${() => this.editKey(key)}>
-		<div style="width: 100%; margin-right: 1em;">${getColourName(theme, key)}</div>
+		<div style="width: 100%; font-size: 1.2em; font-weight: 600; margin-right: 1rem;"
+			>${getColourName(theme, key)}
+		</div>
 		<sl-tag
 			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
 			variant="${this.variant}"
@@ -90,7 +92,7 @@ const getColourName = (theme: ThemeSpecification, key: keyof ColourRange): strin
 	switch (key) {
 	case "Min": return theme.IsLight ? "Lightest" : "Darkest"
 	case "C500": return "Button Hover"
-	case "C600": return "Button Background"
+	case "C600": return "Button"
 	case "Max": return theme.IsLight ? "Darkest" : "Lightest"
 	}
 }
