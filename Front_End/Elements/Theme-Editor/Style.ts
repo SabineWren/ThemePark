@@ -54,6 +54,4 @@ table {
 	border-collapse: separate;
 	border-spacing: 0; }
 td { padding: 0; }
-
-a { color: inherit; text-decoration: inherit; }
 `

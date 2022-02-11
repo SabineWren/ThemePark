@@ -13,7 +13,7 @@ const toStringRgb = (c: chroma.Color) => {
 	return `rgb(${r}, ${g}, ${b})` }
 
 @customElement("theme-editor")
-export class TokenGenerator extends LitElement {
+class _themeEditor extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColours
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
@@ -123,17 +123,7 @@ export class TokenGenerator extends LitElement {
 		</div>
 		<div class="right">
 			${renderCssText(Object.entries(tokens))}
-
-			<sl-button-group style="margin-top: 0.5em;">
-				<sl-button variant="success" size="small" outline>Save Theme</sl-button>
-				<sl-dropdown placement="bottom-end">
-					<sl-button variant="success" slot="trigger" size="small" outline caret></sl-button>
-					<sl-menu>
-						<sl-menu-item>Export Shoelace Colour Tokens</sl-menu-item>
-						<sl-menu-item><a href="/shoelace-tokens.css" download>Export Shoelace Shared CSS</a></sl-menu-item>
-					</sl-menu>
-				</sl-dropdown>
-			</sl-button-group>
+			<theme-exporter></theme-exporter>
 		</div>
 	</div>
 </sl-card>`

@@ -19,6 +19,7 @@ import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/ico
 import "Elements/App-Root.js"
 import "Elements/Theme-Picker.js"
 import "Front_End/Elements/Theme-Editor/Theme-Editor.js"
+import "Front_End/Elements/Theme-Editor/Theme-Exporter.js"
 
 registerIconLibrary("custom", {
 	resolver: name => `/assets/custom/${name}.svg`,

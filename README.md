@@ -1,10 +1,13 @@
 ## Theme Park
 A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target.
 
+## Building
+The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Remaining steps defined in package.json scripts.
+
 ### TODO
 - Finish redesign of editor layout
 - Expand theme API to include dropshadows and overlays
-- Implement exports (both CSS and raw specification)
+- Implement save/load theme spec
 - Add many components to test theming.
 - Add support for card background SVGs and gradients
 
@@ -31,9 +34,6 @@ Theme Park generates themes on-the-fly, but downstream apps will need pre-genera
 Some themes have complex backgrounds, such as SVG images or gradients. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
 
 Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space.
-
-## Building
-The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Remaining steps defined in package.json scripts.
 
 ### Themes First Pass
 1. [Nord](https://nordtheme.com) Polar Night (dim), Snow Storm (light)
