@@ -32,12 +32,12 @@ export class ThemePickerSwitch extends LitElement {
 		const selected = this.theme.GetMode()
 		const getType = (m: ThemeMode) => m === selected ? "primary" : "default"
 		return html`
-<sl-button type=${getType(ThemeMode.Light)}
+<sl-button variant=${getType(ThemeMode.Light)}
 	?outline=${selected === ThemeMode.Light}
 	@click=${() => this.theme.SetMode(ThemeMode.Light)}
 	><sl-icon name="sun"></sl-icon>
 </sl-button>
-<sl-button type=${getType(ThemeMode.Dark)}
+<sl-button variant=${getType(ThemeMode.Dark)}
 	?outline=${selected === ThemeMode.Dark}
 	@click=${() => this.theme.SetMode(ThemeMode.Dark)}
 	><sl-icon name="moon"></sl-icon>

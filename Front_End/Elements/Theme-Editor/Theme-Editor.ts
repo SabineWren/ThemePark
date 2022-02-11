@@ -127,7 +127,7 @@ export class TokenGenerator extends LitElement {
 			<sl-button-group style="margin-top: 0.5em;">
 				<sl-button variant="success" size="small" outline>Save Theme</sl-button>
 				<sl-dropdown placement="bottom-end">
-					<sl-button slot="trigger" type="success" size="small" outline caret></sl-button>
+					<sl-button variant="success" slot="trigger" size="small" outline caret></sl-button>
 					<sl-menu>
 						<sl-menu-item>Export Shoelace Colour Tokens</sl-menu-item>
 						<sl-menu-item><a href="/shoelace-tokens.css" download>Export Shoelace Shared CSS</a></sl-menu-item>

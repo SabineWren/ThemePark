@@ -36,6 +36,7 @@
 		"target": "ES2020",
 		"typeRoots": [
 			"Front_End/**",
+			"node_modules/@shoelace-style/**",
 			"node_modules/@types",
 			"Themes/**",
 		],
