@@ -7,11 +7,10 @@ import { ThemeColoursToCss } from "Themes/Lib/DesignTokens.js"
 import { TokenizeAll } from "Themes/Platform_Targets/Shoelace.js"
 
 @customElement("theme-exporter")
-class _themeExporter extends LitElement {
+class _ele extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColours
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
-	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, css`
 a { color: inherit; text-decoration: inherit; }
 	`] }

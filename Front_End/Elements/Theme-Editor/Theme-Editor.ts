@@ -4,43 +4,40 @@ import { customElement, property } from "lit/decorators.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
-import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
+import { ToStringHslCommas } from "Themes/Lib/Colours.js"
 import { Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
+import { TabSelectColourToken, ToStringLchCommas } from "./Tab-Select-Colour-Token.js"
 
 const toStringRgb = (c: chroma.Color) => {
 	const [r,g,b] = c.rgb()
 	return `rgb(${r}, ${g}, ${b})` }
 
 @customElement("theme-editor")
-class _themeEditor extends LitElement {
+class _ele extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColours
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private themeProvider = new ThemeProvider(this)
 	private reapplyColoursThrottled = throttleFactory(() => this.themeProvider.ReapplyThemeColours())
 	override firstUpdated() { this.requestUpdate() }
 	static override get styles() { return [Shared, Style] }
-	private rangeKey: keyof ColourRange = "Min"
+	private getTokenKey = (): keyof ColourRange =>
+		$<TabSelectColourToken>(this, "tab-select-colour-token")?.token ?? "Min"
+	private getColours = () => this.themeProvider.GetTheme()
+		.TokensColourTheme[this.variant]
 	private editColour() {
 		const pickerColour = this.pickerRef.value!.value
 		const colours = this.getColours()
-		colours[this.rangeKey] = chroma.color(pickerColour)
+		colours[this.getTokenKey()] = chroma.color(pickerColour)
 		this.reapplyColoursThrottled()
 		this.requestUpdate()
-	}
-	private getColours() {
-		const theme = this.themeProvider.GetTheme()
-		return theme.TokensColourTheme[this.variant]
 	}
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[this.variant]
 		const tokens = Tokenize(this.variant, colours)
-		const baseColours = Object.entries(colours).map(([k,c]) =>
-			({ key: k as keyof ColourRange, Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
-		const selectedColour = baseColours
-			.find(c => c.key === this.rangeKey)!.Colour
 
+		const selectedColour = colours[this.getTokenKey()]
 		const format = this.pickerRef.value?.format ?? "hsl"
 		const value = format === "hex" ? selectedColour.hex()
 			: format === "rgb" ? toStringRgb(selectedColour)
@@ -61,21 +58,9 @@ class _themeEditor extends LitElement {
 
 		return html`
 <sl-card>
-	<sl-tab-group placement="start" id="colour-keys">
-		${baseColours.map(({ key, Colour, Css, L }) => html`
-		<sl-tab slot="nav"
-			@click=${() => { this.rangeKey = key; this.requestUpdate() }}>
-			<div style="width: 100%; margin-right: 1em;">${getColourName(theme, key)}</div>
-			<sl-tooltip placement="right" content="${toStringLchCommas(Colour)}">
-				<sl-tag
-					style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-					variant="${this.variant}"
-					size="medium"
-					>${L.toFixed(1)}
-				</sl-tag>
-			</sl-tooltip>
-		</sl-tab>`)}
-	</sl-tab-group>
+	<tab-select-colour-token variant=${this.variant}
+		@change=${() => this.requestUpdate()}>
+	</tab-select-colour-token>
 
 	<div class="toggle-btn">
 		Body Contrast
@@ -107,7 +92,7 @@ class _themeEditor extends LitElement {
 
 	<div class="flex" style="gap: 5px;">
 		${Object.entries(tokens).map(([k,v]) => html`
-		<sl-tooltip content="${toStringLchCommas(v)}">
+		<sl-tooltip content="${ToStringLchCommas(v)}">
 			<div class="swatch" style="background: var(${k});"></div>
 		</sl-tooltip>`)}
 	</div>
@@ -127,15 +112,6 @@ class _themeEditor extends LitElement {
 		</div>
 	</div>
 </sl-card>`
-	}
-}
-
-const getColourName = (theme: ThemeSpecification, key: keyof ColourRange): string => {
-	switch (key) {
-	case "Min": return theme.IsLight ? "Lightest" : "Darkest"
-	case "C500": return "Button Hover"
-	case "C600": return "Button Background"
-	case "Max": return theme.IsLight ? "Darkest" : "Lightest"
 	}
 }
 
@@ -160,11 +136,6 @@ const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 </table>`
 const hslToString = ([h,s,l]: [number, number, number]) =>
 	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`
-
-const toStringLchCommas = (colour: chroma.Color) => {
-	const [l,c,h] = colour.lch()
-	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
-}
 
 const throttleFactory = (foo: () => any) => {
 	let isThrottled = false
