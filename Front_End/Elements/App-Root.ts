@@ -7,8 +7,7 @@ export class AppRoot extends LitElement {
 	static override get styles() { return [Shared, css`
 :host {
 	display: block;
-	height: 100vw; width: 100%;
-}
+	height: 100vw; width: 100%; }
 .flex {
 	display: flex; gap: 1rem; flex-wrap: wrap;
 	margin: 1rem 0; justify-content: center; }
@@ -16,13 +15,21 @@ sl-card { flex: 0 0 25rem; }
 `]
 	}
 	override render() {
+		const isOutline = $<SlSwitch>(this, "sl-switch")?.checked ?? false
 		const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 		return html`
-<div style="display: flex; align-items: flex-start;">
+<div style="display: flex;">
 	<sl-button variant="default" href="https://github.com/SabineWren/Theme-Park" target="_blank">
 		<sl-icon slot="prefix" name="github"></sl-icon>
 		Source
 	</sl-button>
+	<sl-tooltip placement="right"
+		content="Not saved to theme. The app developer chooses when to outline buttons.">
+		<sl-switch style="margin: auto; margin-left: 1rem;"
+			@sl-change=${() => this.requestUpdate()}
+			>Preview Outline
+		</sl-switch>
+	</sl-tooltip>
 	<div style="flex-grow: 1;"></div>
 	<theme-exporter></theme-exporter>
 	<theme-picker-dropdown></theme-picker-dropdown>
@@ -32,7 +39,7 @@ sl-card { flex: 0 0 25rem; }
 <sl-tab-group style="margin: 0 auto; display: inline-block;">
 	${variants.map((t: ButtonVariant) => html`
 	<sl-tab slot="nav" panel="${t}">
-		<sl-button variant="${t}">
+		<sl-button variant="${t}" ?outline=${isOutline}>
 			${t[0].toUpperCase() + t.slice(1)}
 			<sl-icon slot="suffix" name="palette"></sl-icon>
 		</sl-button>
