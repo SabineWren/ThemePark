@@ -29,7 +29,8 @@ sl-card::part(body) {
 #swatches { gap: 5px }
 .swatch {
 	display: inline-block;
-	width: var(--swatch-size);
+	flex-basis: 1rem; flex-grow: 1;
+	min-width: 1rem;
 	height: var(--swatch-size);
 	border-radius: 2px;
 }
@@ -39,6 +40,7 @@ sl-color-picker {
 	--swatch-size: 30px;
 }
 sl-color-picker::part(base) {
+	width: 100%;
 	box-shadow: none; }
 
 table {

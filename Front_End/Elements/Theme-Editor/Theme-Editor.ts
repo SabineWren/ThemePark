@@ -3,6 +3,7 @@ import { html, LitElement} from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
+import { ToStringHsl } from "Themes/Lib/Colours.js"
 import { Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 import { Style } from "./Style.js"
 import { ToStringLchCommas } from "./Tabbed-Colour-Picker.js"
@@ -62,11 +63,13 @@ class _ele extends LitElement {
 		</sl-button-group>
 	</div>
 
-	<div class="flex" style="gap: 5px;">
+	<div class="flex" style="gap: 5px; width: 100%;">
 		${Object.entries(tokens).map(([k,v]) => html`
-		<sl-tooltip content="${ToStringLchCommas(v)}">
-			<div class="swatch" style="background: var(${k});"></div>
-		</sl-tooltip>`)}
+		<div class="swatch" style="background: var(${k});">
+			<sl-tooltip content="${ToStringLchCommas(v)}">
+				<div style="width: 100%; height: 100%;"></div>
+			</sl-tooltip>
+		</div>`)}
 	</div>
 
 	<div class="flex">
@@ -75,7 +78,6 @@ class _ele extends LitElement {
 		</tabbed-colour-picker>
 		<div>
 			${renderCssText(Object.entries(tokens))}
-			<theme-exporter></theme-exporter>
 		</div>
 	</div>
 </sl-card>`
@@ -98,8 +100,6 @@ const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
 	${tokensCss.map(([k,c]) => html`
 	<tr>
 		<td style="padding-right: 0.8em;">${k}:</td>
-		<td class="emph">${hslToString((c as chroma.Color).hsl())};</td>
+		<td class="emph">${ToStringHsl((c as chroma.Color))};</td>
 	</tr>`)}
 </table>`
-const hslToString = ([h,s,l]: [number, number, number]) =>
-	`hsl(${h.toFixed(0)} ${(s*100).toFixed(1)}% ${(l*100).toFixed(1)}%)`

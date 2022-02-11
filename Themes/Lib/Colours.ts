@@ -39,14 +39,19 @@ export const Hsl = (h: number, s: number, l: number, a?: number): chroma.Color =
 // ***** Colour Formatters *****
 const toHsla = (colour: chroma.Color): [number,number,number,number] => {
 	const [h1,s1,l1] = colour.hsl()
-	const r1 = (n: number) => Math.round(n * 10) / 10
-	return [r1(h1), r1(s1 * 100), r1(l1 * 100), r1(colour.alpha() * 100)]
+	// These value are already clamped to the perceptually closest sRGB colour space values,
+	// but chroma.Color.hsl() can give crazy lightness values like -400% when slightly below zero
+	const clampFpError = (n: number) => Math.min(Math.max(0.0, n), 1.0)
+	const round = (n: number) => Math.round(n * 10) / 10
+	const scale = (n: number) => round(clampFpError(n) * 100)
+	return [round(h1), scale(s1), scale(l1), scale(colour.alpha())]
 }
+
 export const ToStringHsl = (colour: chroma.Color) => {
 	const [h,s,l,a] = toHsla(colour)
 	return a < 100
-		? `hsl(${h} ${s}% ${l}% / ${a}%)`
-		: `hsl(${h} ${s}% ${l}%)`
+		? `hsl(${h.toFixed(0)} ${s.toFixed(1)}% ${l.toFixed(1)}% / ${a.toFixed(1)}%)`
+		: `hsl(${h.toFixed(0)} ${s.toFixed(1)}% ${l.toFixed(1)}%)`
 }
 export const ToStringHslCommas = (colour: chroma.Color) => {
 	const [h,s,l,a] = toHsla(colour)
