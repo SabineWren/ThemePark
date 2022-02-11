@@ -16,6 +16,7 @@ sl-card { flex: 0 0 25rem; }
 	}
 	override render() {
 		const isOutline = $<SlSwitch>(this, "sl-switch")?.checked ?? false
+		const isColoursHidden = $<SlTab>(this, "#hide-colours")?.active ?? false
 		const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 		return html`
 <div style="display: flex;">
@@ -36,7 +37,8 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-switch></theme-picker-switch>
 </div>
 
-<sl-tab-group style="margin: 0 auto; display: inline-block;">
+<sl-tab-group style="margin: 0 auto; display: inline-block;"
+	@sl-tab-show=${() => this.requestUpdate()}>
 	${variants.map((t: ButtonVariant) => html`
 	<sl-tab slot="nav" panel="${t}">
 		<sl-button variant="${t}" ?outline=${isOutline}>
@@ -47,6 +49,12 @@ sl-card { flex: 0 0 25rem; }
 	<sl-tab-panel name="${t}">
 		<theme-editor variant="${t}"></theme-editor>
 	</sl-tab-panel>`)}
+	<sl-tab slot="nav" id="hide-colours">
+		<sl-button variant="default" ?outline=${isOutline}
+			>Collapse
+			<sl-icon slot="suffix" name=${isColoursHidden ? "chevron-right" : "chevron-down"}></sl-icon>
+		</sl-button>
+	</sl-tab>
 </sl-tab-group>
 
 <div class="flex">
