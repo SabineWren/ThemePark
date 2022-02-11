@@ -7,7 +7,29 @@ const style = css`
 .toggle-btn {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start; }`
+	align-items: flex-start;
+	user-select: none;
+}`
+
+@customElement("mode-light-dark")
+class _lightDark extends LitElement {
+	private themeProvider = new ThemeProvider(this)
+	static override get styles() { return [Shared, style] }
+	override render() {
+		const theme = this.themeProvider.GetTheme()
+		return html`
+<div class="toggle-btn">
+	<sl-button-group>
+		<sl-button ?outline=${theme.IsLight}
+			@click=${() => { theme.IsLight = true; this.themeProvider.ReapplyTheme() }}>Light
+		</sl-button>
+		<sl-button ?outline=${!theme.IsLight}
+			@click=${() => { theme.IsLight = false; this.themeProvider.ReapplyTheme() }}>Dark
+		</sl-button>
+	</sl-button-group>
+</div>`
+	}
+}
 
 @customElement("mode-contrast-body")
 class _body extends LitElement {
