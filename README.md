@@ -2,11 +2,16 @@
 A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target.
 
 ## Building
-The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Remaining steps defined in package.json scripts.
+The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Tooling defined in package.json scripts.
+1. `npm run compile`
+2. `npm run bundle`
+3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
+4. Load at localhost:5000/dist/index.html
 
 ### TODO
-- Fix active styling of mode buttons
+- Remove raw css from themes, refactor token code, and add missing tokens to export
 - Refactor colour editor
+- Fix active styling of mode buttons
 - Host on GitHub pages
 - Expand theme API to include dropshadows and overlays
 - Add support for card background SVGs and gradients
