@@ -44,6 +44,12 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-switch></theme-picker-switch>
 </div>
 
+<div	style="display: flex; gap: 2rem; margin: 1rem;">
+	<mode-contrast-body></mode-contrast-body>
+	<mode-contrast-panel></mode-contrast-panel>
+	<mode-contrast-text></mode-contrast-text>
+</div>
+
 <sl-tab-group style="margin: 0 auto; display: inline-block;"
 	@sl-tab-show=${() => this.requestUpdate()}>
 	${variants.map((t: ButtonVariant) => html`
@@ -79,23 +85,6 @@ sl-card { flex: 0 0 25rem; }
 		<h4>Card: Outline</h4>
 		<p>Similar to Subtle cards. However, this always has a border and never has a box shadow.</p>
 	</sl-card>
-</div>
-<div class="flex">
-	<sl-button variant="default">Default</sl-button>
-	<sl-button variant="primary">Primary</sl-button>
-	<sl-button variant="success">Success</sl-button>
-	<sl-button variant="neutral">Neutral</sl-button>
-	<sl-button variant="warning">Warning</sl-button>
-	<sl-button variant="danger">Danger</sl-button>
-</div>
-<div class="flex">
-	<sl-button variant="default" outline>Default</sl-button>
-	<sl-button variant="primary" outline>Primary</sl-button>
-	<sl-button variant="success" outline>Success</sl-button>
-	<sl-button variant="neutral" outline>Neutral</sl-button>
-	<sl-button variant="warning" outline>Warning</sl-button>
-	<sl-button variant="danger" outline>Danger</sl-button>
-</div>
-`
+</div>`
 	}
 }

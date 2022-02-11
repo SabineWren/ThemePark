@@ -35,19 +35,20 @@ export class TabbedColourPicker extends LitElement {
 	static override get styles() { return [Shared, css`
 :host { display: flex; gap: var(--spacing); }
 
-sl-tab::part(base) { width: 100%; }
+sl-tab::part(base) {
+	width: 100%;
+	padding: var(--sl-spacing-medium); }
+
 sl-tag { min-width: unset; }
 sl-tag::part(content) { min-width: 2em; }
 sl-tag::part(base):hover { cursor: pointer; }
-sl-tag::part(base) { background: var(--background); }
+sl-tag::part(base) {
+	background: var(--background); }
 sl-tag::part(content) { color: var(--colour); }
 
 sl-color-picker {
-	--grid-width: 320px;
-	--swatch-size: 30px;
-}
+	--grid-width: 320px; }
 sl-color-picker, sl-color-picker::part(base) {
-	width: 23rem;
 	box-shadow: none; }
 sl-color-picker::part(swatches) { display: none; }
 	`] }
