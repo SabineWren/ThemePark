@@ -100,7 +100,7 @@ class _ele extends LitElement {
 		<tabbed-colour-picker variant=${this.variant}
 			@change=${() => this.requestUpdate()}>
 		</tabbed-colour-picker>
-		<div>
+		<div style="width: 12em;">
 			${Object.values(tokens).map(c => html`
 			<div style="font-weight: 600;">${ToStringHsl((c as chroma.Color))};</div>`)}
 		</div>

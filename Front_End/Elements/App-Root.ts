@@ -11,6 +11,13 @@ export class AppRoot extends LitElement {
 .flex {
 	display: flex; gap: 1rem; flex-wrap: wrap;
 	margin: 1rem 0; justify-content: center; }
+
+sl-tab-group::part(nav) {
+	display: flex;
+	margin: 0 auto; }
+sl-tab::part(base) {
+	padding: var(--sl-spacing-medium); }
+
 sl-card { flex: 0 0 25rem; }
 `]
 	}

@@ -37,6 +37,7 @@ export class TabbedColourPicker extends LitElement {
 
 sl-tab::part(base) { width: 100%; }
 sl-tag { min-width: unset; }
+sl-tag::part(content) { min-width: 2em; }
 sl-tag::part(base):hover { cursor: pointer; }
 sl-tag::part(base) { background: var(--background); }
 sl-tag::part(content) { color: var(--colour); }
@@ -46,7 +47,7 @@ sl-color-picker {
 	--swatch-size: 30px;
 }
 sl-color-picker, sl-color-picker::part(base) {
-	width: 25rem;
+	width: 23rem;
 	box-shadow: none; }
 sl-color-picker::part(swatches) { display: none; }
 	`] }
