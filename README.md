@@ -5,11 +5,13 @@ A pre-alpha app for creating GUI themes and exporting them to a target platform.
 The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Remaining steps defined in package.json scripts.
 
 ### TODO
-- Finish redesign of editor layout
+- Fix active styling of mode buttons
+- Refactor colour editor
+- Host on GitHub pages
 - Expand theme API to include dropshadows and overlays
-- Implement save/load theme spec
-- Add many components to test theming.
 - Add support for card background SVGs and gradients
+- Add many components to test theming
+- Implement save/load theme spec
 
 ## Problem
 Apps document themes through a set of Design Tokens, typically CSS Custom Properties or JSON key-value pairs. Applying third party themes requires sharing tokens, but each design system uses different tokens.
