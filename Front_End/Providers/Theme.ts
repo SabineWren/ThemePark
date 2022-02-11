@@ -3,8 +3,7 @@ import { NordPolarNight } from "Themes/NordPolarNight.js"
 import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
-import { ThemeColoursToCss, ThemeToCss } from "Themes/Lib/DesignTokens.js"
-import { TokenizeAll } from "Themes/Platform_Targets/Shoelace.js"
+import { ThemeToCss } from "Themes/Platform_Targets/Shoelace.js"
 
 export enum ThemeMode { Dark=1, Light=2 }
 const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
@@ -23,15 +22,7 @@ const createStyle = (id: string, cssText: string) => {
 	style.innerHTML = cssText
 	return style
 }
-const loadThemeColours = (colours: ThemeColours, themeName: string) => {
-	const tokens = TokenizeAll(colours)
-	const id = themeName + "-colours"
-	$(document, `style#${id}`)?.remove()
-	const style = createStyle(id, ThemeColoursToCss(tokens).cssText)
-	$(document, "head").appendChild(style)
-}
 const loadStyleTag = (theme: ThemeSpecification) => {
-	loadThemeColours(theme.TokensColourTheme, theme.CssName)
 	const style = createStyle(theme.CssName, ThemeToCss(theme).cssText)
 	$(document, `style#${theme.CssName}`)?.remove()
 	$(document, "head").appendChild(style)
@@ -88,14 +79,10 @@ export class ThemeProvider implements ReactiveController {
 		applyCurrentTheme()
 	}
 
+	// Colours propagate without re-rendering
+	ReapplyThemeColours = () => loadStyleTag(this.GetTheme())
 	ReapplyTheme() {
-		const theme = this.GetTheme()
-		loadStyleTag(theme)
+		this.ReapplyThemeColours()
 		hosts.forEach(h => h.requestUpdate())
-	}
-	// More performant than resetting the entire theme
-	ReapplyThemeColours() {
-		const theme = this.GetTheme()
-		loadThemeColours(theme.TokensColourTheme, theme.CssName)
 	}
 }

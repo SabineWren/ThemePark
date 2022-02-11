@@ -1,10 +1,7 @@
-type Colour = import("chroma.ts").Color
-
 type TupleTriple = [number, number, number]
-type ColourPlaceholder = string | Colour
-type BoxShadow = { XYBlurSpread: string; Colour: ColourPlaceholder }
-type ColourTokenValue = BoxShadow | ColourPlaceholder
-type ThemeColourTokens = { [k: string]: Colour }
+type Colour = import("chroma.ts").Color
+type BoxShadow = { XYBlurSpread: string; Colour: Colour }
+type ThemeShadowTokens = { [k: string]: BoxShadow }
 
 type SemanticColoursTuple = readonly ["primary", "success", "neutral", "warning", "danger"]
 type ButtonVariant = SemanticColoursTuple[number]
@@ -19,9 +16,6 @@ type ButtonVariant = SemanticColoursTuple[number]
 */
 
 type ThemeSpecification = {
-	// Used to style component parts. Platform-specific.
-	ComponentPartsCss: import("lit").CSSResult
-
 	ContrastBody: | 0 | 50 | 100 | 200
 	ContrastPanel: | 0 | 50 | 100 | 200
 	// Dark themes usually prefer lower values to prevent light bleed
@@ -41,10 +35,6 @@ type ThemeSpecification = {
 	// Theme Park interpolates using LCH, then clamps to sRGB.
 	// Defaults to grey if not supplied
 	TokensColourTheme: ThemeColours
-
-	// Placeholder type until I can refactor everything out.
-	// These may be modified by themes, but not in real time via GUI.
-	TokensShoelace: ThemeTokensShoelaceStatic
 }
 
 // Light theme order: Light -> Dark
@@ -62,56 +52,3 @@ type ThemeColours = {
 	success: ColourRange
 	warning: ColourRange
 }
-type ThemeTokensShoelaceStatic = {
-	// Elevations (box shadows)
-	"--sl-shadow-x-small": BoxShadow
-	"--sl-shadow-small": BoxShadow
-	"--sl-shadow-medium": BoxShadow
-	"--sl-shadow-large": BoxShadow
-	"--sl-shadow-x-large": BoxShadow
-
-	// *** Forms ***
-	"--sl-focus-ring": BoxShadow
-
-	// Overlays
-	"--sl-overlay-background-color": ColourPlaceholder
-
-	/*
-	"--sl-input-background-color": ColourPlaceholder
-	"--sl-input-background-color-hover": ColourPlaceholder
-	"--sl-input-background-color-focus": ColourPlaceholder
-	"--sl-input-background-color-disabled": ColourPlaceholder
-	"--sl-input-border-color": ColourPlaceholder
-	"--sl-input-border-color-hover": ColourPlaceholder
-	"--sl-input-border-color-focus": ColourPlaceholder
-	"--sl-input-border-color-disabled": ColourPlaceholder
-
-	"--sl-input-color": ColourPlaceholder
-	"--sl-input-color-hover": ColourPlaceholder
-	"--sl-input-color-focus": ColourPlaceholder
-	"--sl-input-color-disabled": ColourPlaceholder
-	"--sl-input-icon-color": ColourPlaceholder
-	"--sl-input-icon-color-hover": ColourPlaceholder
-	"--sl-input-icon-color-focus": ColourPlaceholder
-	"--sl-input-placeholder-color": ColourPlaceholder
-	"--sl-input-placeholder-color-disabled": ColourPlaceholder
-
-	"--sl-input-filled-background-color": ColourPlaceholder
-	"--sl-input-filled-background-color-hover": ColourPlaceholder
-	"--sl-input-filled-background-color-focus": ColourPlaceholder
-	"--sl-input-filled-background-color-disabled": ColourPlaceholder
-	"--sl-input-filled-color": ColourPlaceholder
-	"--sl-input-filled-color-hover": ColourPlaceholder
-	"--sl-input-filled-color-focus": ColourPlaceholder
-	"--sl-input-filled-color-disabled": ColourPlaceholder
-
-	// can default to var(--sl-color-neutral-500)
-	"--sl-input-help-text-color": ColourPlaceholder
-
-	// Tooltips
-	"--sl-tooltip-background-color": ColourPlaceholder
-	"--sl-tooltip-color": ColourPlaceholder
-	*/
-}
-
-type ThemeTokensShoelace = ThemeColourTokens & ThemeTokensShoelaceStatic

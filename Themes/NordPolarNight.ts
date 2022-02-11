@@ -1,9 +1,6 @@
-import { css } from "lit"
 import { Nord } from "Themes/Palettes/NordPalette.js"
-import { Hsl } from "Themes/Lib/Colours.js"
 
 export const NordPolarNight = (): ThemeSpecification => ({
-	ComponentPartsCss: css``,
 	ContrastBody: 200,
 	// ContrastButtonHover: 500,
 	ContrastPanel: 50,
@@ -12,7 +9,6 @@ export const NordPolarNight = (): ThemeSpecification => ({
 	IsLight: false,
 	Label: "Nord - Polar Night",
 	TokensColourTheme: colours,
-	TokensShoelace: tokens,
 })
 
 const colours: ThemeColours = {
@@ -46,25 +42,4 @@ const colours: ThemeColours = {
 		C600: Nord.Yellow13,
 		Max: Nord.Yellow13Custom4,
 	},
-}
-
-const tokens: ThemeTokensShoelaceStatic = {
-	// Elevations (box shadows)
-	"--sl-shadow-x-small": {
-		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 18) },
-	"--sl-shadow-small": {
-		XYBlurSpread: "0 1px 2px", Colour: Hsl(0, 0, 0, 24) },
-	"--sl-shadow-medium": {
-		XYBlurSpread: "0 2px 4px", Colour: Hsl(0, 0, 0, 24)},
-	"--sl-shadow-large": {
-		XYBlurSpread: "0 2px 8px", Colour: Hsl(0, 0, 0, 24)},
-	"--sl-shadow-x-large": {
-		XYBlurSpread: "0 4px 16px", Colour: Hsl(0, 0, 0, 24)},
-
-	// *** Forms ***
-	"--sl-focus-ring": {
-		XYBlurSpread: "0 0 0 3px", Colour: Hsl(198.6, 88.7, 48.4, 45)},
-
-	// Overlays
-	"--sl-overlay-background-color": Hsl(0, 0, 0, 43),
 }

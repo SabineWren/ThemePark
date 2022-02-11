@@ -2,8 +2,7 @@ import { css, html, LitElement} from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
-import { ThemeColoursToCss } from "Themes/Lib/DesignTokens.js"
-import { TokenizeAll } from "Themes/Platform_Targets/Shoelace.js"
+import { ThemeToCss } from "Themes/Platform_Targets/Shoelace.js"
 
 @customElement("theme-exporter")
 class _ele extends LitElement {
@@ -21,8 +20,8 @@ a { color: inherit; text-decoration: inherit; }
 		<sl-button slot="trigger" size="medium" caret></sl-button>
 		<sl-menu>
 			<sl-menu-item
-				@click=${() => ExportSlColours(theme.TokensColourTheme)}
-				>Export Shoelace Colour Tokens
+				@click=${() => exportSlTokens(theme)}
+				>Export Shoelace Theme Tokens
 			</sl-menu-item>
 			<sl-menu-item>
 				<a href="/shoelace-tokens.css" download>Export Shoelace Shared CSS</a>
@@ -33,16 +32,18 @@ a { color: inherit; text-decoration: inherit; }
 	}
 }
 
-const ExportSlColours = (colours: ThemeColours) =>
-	download(ThemeColoursToCss(TokenizeAll(colours)).cssText)
+const exportSlTokens = (spec: ThemeSpecification) => {
+	const payload = ThemeToCss(spec).cssText
+	download(payload, "shoelace-theme.css")
+}
 
-const download = (payload: string) => {
+const download = (payload: string, filename: string) => {
 	const blob = new Blob([payload], { type: "text/css" })
 	const url = URL.createObjectURL(blob)
 
 	const a = document.createElement("a")
 	a.href = url
-	a.download = "shoelace-colours.css"
+	a.download = filename
 	document.body.appendChild(a)
 	a.click()
 	a.remove()
