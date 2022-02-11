@@ -40,12 +40,21 @@ sl-tag { min-width: unset; }
 sl-tag::part(base):hover { cursor: pointer; }
 sl-tag::part(base) { background: var(--background); }
 sl-tag::part(content) { color: var(--colour); }
+
+sl-color-picker {
+	--grid-width: 320px;
+	--swatch-size: 30px;
+}
+sl-color-picker::part(base) {
+	width: 100%; min-width: 25rem;
+	box-shadow: none; }
+sl-color-picker::part(swatches) { display: none; }
 	`] }
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[this.variant]
 		const baseColours = Object.entries(colours).map(([k,c]) =>
-			({ key: k as keyof ColourRange, Colour: c, Css: ToStringHsl(c), L: c.lch()[0] }))
+			({ key: k as keyof ColourRange, Css: ToStringHsl(c), L: c.lch()[0] }))
 
 		const selectedColour = colours[this.key]
 		const format = this.pickerRef.value?.format ?? "hsl"
@@ -55,18 +64,16 @@ sl-tag::part(content) { color: var(--colour); }
 
 		return html`
 <sl-tab-group placement="start">
-	${baseColours.map(({ key, Colour, Css, L }) => html`
+	${baseColours.map(({ key, Css, L }) => html`
 	<sl-tab slot="nav"
 		@click=${() => this.editKey(key)}>
 		<div style="width: 100%; margin-right: 1em;">${getColourName(theme, key)}</div>
-		<sl-tooltip placement="right" content="${ToStringLchCommas(Colour)}">
-			<sl-tag
-				style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-				variant="${this.variant}"
-				size="medium"
-				>${L.toFixed(1)}
-			</sl-tag>
-		</sl-tooltip>
+		<sl-tag
+			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
+			variant="${this.variant}"
+			size="medium"
+			>${L.toFixed(1)}
+		</sl-tag>
 	</sl-tab>`)}
 </sl-tab-group>
 

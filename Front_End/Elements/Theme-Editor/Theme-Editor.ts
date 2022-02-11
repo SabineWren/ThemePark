@@ -1,20 +1,44 @@
 import * as chroma from "chroma.ts"
-import { html, LitElement} from "lit"
+import { css, html, LitElement} from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 import { ToStringHsl } from "Themes/Lib/Colours.js"
 import { Tokenize } from "Themes/Platform_Targets/Shoelace.js"
-import { Style } from "./Style.js"
 import { ToStringLchCommas } from "./Tabbed-Colour-Picker.js"
 
+const style = css`
+:host {
+	display: inline-block;
+	--spacing: 1.5rem; }
+.flex { display: flex; gap: var(--spacing); }
+
+sl-card {
+	margin: 0 auto; }
+sl-card::part(base) {
+	--padding: var(--spacing);
+	box-shadow: var(--sl-shadow-large); }
+sl-card::part(body) {
+	display: flex; flex-direction: column; gap: var(--spacing); }
+
+.toggle-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start; }
+
+.swatch {
+	display: inline-block;
+	flex-basis: 1rem; flex-grow: 1;
+	min-width: 1rem;
+	height: 62px;
+	border-radius: 2px; }`
 
 @customElement("theme-editor")
 class _ele extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColours
 	private themeProvider = new ThemeProvider(this)
 	override firstUpdated() { this.requestUpdate() }
-	static override get styles() { return [Shared, Style] }
+	static override get styles() { return [Shared, style] }
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		const colours = theme.TokensColourTheme[this.variant]
@@ -77,29 +101,10 @@ class _ele extends LitElement {
 			@change=${() => this.requestUpdate()}>
 		</tabbed-colour-picker>
 		<div>
-			${renderCssText(Object.entries(tokens))}
+			${Object.values(tokens).map(c => html`
+			<div style="font-weight: 600;">${ToStringHsl((c as chroma.Color))};</div>`)}
 		</div>
 	</div>
 </sl-card>`
 	}
 }
-
-// Using a table because grid doesn't copy line breaks correctly,
-// and varies clipboard behavior between browsers.
-// We strip the tabs that table cells generate on copy.
-const renderCssText = (tokensCss: [string,ColourPlaceholder][]) => html`
-<table @copy=${(e: ClipboardEvent) => {
-	const text = window.getSelection()?.toString().replace(/\t/g, " ") ?? ""
-	e.clipboardData?.setData("text/plain", text)
-	e.preventDefault()
-}}>
-	<tr class="ital no-click no-select">
-		<td colspan="2">Copy & paste colour tokens</td>
-	</tr>
-	<tr style="height: 0.5em;"></tr>
-	${tokensCss.map(([k,c]) => html`
-	<tr>
-		<td style="padding-right: 0.8em;">${k}:</td>
-		<td class="emph">${ToStringHsl((c as chroma.Color))};</td>
-	</tr>`)}
-</table>`
