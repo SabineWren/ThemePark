@@ -10,6 +10,7 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 
 ### TODO
 - Host on GitHub pages
+- Nav collapse should support toggle to restore
 - Add support for card backgrounds: SVGs and gradients
 - Expand theme API to include dropshadows and overlays
 - Implement save/load theme spec
@@ -37,7 +38,7 @@ Theme Park generates themes on-the-fly, but downstream apps will need pre-genera
 ## Constraints
 Some themes have complex backgrounds, such as SVG images or gradients. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
 
-Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space.
+Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space. Once web browsers and the colour picker support LCH, sRGB clamping will become optional.
 
 ### Themes First Pass
 1. [Nord](https://nordtheme.com) Polar Night (dim), Snow Storm (light)
