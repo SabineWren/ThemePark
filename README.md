@@ -9,11 +9,10 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 4. Load at localhost:5000/dist/index.html
 
 ### TODO
-- Host on GitHub pages
-- Nav collapse should support toggle to restore
+- Colours collapse tab should restore on toggle
 - Add support for card backgrounds: SVGs and gradients
 - Expand theme API to include dropshadows and overlays
-- Implement save/load theme spec
+- Implement save/load raw theme spec
 - Include more sample components to preview themes
 
 ## Problem
