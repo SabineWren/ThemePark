@@ -2,31 +2,27 @@ import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 
-@customElement("app-root")
-export class AppRoot extends LitElement {
-	static override get styles() { return [Shared, css`
+const style = css`
 :host {
 	display: block;
 	height: 100vw; width: 100%; }
 .flex {
 	display: flex; gap: 1rem; flex-wrap: wrap;
 	margin: 1rem 0; justify-content: center; }
-
-sl-tab-group::part(nav) {
-	display: flex;
-	margin: 0 auto; }
-sl-tab::part(base) {
-	padding: var(--sl-spacing-medium); }
-
-sl-card { flex: 0 0 25rem; }
-`]
-	}
+sl-card {
+	flex: 0 0 25rem; }
+`
+@customElement("app-root")
+export class AppRoot extends LitElement {
+	static override get styles() { return [Shared, style] }
 	override render() {
 		const isOutline = $<SlSwitch>(this, "sl-switch")?.checked ?? false
-		const isColoursHidden = $<SlTab>(this, "#hide-colours")?.active ?? false
-		const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 		return html`
 <div style="display: flex;">
+	<sl-button variant="default" href="https://shoelace.style/" target="_blank">
+		<sl-icon slot="prefix" name="sl-logo" library="custom"></sl-icon>
+		Shoelace
+	</sl-button>
 	<sl-button variant="default" href="https://github.com/SabineWren/Theme-Park" target="_blank">
 		<sl-icon slot="prefix" name="github"></sl-icon>
 		Source
@@ -44,31 +40,13 @@ sl-card { flex: 0 0 25rem; }
 	<theme-picker-switch></theme-picker-switch>
 </div>
 
-<div	style="display: flex; gap: 2rem; margin: 1rem;">
+<div style="display: flex; gap: 2rem; margin: 1rem;">
 	<mode-contrast-body></mode-contrast-body>
 	<mode-contrast-panel></mode-contrast-panel>
 	<mode-contrast-text></mode-contrast-text>
 </div>
 
-<sl-tab-group style="margin: 0 auto; display: inline-block;"
-	@sl-tab-show=${() => this.requestUpdate()}>
-	${variants.map((t: ButtonVariant) => html`
-	<sl-tab slot="nav" panel="${t}">
-		<sl-button variant="${t}" ?outline=${isOutline}>
-			${t[0].toUpperCase() + t.slice(1)}
-			<sl-icon slot="suffix" name="palette"></sl-icon>
-		</sl-button>
-	</sl-tab>
-	<sl-tab-panel name="${t}">
-		<theme-editor variant="${t}"></theme-editor>
-	</sl-tab-panel>`)}
-	<sl-tab slot="nav" id="hide-colours">
-		<sl-button variant="default" ?outline=${isOutline}
-			>Collapse
-			<sl-icon slot="suffix" name=${isColoursHidden ? "chevron-right" : "chevron-down"}></sl-icon>
-		</sl-button>
-	</sl-tab>
-</sl-tab-group>
+<tab-colour-editor-group .IsOutline=${isOutline}></tab-colour-editor-group>
 
 <div class="flex">
 	<sl-card>

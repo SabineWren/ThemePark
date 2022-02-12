@@ -19,8 +19,8 @@ import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/ico
 import "Elements/App-Root.js"
 import "Elements/Theme-Picker.js"
 import "Front_End/Elements/Theme-Editor/ModeButtons.js"
-import "Front_End/Elements/Theme-Editor/Tabbed-Colour-Picker.js"
-import "Front_End/Elements/Theme-Editor/Theme-Editor.js"
+import "Front_End/Elements/Theme-Editor/Tab-Colour-Editor.js"
+import "Front_End/Elements/Theme-Editor/Tab-Colour-Editor-Group.js"
 import "Front_End/Elements/Theme-Editor/Theme-Exporter.js"
 
 registerIconLibrary("custom", {

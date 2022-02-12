@@ -9,7 +9,6 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 4. Load at localhost:5000/dist/index.html
 
 ### TODO
-- Refactor colour editor
 - Fix active styling of mode buttons
 - Host on GitHub pages
 - Expand theme API to include dropshadows and overlays
