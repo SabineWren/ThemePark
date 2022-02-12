@@ -19,13 +19,13 @@ export class AppRoot extends LitElement {
 		const isOutline = $<SlSwitch>(this, "sl-switch")?.checked ?? false
 		return html`
 <div style="display: flex;">
-	<sl-button variant="default" href="https://shoelace.style/" target="_blank">
+	<sl-button variant="default" href="https://shoelace.style/" target="_blank"
+		>Shoelace
 		<sl-icon slot="prefix" name="sl-logo" library="custom"></sl-icon>
-		Shoelace
 	</sl-button>
-	<sl-button variant="default" href="https://github.com/SabineWren/Theme-Park" target="_blank">
+	<sl-button variant="default" href="https://github.com/SabineWren/Theme-Park" target="_blank"
+		>Source
 		<sl-icon slot="prefix" name="github"></sl-icon>
-		Source
 	</sl-button>
 	<sl-tooltip placement="right"
 		content="Not saved to theme. The app developer chooses when to outline buttons.">
@@ -41,6 +41,7 @@ export class AppRoot extends LitElement {
 </div>
 
 <div style="display: flex; gap: 2rem; margin: 1rem;">
+	<mode-theme-type></mode-theme-type>
 	<mode-contrast-body></mode-contrast-body>
 	<mode-contrast-panel></mode-contrast-panel>
 	<mode-contrast-text></mode-contrast-text>

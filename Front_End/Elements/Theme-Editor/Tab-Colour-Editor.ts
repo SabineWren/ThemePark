@@ -92,24 +92,21 @@ class _ele extends LitElement {
 	</div>`)}
 </div>
 
-<div style="display: flex; flex-direction: column;">
-	<sl-tab-group placement="start">
-		${baseColours.map(({ key, Css, L }) => html`
-		<sl-tab slot="nav"
-			@click=${() => this.editKey(key)}>
-			<div style="width: 100%; font-size: 1.2em; font-weight: 600; margin-right: 1rem;"
-				>${getColourName(theme, key)}
-			</div>
-			<sl-tag
-				style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
-				variant="${this.variant}"
-				size="medium"
-				>${L.toFixed(1)}
-			</sl-tag>
-		</sl-tab>`)}
-	</sl-tab-group>
-	<mode-light-dark></mode-light-dark>
-</div>
+<sl-tab-group placement="start">
+	${baseColours.map(({ key, Css, L }) => html`
+	<sl-tab slot="nav"
+		@click=${() => this.editKey(key)}>
+		<div style="width: 100%; font-size: 1.2em; font-weight: 600; margin-right: 1rem;"
+			>${getColourName(theme, key)}
+		</div>
+		<sl-tag
+			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
+			variant="${this.variant}"
+			size="medium"
+			>${L.toFixed(1)}
+		</sl-tag>
+	</sl-tab>`)}
+</sl-tab-group>
 
 <sl-color-picker inline
 	${ref(this.pickerRef)}

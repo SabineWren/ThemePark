@@ -1,5 +1,5 @@
 ## Theme Park
-A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target.
+A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target, but may eventually work more broadly.
 
 ## Building
 The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Tooling defined in package.json scripts.
@@ -9,12 +9,12 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 4. Load at localhost:5000/dist/index.html
 
 ### TODO
-- Fix active styling of mode buttons
+- Add toast when attempting to save theme
 - Host on GitHub pages
+- Add support for card backgrounds: SVGs and gradients
 - Expand theme API to include dropshadows and overlays
-- Add support for card background SVGs and gradients
-- Add many components to test theming
 - Implement save/load theme spec
+- Include more sample components to preview themes
 
 ## Problem
 Apps document themes through a set of Design Tokens, typically CSS Custom Properties or JSON key-value pairs. Applying third party themes requires sharing tokens, but each design system uses different tokens.
