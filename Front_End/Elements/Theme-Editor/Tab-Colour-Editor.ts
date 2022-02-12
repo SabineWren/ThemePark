@@ -22,6 +22,8 @@ const style = css`
 	height: 62px;
 	border-radius: 2px; }
 
+sl-tab-group[invert-primary] {
+	--sl-color-primary-600: var(--sl-color-warning-600); }
 sl-tab::part(base) {
 	width: 100%;
 	padding: var(--sl-spacing-medium); }
@@ -92,7 +94,7 @@ class _ele extends LitElement {
 	</div>`)}
 </div>
 
-<sl-tab-group placement="start">
+<sl-tab-group placement="start" ?invert-primary=${this.variant === "primary"}>
 	${baseColours.map(({ key, Css, L }) => html`
 	<sl-tab slot="nav"
 		@click=${() => this.editKey(key)}>
