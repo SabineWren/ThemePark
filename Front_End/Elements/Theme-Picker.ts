@@ -1,7 +1,8 @@
-import { css, html, LitElement } from "lit"
+import { html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeMode, ThemeProvider } from "Providers/Theme.js"
+import { StyleToggleBtn } from "Elements/Theme-Editor/ModeButtons.js"
 
 @customElement("theme-picker-dropdown")
 export class ThemePickerDropdown extends LitElement {
@@ -24,23 +25,23 @@ export class ThemePickerDropdown extends LitElement {
 }
 
 @customElement("theme-picker-switch")
-export class ThemePickerSwitch extends LitElement {
-	private theme = new ThemeProvider(this)
-	static override get styles() { return [
-		Shared, css`:host { display: flex; }`] }
+class _themeModeSwitch extends LitElement {
+	private themeProvider = new ThemeProvider(this)
+	static override get styles() { return [Shared, StyleToggleBtn] }
 	override render() {
-		const selected = this.theme.GetMode()
-		const getType = (m: ThemeMode) => m === selected ? "primary" : "default"
+		const mode = this.themeProvider.GetMode()
 		return html`
-<sl-button variant=${getType(ThemeMode.Light)}
-	?outline=${selected === ThemeMode.Light}
-	@click=${() => this.theme.SetMode(ThemeMode.Light)}
-	><sl-icon name="sun"></sl-icon>
-</sl-button>
-<sl-button variant=${getType(ThemeMode.Dark)}
-	?outline=${selected === ThemeMode.Dark}
-	@click=${() => this.theme.SetMode(ThemeMode.Dark)}
-	><sl-icon name="moon"></sl-icon>
-</sl-button>`
+<sl-button-group>
+	<sl-button variant="default"
+		?selected=${mode === ThemeMode.Light}
+		@click=${() => this.themeProvider.SetMode(ThemeMode.Light)}
+		><sl-icon name="sun"></sl-icon>
+	</sl-button>
+	<sl-button variant="default"
+		?selected=${mode === ThemeMode.Dark}
+		@click=${() => this.themeProvider.SetMode(ThemeMode.Dark)}
+		><sl-icon name="moon"></sl-icon>
+	</sl-button>
+</sl-button-group>`
 	}
 }

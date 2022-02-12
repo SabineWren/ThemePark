@@ -9,7 +9,6 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 4. Load at localhost:5000/dist/index.html
 
 ### TODO
-- Add toast when attempting to save theme
 - Host on GitHub pages
 - Add support for card backgrounds: SVGs and gradients
 - Expand theme API to include dropshadows and overlays

@@ -7,8 +7,7 @@ const style = css`
 :host { display: inline-block; }
 
 sl-tab-group::part(nav) {
-	display: flex;
-	margin: 0 auto; }
+	display: flex; }
 sl-tab::part(base) {
 	padding: var(--sl-spacing-medium); }
 

@@ -3,7 +3,7 @@ import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 
-const style = css`
+export const StyleToggleBtn = css`
 .toggle-btn {
 	display: flex;
 	flex-direction: column;
@@ -13,15 +13,17 @@ const style = css`
 /* focus ring (aka border) should be above other buttons when selected */
 sl-button[selected] { z-index: 3; }
 sl-button[selected]::part(base) {
-	border-color: var(--sl-color-success-200);
-	box-shadow: 0 0 10px 4px var(--sl-color-success-50) inset;
-}
+	border-color: var(--sl-color-primary-200);
+	box-shadow: 0 0 10px 4px var(--sl-color-primary-100) inset; }
+sl-button[selected]:hover::part(base) {
+	border-color: var(--sl-color-success-300);
+	box-shadow: 0 0 10px 4px var(--sl-color-success-100) inset; }
 `
 
 @customElement("mode-theme-type")
 class _lightDark extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override get styles() { return [Shared, style] }
+	static override get styles() { return [Shared, StyleToggleBtn] }
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		return html`
@@ -42,7 +44,7 @@ class _lightDark extends LitElement {
 @customElement("mode-contrast-body")
 class _body extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override get styles() { return [Shared, style] }
+	static override get styles() { return [Shared, StyleToggleBtn] }
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		return html`
@@ -61,7 +63,7 @@ class _body extends LitElement {
 @customElement("mode-contrast-panel")
 class _panel extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override get styles() { return [Shared, style] }
+	static override get styles() { return [Shared, StyleToggleBtn] }
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		return html`
@@ -80,7 +82,7 @@ class _panel extends LitElement {
 @customElement("mode-contrast-text")
 class _text extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override get styles() { return [Shared, style] }
+	static override get styles() { return [Shared, StyleToggleBtn] }
 	override render() {
 		const theme = this.themeProvider.GetTheme()
 		return html`

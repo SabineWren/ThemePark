@@ -34,7 +34,7 @@ sl-tag::part(base) {
 sl-tag::part(content) { color: var(--colour); }
 
 sl-color-picker {
-	--grid-width: 320px; }
+	--grid-width: 360px; }
 sl-color-picker, sl-color-picker::part(base) {
 	box-shadow: none; }
 sl-color-picker::part(swatches) { display: none; }`

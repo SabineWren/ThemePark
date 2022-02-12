@@ -31,7 +31,7 @@ const colours: ThemeColours = {
 		Max: Hsl(202.3, 73.8, 16.5),
 	},
 	success: {
-		Min: Hsl(138.5, 76.5, 96.7),
+		Min: Hsl(138.5, 76.5, 93),
 		C500: Hsl(142.1, 70.6, 45.3),
 		C600: Hsl(142.1, 76.2, 36.3),
 		Max: Hsl(144.3, 60.7, 12),
