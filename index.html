@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html><head>
+	<title>Theme Park</title>
+	<link rel="icon" sizes="32x32" type="image/svg" href="/assets/custom/logo.svg" />
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/shoelace-tokens.css"/>
+	<style>
+body {
+	font-family: var(--sl-font-sans);
+	font-size: var(--sl-font-size-medium);
+	font-weight: var(--sl-font-weight-normal);
+	letter-spacing: var(--sl-letter-spacing-normal);
+	line-height: var(--sl-line-height-normal);
+}
+	</style>
+	<script>
+const getRoot = ele => ele.shadowRoot ?? ele
+window.$ = (ele, selector) => getRoot(ele).querySelector(selector)
+window.$$ = (ele, selector) => Array.from(getRoot(ele).querySelectorAll(selector))
+	</script>
+</head>
+<body class="sl-theme-dark" style="margin: 0;">
+	<app-root></app-root>
+	<script type="module" src="/dist/Main.238209ef.js"></script>
+</body></html>
