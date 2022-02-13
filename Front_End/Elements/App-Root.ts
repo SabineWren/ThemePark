@@ -23,7 +23,7 @@ export class AppRoot extends LitElement {
 		>Shoelace
 		<sl-icon slot="prefix" name="sl-logo" library="custom"></sl-icon>
 	</sl-button>
-	<sl-button variant="default" href="https://github.com/SabineWren/Theme-Park" target="_blank"
+	<sl-button variant="default" href="https://github.com/SabineWren/themepark.style" target="_blank"
 		>Source
 		<sl-icon slot="prefix" name="github"></sl-icon>
 	</sl-button>

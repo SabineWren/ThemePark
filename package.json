@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"@shoelace-style/shoelace": "2.0.0-beta.67",
+		"@shoelace-style/shoelace": "2.0.0-beta.68",
 		"chroma.ts": "^1.0.10",
 		"lit": "2.1.2"
 	},
