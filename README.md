@@ -18,6 +18,7 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 - Colours collapse tab should restore on toggle
 - Implement save/load raw theme spec
 - Include more sample components to preview themes
+- Logo for <meta property="og:image" content="">
 
 ## Problem
 Apps document themes through a set of Design Tokens, typically CSS Custom Properties or JSON key-value pairs. Applying third party themes requires sharing tokens, but each design system uses different tokens.
