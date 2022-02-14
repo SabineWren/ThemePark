@@ -1,6 +1,7 @@
 import { css, html, LitElement} from "lit"
-import { customElement, property } from "lit/decorators.js"
+import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
+import { PreviewState } from "Providers/PreviewState.js"
 
 
 const style = css`
@@ -24,10 +25,10 @@ const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 
 @customElement("tab-colour-editor-group")
 class _ele extends LitElement {
-	@property({ attribute: false }) IsOutline = false
-	private variant: keyof ThemeColours = "primary"
+	private previewState = new PreviewState(this)
 	static override get styles() { return [Shared, style] }
 	override render() {
+		const isOutline = this.previewState.GetIsOutline()
 		const isColoursHidden = $<SlTab>(this, "#hide-colours")?.active ?? false
 		return html`
 <sl-tab-group style="margin: 0 auto; display: inline-block;"
@@ -35,7 +36,7 @@ class _ele extends LitElement {
 	@sl-tab-hide=${() => this.requestUpdate()}>
 	${variants.map(t => html`
 	<sl-tab slot="nav" panel="${t}">
-		<sl-button variant="${t}" ?outline=${this.IsOutline}>
+		<sl-button variant="${t}" ?outline=${isOutline}>
 			${t[0].toUpperCase() + t.slice(1)}
 			<sl-icon slot="suffix" name="palette"></sl-icon>
 		</sl-button>
@@ -46,7 +47,7 @@ class _ele extends LitElement {
 		</sl-card>
 	</sl-tab-panel>`)}
 	<sl-tab slot="nav" id="hide-colours">
-		<sl-button variant="default" ?outline=${this.IsOutline}
+		<sl-button variant="default" ?outline=${isOutline}
 			>Collapse
 			<sl-icon slot="suffix" name=${isColoursHidden ? "chevron-right" : "chevron-down"}></sl-icon>
 		</sl-button>

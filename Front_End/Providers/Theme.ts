@@ -59,11 +59,9 @@ let hosts: ReactiveControllerHost[] = []
 applyCurrentTheme()
 
 export class ThemeProvider implements ReactiveController {
-	constructor(private host: ReactiveControllerHost) {
-		host.addController(this) }
+	constructor(private host: ReactiveControllerHost) { host.addController(this) }
 	hostConnected() { hosts.push(this.host) }
-	hostDisconnected() {
-		hosts = hosts.filter(h => h !== this.host) }
+	hostDisconnected() { hosts = hosts.filter(h => h !== this.host) }
 
 	GetMode() { return state.Mode }
 	GetTheme() {

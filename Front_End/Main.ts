@@ -17,11 +17,12 @@ import "@shoelace-style/shoelace/dist/components/tag/tag.js"
 import "@shoelace-style/shoelace/dist/components/tooltip/tooltip.js"
 import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import "Elements/App-Root.js"
-import "Elements/Theme-Picker.js"
-import "Front_End/Elements/Theme-Editor/ModeButtons.js"
-import "Front_End/Elements/Theme-Editor/Tab-Colour-Editor.js"
-import "Front_End/Elements/Theme-Editor/Tab-Colour-Editor-Group.js"
-import "Front_End/Elements/Theme-Editor/Theme-Exporter.js"
+import "Elements/Colour/ModeButtons.js"
+import "Elements/Colour/Tab-Colour-Editor.js"
+import "Elements/Colour/Tab-Colour-Editor-Group.js"
+import "Elements/Top_Bar/Theme-Exporter.js"
+import "Elements/Top_Bar/Theme-Picker.js"
+import "Elements/Top_Bar/Top-Bar.js"
 
 registerIconLibrary("custom", {
 	resolver: name => `/assets/custom/${name}.svg`,

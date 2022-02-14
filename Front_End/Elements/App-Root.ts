@@ -16,29 +16,8 @@ sl-card {
 export class AppRoot extends LitElement {
 	static override get styles() { return [Shared, style] }
 	override render() {
-		const isOutline = $<SlSwitch>(this, "sl-switch")?.checked ?? false
 		return html`
-<div style="display: flex;">
-	<sl-button variant="default" href="https://shoelace.style/" target="_blank"
-		>Shoelace
-		<sl-icon slot="prefix" name="sl-logo" library="custom"></sl-icon>
-	</sl-button>
-	<sl-button variant="default" href="https://github.com/SabineWren/themepark.style" target="_blank"
-		>Source
-		<sl-icon slot="prefix" name="github"></sl-icon>
-	</sl-button>
-	<sl-tooltip placement="right"
-		content="Not saved to theme. The app developer chooses when to outline buttons.">
-		<sl-switch style="margin: auto; margin-left: 1rem;"
-			@sl-change=${() => this.requestUpdate()}
-			>Preview Outline
-		</sl-switch>
-	</sl-tooltip>
-	<div style="flex-grow: 1;"></div>
-	<theme-exporter></theme-exporter>
-	<theme-picker-dropdown></theme-picker-dropdown>
-	<theme-picker-switch></theme-picker-switch>
-</div>
+<top-bar></top-bar>
 
 <div style="display: flex; gap: 2rem; margin: 1rem;">
 	<mode-theme-type></mode-theme-type>
@@ -47,7 +26,7 @@ export class AppRoot extends LitElement {
 	<mode-contrast-text></mode-contrast-text>
 </div>
 
-<tab-colour-editor-group .IsOutline=${isOutline}></tab-colour-editor-group>
+<tab-colour-editor-group></tab-colour-editor-group>
 
 <div class="flex">
 	<sl-card>
