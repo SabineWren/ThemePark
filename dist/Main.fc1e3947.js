@@ -3095,6 +3095,9 @@ sl-card.outline {
 	padding: var(--sl-spacing-2x-small);
 	background-image: var(--gradient-1);
 }
+sl-card.outline::part(base) {
+	border: none;
+}
 
 sl-card.decorative::part(base) {
 	color: var(--sl-color-neutral-1000);
