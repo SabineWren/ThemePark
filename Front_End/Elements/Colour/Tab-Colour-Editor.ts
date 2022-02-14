@@ -116,7 +116,7 @@ class _ele extends LitElement {
 	format="hsl" .value=${live(value)}
 ></sl-color-picker>
 
-<div>
+<div style="white-space: nowrap;">
 	${Object.values(tokens).map(c => html`
 	<div style="font-weight: 600;">${ToStringHsl((c as chroma.Color))};</div>`)}
 </div>

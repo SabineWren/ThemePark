@@ -4,13 +4,17 @@ import { Shared } from "Elements/Style.js"
 
 const style = css`
 :host {
-	display: block;
-	height: 100vw; width: 100%; }
-.flex {
-	display: flex; gap: 1rem; flex-wrap: wrap;
-	margin: 1rem 0; justify-content: center; }
+	height: 100vw; width: 100%;
+	display: flex; flex-direction: column; gap: 1rem;
+}
+
+.centre {
+	margin-left: auto; margin-right: auto; }
+
+.card-group {
+	display: inline-flex; gap: 1rem; flex-wrap: wrap; }
 sl-card {
-	flex: 0 0 25rem; }
+	flex: 1 0 15rem; max-width: 25rem; }
 `
 @customElement("app-root")
 export class AppRoot extends LitElement {
@@ -19,16 +23,16 @@ export class AppRoot extends LitElement {
 		return html`
 <top-bar></top-bar>
 
-<div style="display: flex; gap: 2rem; margin: 1rem;">
+<div class="centre" style="display: inline-flex; gap: 2rem;">
 	<mode-theme-type></mode-theme-type>
 	<mode-contrast-body></mode-contrast-body>
 	<mode-contrast-panel></mode-contrast-panel>
 	<mode-contrast-text></mode-contrast-text>
 </div>
 
-<tab-colour-editor-group></tab-colour-editor-group>
+<tab-colour-editor-group class="centre"></tab-colour-editor-group>
 
-<div class="flex">
+<div class="centre card-group">
 	<sl-card>
 		<h4>Card: Decorative</h4>
 		<p>Low-contrast background. Themes may decorate with gradients, transparency effects, etc. Themes should darken the centre to improve text contrast.</p>
