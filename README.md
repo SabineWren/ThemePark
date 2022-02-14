@@ -9,10 +9,9 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 4. Load at localhost:5000/dist/index.html
 
 ### TODO Cards
-- Build modes for text/icon/bold: gradient or custom contrast
-- Let card variants apply different gradient modes
-- Build customization tools for the gradients
-- Investigate [Tailwind](https://tailwindcss.com/docs/gradient-color-stops) for custom gradient API
+- Build import tool for card gradients; Recommend tools like [cssgradient.io](https://cssgradient.io/) and Figma
+- Find someone to build a library of decorative card backgrounds
+- Add gradient or custom contrast modes for text/icon/bold
 - Expand theme API to include dropshadows and overlays
 
 ### TODO
