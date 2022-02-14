@@ -7,17 +7,11 @@ const style = css`
 	height: 100vw; width: 100%;
 	display: flex; flex-direction: column; gap: 1rem;
 }
-
 .centre {
 	margin-left: auto; margin-right: auto; }
-
-.card-group {
-	display: inline-flex; gap: 1rem; flex-wrap: wrap; }
-sl-card {
-	flex: 1 0 15rem; max-width: 25rem; }
 `
 @customElement("app-root")
-export class AppRoot extends LitElement {
+class _ele extends LitElement {
 	static override get styles() { return [Shared, style] }
 	override render() {
 		return html`
@@ -32,21 +26,7 @@ export class AppRoot extends LitElement {
 
 <tab-colour-editor-group class="centre"></tab-colour-editor-group>
 
-<div class="centre card-group">
-	<sl-card>
-		<h4>Card: Decorative</h4>
-		<p>Low-contrast background. Themes may decorate with gradients, transparency effects, etc. Themes should darken the centre to improve text contrast.</p>
-	</sl-card>
-
-	<sl-card>
-		<h4>Card: Subtle</h4>
-		<p>High-contrast background. May contain a stretched image. Themes may apply a box shadow, or style headers/icons with gradients.</p>
-	</sl-card>
-
-	<sl-card>
-		<h4>Card: Outline</h4>
-		<p>Similar to Subtle cards. However, this always has a border and never has a box shadow.</p>
-	</sl-card>
-</div>`
+<card-group class="centre"></card-group>
+`
 	}
 }

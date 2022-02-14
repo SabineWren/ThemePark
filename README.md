@@ -8,10 +8,15 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
 4. Load at localhost:5000/dist/index.html
 
+### TODO Cards
+- Build modes for text/icon/bold: gradient or custom contrast
+- Let card variants apply different gradient modes
+- Build customization tools for the gradients
+- Investigate [Tailwind](https://tailwindcss.com/docs/gradient-color-stops) for custom gradient API
+- Expand theme API to include dropshadows and overlays
+
 ### TODO
 - Colours collapse tab should restore on toggle
-- Add support for card backgrounds: SVGs and gradients
-- Expand theme API to include dropshadows and overlays
 - Implement save/load raw theme spec
 - Include more sample components to preview themes
 

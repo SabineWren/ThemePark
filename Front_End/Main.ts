@@ -17,6 +17,7 @@ import "@shoelace-style/shoelace/dist/components/tag/tag.js"
 import "@shoelace-style/shoelace/dist/components/tooltip/tooltip.js"
 import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import "Elements/App-Root.js"
+import "Elements/Card-Group.js"
 import "Elements/Colour/ModeButtons.js"
 import "Elements/Colour/Tab-Colour-Editor.js"
 import "Elements/Colour/Tab-Colour-Editor-Group.js"
@@ -24,7 +25,25 @@ import "Elements/Top_Bar/Theme-Exporter.js"
 import "Elements/Top_Bar/Theme-Picker.js"
 import "Elements/Top_Bar/Top-Bar.js"
 
-registerIconLibrary("custom", {
-	resolver: name => `/assets/custom/${name}.svg`,
-	mutator: svg => svg.setAttribute("fill", "currentColor"),
-})
+// svg => svg.setAttribute("fill", "currentColor")
+// TODO link to theme. Obivously this requires shipping JavaScript with the theme.
+const applyGradientFill = (svg: SVGElement) => {
+	const defs = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+	defs.innerHTML = `
+<svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+  <linearGradient id="global-svg-gradient" x2="1" y2="1">
+    <stop offset="0%" stop-color="var(--hsl-start)" />
+    <stop offset="100%" stop-color="var(--hsl-end)" />
+  </linearGradient>
+</svg>`
+	svg.prepend(defs)
+	svg.setAttribute("fill", "var(--svg-fill)")
+}
+
+const regIconLib = (dir: string, libName: string) => registerIconLibrary(libName, {
+	resolver: name => `/assets/${dir}/${name}.svg`,
+	mutator: applyGradientFill })
+regIconLib("custom", "custom")
+regIconLib("fa", "fa")
+regIconLib("icons", "default")
+regIconLib("icons", "system")
