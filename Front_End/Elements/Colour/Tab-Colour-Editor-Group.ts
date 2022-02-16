@@ -8,9 +8,13 @@ const style = css`
 :host { display: inline-block; }
 
 sl-tab-group::part(nav) {
-	display: flex; }
+	display: flex; justify-content: center; }
+
 sl-tab::part(base) {
-	padding: var(--sl-spacing-medium); }
+	padding: var(--sl-spacing-medium);
+	padding-top: 0; }
+sl-tab-panel::part(base) {
+	padding-bottom: 0; }
 
 sl-card {
 	margin: 0 auto; }
@@ -26,14 +30,34 @@ const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 @customElement("tab-colour-editor-group")
 class _ele extends LitElement {
 	private previewState = new PreviewState(this)
+	private lastVariant: typeof variants[number] = variants[0]
 	static override get styles() { return [Shared, style] }
 	override render() {
 		const isOutline = this.previewState.GetIsOutline()
-		const isColoursHidden = $<SlTab>(this, "#hide-colours")?.active ?? false
+		const isCollapsed = $<SlTab>(this, "#hide-colours")?.active ?? true
+
+		const hide = (e: CustomEvent) => {
+			if (variants.includes(e.detail.name)) {
+				this.lastVariant = e.detail.name }
+			this.requestUpdate()
+		}
+
+		// Timeout guarantees hide event handler completes before checking isCollapsed
+		const reExpand = () => setTimeout(() => {
+			if (!isCollapsed) { return }
+			$<SlTabGroup>(this, "sl-tab-group").show(this.lastVariant)
+		}, 0)
+
 		return html`
 <sl-tab-group style="margin: 0 auto; display: inline-block;"
-	@sl-tab-show=${() => this.requestUpdate()}
-	@sl-tab-hide=${() => this.requestUpdate()}>
+	@sl-tab-hide=${(e: CustomEvent) => hide(e)}>
+	<sl-tab slot="nav" id="hide-colours">
+		<sl-button variant="default" ?outline=${isOutline}
+			@click=${() => reExpand()}>
+			<div style="min-width: 4em;">${isCollapsed ? "Expand" : "Collapse"}</div>
+			<sl-icon slot="suffix" name=${isCollapsed ? "chevron-right" : "chevron-down"}></sl-icon>
+		</sl-button>
+	</sl-tab>
 	${variants.map(t => html`
 	<sl-tab slot="nav" panel="${t}">
 		<sl-button variant="${t}" ?outline=${isOutline}>
@@ -46,12 +70,6 @@ class _ele extends LitElement {
 			<tab-colour-editor variant="${t}"></tab-colour-editor>
 		</sl-card>
 	</sl-tab-panel>`)}
-	<sl-tab slot="nav" id="hide-colours">
-		<sl-button variant="default" ?outline=${isOutline}
-			>Collapse
-			<sl-icon slot="suffix" name=${isColoursHidden ? "chevron-right" : "chevron-down"}></sl-icon>
-		</sl-button>
-	</sl-tab>
 </sl-tab-group>
 `
 	}

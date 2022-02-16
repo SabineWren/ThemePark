@@ -5,7 +5,7 @@ import { Shared } from "Elements/Style.js"
 const style = css`
 :host {
 	height: 100vw; width: 100%;
-	display: flex; flex-direction: column; gap: 1rem;
+	display: flex; flex-direction: column; gap: 1.5rem;
 }
 .centre {
 	margin-left: auto; margin-right: auto; }
