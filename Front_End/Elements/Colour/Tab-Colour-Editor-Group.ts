@@ -31,18 +31,17 @@ const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 class _ele extends LitElement {
 	private previewState = new PreviewState(this)
 	private lastVariant: typeof variants[number] = variants[0]
+	private setLast = (e: CustomEvent) => {
+		if (variants.includes(e.detail.name)) {
+			this.lastVariant = e.detail.name }
+		this.requestUpdate()
+	}
 	static override get styles() { return [Shared, style] }
 	override render() {
 		const isOutline = this.previewState.GetIsOutline()
 		const isCollapsed = $<SlTab>(this, "#hide-colours")?.active ?? false
 
-		const hide = (e: CustomEvent) => {
-			if (variants.includes(e.detail.name)) {
-				this.lastVariant = e.detail.name }
-			this.requestUpdate()
-		}
-
-		// Timeout guarantees hide event handler completes before checking isCollapsed
+		// Timeout so sl-tab events settle and update isCollapsed
 		const reExpand = () => setTimeout(() => {
 			if (!isCollapsed) { return }
 			$<SlTabGroup>(this, "sl-tab-group").show(this.lastVariant)
@@ -50,7 +49,7 @@ class _ele extends LitElement {
 
 		return html`
 <sl-tab-group style="margin: 0 auto; display: inline-block;"
-	@sl-tab-hide=${(e: CustomEvent) => hide(e)}>
+	@sl-tab-hide=${(e: CustomEvent) => this.setLast(e)}>
 	${variants.map(t => html`
 	<sl-tab slot="nav" panel="${t}">
 		<sl-button variant="${t}" ?outline=${isOutline}>
