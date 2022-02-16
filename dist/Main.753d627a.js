@@ -2967,7 +2967,7 @@ p:last-child {
 `,es=ri`
 :host {
 	height: 100vw; width: 100%;
-	display: flex; flex-direction: column; gap: 1rem;
+	display: flex; flex-direction: column; gap: 1.5rem;
 }
 .centre {
 	margin-left: auto; margin-right: auto; }
@@ -3398,9 +3398,13 @@ sl-color-picker::part(swatches) { display: none; }`;let za=class extends Ki{cons
 :host { display: inline-block; }
 
 sl-tab-group::part(nav) {
-	display: flex; }
+	display: flex; justify-content: center; }
+
 sl-tab::part(base) {
-	padding: var(--sl-spacing-medium); }
+	padding: var(--sl-spacing-medium);
+	padding-top: 0; }
+sl-tab-panel::part(base) {
+	padding-bottom: 0; }
 
 sl-card {
 	margin: 0 auto; }
@@ -3409,10 +3413,9 @@ sl-card::part(base) {
 	box-shadow: var(--sl-shadow-large); }
 sl-card::part(body) {
 	display: flex; flex-direction: column; gap: 1.5rem; }
-`,ja=["primary","success","neutral","warning","danger"];let Ha=class extends Ki{constructor(){super(...arguments),this.previewState=new Ia(this)}static get styles(){return[ts,Na]}render(){const t=this.previewState.GetIsOutline(),e=$(this,"#hide-colours")?.active??!1;return Mi`
+`,ja=["primary","success","neutral","warning","danger"];let Ha=class extends Ki{constructor(){super(...arguments),this.previewState=new Ia(this),this.lastVariant=ja[0]}static get styles(){return[ts,Na]}render(){const t=this.previewState.GetIsOutline(),e=$(this,"#hide-colours")?.active??!1,r=t=>{ja.includes(t.detail.name)&&(this.lastVariant=t.detail.name),this.requestUpdate()},o=()=>setTimeout((()=>{e&&$(this,"sl-tab-group").show(this.lastVariant)}),0);return Mi`
 <sl-tab-group style="margin: 0 auto; display: inline-block;"
-	@sl-tab-show=${()=>this.requestUpdate()}
-	@sl-tab-hide=${()=>this.requestUpdate()}>
+	@sl-tab-hide=${t=>r(t)}>
 	${ja.map((e=>Mi`
 	<sl-tab slot="nav" panel="${e}">
 		<sl-button variant="${e}" ?outline=${t}>
@@ -3427,7 +3430,8 @@ sl-card::part(body) {
 	</sl-tab-panel>`))}
 	<sl-tab slot="nav" id="hide-colours">
 		<sl-button variant="default" ?outline=${t}
-			>Collapse
+			@click=${()=>o()}>
+			<div style="min-width: 4em;">${e?"Expand":"Collapse"}</div>
 			<sl-icon slot="suffix" name=${e?"chevron-right":"chevron-down"}></sl-icon>
 		</sl-button>
 	</sl-tab>
