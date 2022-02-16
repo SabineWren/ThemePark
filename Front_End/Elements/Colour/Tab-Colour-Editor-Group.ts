@@ -34,7 +34,7 @@ class _ele extends LitElement {
 	static override get styles() { return [Shared, style] }
 	override render() {
 		const isOutline = this.previewState.GetIsOutline()
-		const isCollapsed = $<SlTab>(this, "#hide-colours")?.active ?? true
+		const isCollapsed = $<SlTab>(this, "#hide-colours")?.active ?? false
 
 		const hide = (e: CustomEvent) => {
 			if (variants.includes(e.detail.name)) {
@@ -51,13 +51,6 @@ class _ele extends LitElement {
 		return html`
 <sl-tab-group style="margin: 0 auto; display: inline-block;"
 	@sl-tab-hide=${(e: CustomEvent) => hide(e)}>
-	<sl-tab slot="nav" id="hide-colours">
-		<sl-button variant="default" ?outline=${isOutline}
-			@click=${() => reExpand()}>
-			<div style="min-width: 4em;">${isCollapsed ? "Expand" : "Collapse"}</div>
-			<sl-icon slot="suffix" name=${isCollapsed ? "chevron-right" : "chevron-down"}></sl-icon>
-		</sl-button>
-	</sl-tab>
 	${variants.map(t => html`
 	<sl-tab slot="nav" panel="${t}">
 		<sl-button variant="${t}" ?outline=${isOutline}>
@@ -70,6 +63,13 @@ class _ele extends LitElement {
 			<tab-colour-editor variant="${t}"></tab-colour-editor>
 		</sl-card>
 	</sl-tab-panel>`)}
+	<sl-tab slot="nav" id="hide-colours">
+		<sl-button variant="default" ?outline=${isOutline}
+			@click=${() => reExpand()}>
+			<div style="min-width: 4em;">${isCollapsed ? "Expand" : "Collapse"}</div>
+			<sl-icon slot="suffix" name=${isCollapsed ? "chevron-right" : "chevron-down"}></sl-icon>
+		</sl-button>
+	</sl-tab>
 </sl-tab-group>
 `
 	}

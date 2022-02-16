@@ -8,15 +8,17 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
 4. Load at localhost:5000/dist/index.html
 
-### TODO Cards
-- Build import tool for card gradients; Recommend tools like [cssgradient.io](https://cssgradient.io/) and Figma
-- Find someone to build a library of decorative card backgrounds
-- Add gradient or custom contrast modes for text/icon/bold
-- Expand theme API to include dropshadows and overlays
+### TODO 1 - Gradients and Shadows
+1. Expand theme API to include dropshadows
+2. Add gradient selection library
+3. Apply gradients to header/icons/bold/shadows using switches
+4. Build gradient importer; Recommend tools like [cssgradient.io](https://cssgradient.io/)
 
-### TODO
+### TODO 2 - MVP
+- Include more sample components to preview themes and review which components need special features
+- Figure out exactly which card variants and states are necessary to support
+- Find someone to build a library of decorative card backgrounds
 - Implement save/load raw theme spec
-- Include more sample components to preview themes
 - Logo for `<meta property="og:image" content="">`
 
 ## Problem
