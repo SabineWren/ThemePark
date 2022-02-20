@@ -1,7 +1,6 @@
 # Build Artifacts
 *.js.map
 *.js
-Web_Root/assets/icons
 Web_Root/dist
 
 # Dependencies

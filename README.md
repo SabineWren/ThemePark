@@ -1,13 +1,6 @@
 ## Theme Park
 A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target, but may eventually work more broadly.
 
-## Building
-The Shoelace package 'assets' directory contains Bootstrap icons, and requires a one-time copy to web root. i.e. create Web_Root/assets/icons. Tooling defined in package.json scripts.
-1. `npm run compile`
-2. `npm run bundle`
-3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
-4. Load at localhost:5000/dist/index.html
-
 ### TODO 1 - Gradients and Shadows
 1. Expand theme API to include dropshadows
 2. Add gradient selection library
@@ -20,6 +13,13 @@ The Shoelace package 'assets' directory contains Bootstrap icons, and requires a
 - Find someone to build a library of decorative card backgrounds
 - Implement save/load raw theme spec
 - Logo for `<meta property="og:image" content="">`
+
+## Building
+Never manually edit anything inside Web_Root/dist/. The contents are output from build scripts.
+1. `npm install`
+2. `npm run <script>` See package.json for scripts to run
+3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
+4. Load at localhost:5000/dist/index.html
 
 ## Problem
 Apps document themes through a set of Design Tokens, typically CSS Custom Properties or JSON key-value pairs. Applying third party themes requires sharing tokens, but each design system uses different tokens.
