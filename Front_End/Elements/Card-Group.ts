@@ -1,12 +1,12 @@
 import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
-import { Aurora } from "Gradients/Aurora.js"
 import { OpenProp } from "Gradients/OpenProp.js"
 
 const style = css`
 :host {
 	display: flex; flex-direction: column; gap: 2rem;
+	--aurora1: url("/aurora/aurora-corners.svg");
 }
 
 sl-card {
@@ -72,7 +72,7 @@ sl-card.decorative::part(base) {
 }
 
 sl-card.aurora::part(base) {
-	background-image: var(--bg);
+	background-image: var(--aurora1);
 }
 `
 /*
@@ -86,7 +86,7 @@ TODO type CardOptions = {
 
 @customElement("card-group")
 class _ele extends LitElement {
-	static override get styles() { return [Shared, style, Aurora, OpenProp] }
+	static override get styles() { return [Shared, style, OpenProp] }
 	override render() {
 		const sampleText = () => html`<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit</strong>, sed do eiusmod <strong>tempor incididunt</strong> ut labore et dolore magna aliqua.</p>`
 		return html`
@@ -152,22 +152,10 @@ Card theming not yet implemented. Coming soon!
 </div>
 
 <div style="display: inline-flex; gap: 2rem; flex-wrap: wrap;">
-	<sl-card class="aurora"
-		style="--bg: var(--aurora1);">
-		<div style="height: 30em;"></div>
+	<sl-card class="aurora">
+		<div style="height: 40em;"></div>
 	</sl-card>
-	<sl-card class="aurora"
-		style="--bg: var(--aurora1); max-width: 30em;">
-		<div style="height: 15em;"></div>
-	</sl-card>
-</div>
-<div style="display: inline-flex; gap: 2rem; flex-wrap: wrap;">
-	<sl-card class="aurora"
-		style="--bg: var(--aurora2);">
-		<div style="height: 30em;"></div>
-	</sl-card>
-	<sl-card class="aurora"
-		style="--bg: var(--aurora2); max-width: 30em;">
+	<sl-card class="aurora" style="max-width: 40em;">
 		<div style="height: 15em;"></div>
 	</sl-card>
 </div>
