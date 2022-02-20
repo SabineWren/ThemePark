@@ -1,4 +1,5 @@
 import { ReactiveController, ReactiveControllerHost } from "lit"
+import { ThrottleFactory } from "Lib.js"
 import { Halloween } from "Themes/Halloween.js"
 import { NordPolarNight } from "Themes/NordPolarNight.js"
 import { NordSnowStorm } from "Themes/NordSnowStorm.js"
@@ -24,12 +25,6 @@ const createStyle = (id: string, cssText: string) => {
 	style.innerHTML = cssText
 	return style
 }
-const loadStyleTag = (theme: ThemeSpecification) => {
-	const style = createStyle(theme.CssName, ThemeToCss(theme).cssText)
-	$(document, `style#${theme.CssName}`)?.remove()
-	$(document, "head").appendChild(style)
-	$(document, "body").className = theme.CssName
-}
 
 const state = (() => {
 	const load = (k: string) => localStorage.getItem("theme-park-" + k)
@@ -41,22 +36,30 @@ const state = (() => {
 		Mode: isLight ? ThemeMode.Light : ThemeMode.Dark,
 	}
 })()
+const getTheme = () =>
+	state.Mode === ThemeMode.Light ? state.Light : state.Dark
 
+export const GetThemeCss = () => ThemeToCss(getTheme()).cssText
+const loadStyleTag = () => {
+	const theme = getTheme()
+	const style = createStyle(theme.CssName, GetThemeCss())
+	$(document, `style#${theme.CssName}`)?.remove()
+	$(document, "head").appendChild(style)
+	$(document, "body").className = theme.CssName
+}
 const applyCurrentTheme = () => {
 	const store = (k: string, v: string) => localStorage.setItem("theme-park-" + k, v)
 	store("dark", state.Dark.CssName)
 	store("light", state.Light.CssName)
 	store("mode", state.Mode === ThemeMode.Light ? "light" : "dark")
-
-	const t = state.Mode === ThemeMode.Light ? state.Light : state.Dark
-	loadStyleTag(t)
+	loadStyleTag()
 	hosts.forEach(h => h.requestUpdate())
 }
+
 MEDIA_PREF_LIGHT.addEventListener("change", () => {
 	state.Mode = MEDIA_PREF_LIGHT.matches ? ThemeMode.Light : ThemeMode.Dark
 	applyCurrentTheme()
 })
-
 let hosts: ReactiveControllerHost[] = []
 applyCurrentTheme()
 
@@ -64,25 +67,65 @@ export class ThemeProvider implements ReactiveController {
 	constructor(private host: ReactiveControllerHost) { host.addController(this) }
 	hostConnected() { hosts.push(this.host) }
 	hostDisconnected() { hosts = hosts.filter(h => h !== this.host) }
+	private reapplyTheme() {
+		loadStyleTag()
+		hosts.forEach(h => h.requestUpdate())
+	}
 
-	GetMode() { return state.Mode }
-	GetTheme() {
-		return state.Mode === ThemeMode.Light ? state.Light : state.Dark }
+	// Not the best name. Maybe call it 'brightness' or something?
+	GetMode = () => state.Mode
+	SetMode(m: ThemeMode) {
+		state.Mode = m
+		applyCurrentTheme() }
+
+	// We only expose themes here to use their names
+	// Would be safer to only return names, but that complicates changing theme
 	GetThemeOptions() {
 		return state.Mode === ThemeMode.Light ? THEMES_LIGHT : THEMES_DARK }
-
-	SetMode(m: ThemeMode) {
-		state.Mode = m; applyCurrentTheme() }
 	SetTheme(o: ThemeSpecification) {
 		if (o.IsLight) { state.Light = o }
 		else           { state.Dark  = o }
 		applyCurrentTheme()
 	}
 
-	// Colours propagate without re-rendering
-	ReapplyThemeColours = () => loadStyleTag(this.GetTheme())
-	ReapplyTheme() {
-		this.ReapplyThemeColours()
-		hosts.forEach(h => h.requestUpdate())
+	// ********** Theme Properties **********
+	GetColoursVariant = (variant: keyof ThemeColours) =>
+		getTheme().TokensColourTheme[variant]
+	SetColoursVariant = (() => {
+		// Only the caller needs to re-render, and colours change quickly
+		const applyColours = ThrottleFactory(loadStyleTag)
+		return (variant: keyof ThemeColours, key: keyof ColourRange, colour: Colour) => {
+			this.GetColoursVariant(variant)[key] = colour
+			applyColours()
+		}
+	})()
+
+	GetContrastBody = () => getTheme().ContrastBody
+	SetContrastBody = (contrast: ThemeSpecification["ContrastBody"]) => {
+		getTheme().ContrastBody = contrast
+		this.reapplyTheme()
 	}
+
+	GetContrastPanel = () => getTheme().ContrastPanel
+	SetContrastPanel  = (contrast: ThemeSpecification["ContrastPanel"]) => {
+		getTheme().ContrastPanel = contrast
+		this.reapplyTheme()
+	}
+
+	GetContrastText = () => getTheme().ContrastText
+	SetContrastText  = (contrast: ThemeSpecification["ContrastText"]) => {
+		getTheme().ContrastText = contrast
+		this.reapplyTheme()
+	}
+
+	// TODO replace Setter with a form option when creating new theme
+	// Changing light/dark on existing theme makes no sense
+	// Can then replace Getter with the existing mode getter
+	GetIsLight = () => getTheme().IsLight
+	SetIsLight = (isLight: boolean) => {
+		getTheme().IsLight = isLight
+		this.reapplyTheme()
+	}
+
+	GetLabel = () => getTheme().Label
 }

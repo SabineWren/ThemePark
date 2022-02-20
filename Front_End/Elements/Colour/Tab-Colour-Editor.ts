@@ -48,24 +48,20 @@ class _ele extends LitElement {
 	private themeProvider = new ThemeProvider(this)
 	private pickerRef: Ref<SlColorPicker> = createRef()
 	private getSelectedColour = () => {
-		const colours = this.themeProvider.GetTheme()
-			.TokensColourTheme[this.variant]
+		const colours = this.themeProvider.GetColoursVariant(this.variant)
 		const selectedColour = colours[this.key]
 		const format = this.pickerRef.value?.format ?? "hsl"
 		return format === "hex" ? selectedColour.hex()
 			: format === "rgb" ? toStringRgb(selectedColour)
 			: ToStringHslCommas(selectedColour)
 	}
-	private reapplyColoursThrottled = throttleFactory(() => this.themeProvider.ReapplyThemeColours())
 	private editColour() {
 		const oldValue = this.getSelectedColour()
 		const newValue = this.pickerRef.value!.value
 		// Setting the value of sl-color-picker triggers change without equality check
 		if (newValue === oldValue) { return }
-		const colours = this.themeProvider.GetTheme()
-			.TokensColourTheme[this.variant]
-		colours[this.key] = chroma.color(newValue)
-		this.reapplyColoursThrottled()
+		this.themeProvider.SetColoursVariant(
+			this.variant, this.key, chroma.color(newValue))
 		this.requestUpdate()
 	}
 	private editKey(key: keyof ColourRange) {
@@ -77,8 +73,7 @@ class _ele extends LitElement {
 	protected override firstUpdated(_: any): void { this.requestUpdate() }
 	static override get styles() { return [Shared, style] }
 	override render() {
-		const theme = this.themeProvider.GetTheme()
-		const colours = theme.TokensColourTheme[this.variant]
+		const colours = this.themeProvider.GetColoursVariant(this.variant)
 		const baseColours = Object.entries(colours).map(([k,c]) =>
 			({ key: k as keyof ColourRange, Css: ToStringHsl(c), L: c.lch()[0] }))
 
@@ -99,7 +94,7 @@ class _ele extends LitElement {
 	<sl-tab slot="nav"
 		@click=${() => this.editKey(key)}>
 		<div style="width: 100%; font-size: 1.2em; font-weight: 600; margin-right: 1rem;"
-			>${getColourName(theme, key)}
+			>${this.getColourName(key)}
 		</div>
 		<sl-tag
 			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
@@ -122,6 +117,17 @@ class _ele extends LitElement {
 </div>
 `
 	}
+	private getColourName = (key: keyof ColourRange): string => {
+		// TODO will soon remove this method
+		// Will switch to this.themeProvider.GetMode
+		const isLight = this.themeProvider.GetIsLight()
+		switch (key) {
+		case "Min": return isLight ? "Lightest" : "Darkest"
+		case "C500": return "Button Hover"
+		case "C600": return "Button"
+		case "Max": return isLight ? "Darkest" : "Lightest"
+		}
+	}
 }
 
 const toStringLchCommas = (colour: chroma.Color) => {
@@ -129,24 +135,6 @@ const toStringLchCommas = (colour: chroma.Color) => {
 	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
 }
 
-const getColourName = (theme: ThemeSpecification, key: keyof ColourRange): string => {
-	switch (key) {
-	case "Min": return theme.IsLight ? "Lightest" : "Darkest"
-	case "C500": return "Button Hover"
-	case "C600": return "Button"
-	case "Max": return theme.IsLight ? "Darkest" : "Lightest"
-	}
-}
 const toStringRgb = (c: chroma.Color) => {
 	const [r,g,b] = c.rgb()
 	return `rgb(${r}, ${g}, ${b})` }
-
-const throttleFactory = (foo: () => any) => {
-	let isThrottled = false
-	const fire = () => { foo(); isThrottled = false }
-	return () => {
-		if (isThrottled) { return }
-		isThrottled = true
-		setTimeout(fire, 50)
-	}
-}

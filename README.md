@@ -2,20 +2,24 @@
 A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target, but may eventually work more broadly.
 
 ### TODO 1 - Gradients and Shadows
-1. Expand theme API to include dropshadows
-2. Add gradient selection library
-3. Apply gradients to header/icons/bold/shadows using switches
-4. Build gradient importer; Recommend tools like [cssgradient.io](https://cssgradient.io/)
+- Add sample components that use drop shadows or gradients
+- Add gradient selection library
+- Expand theme API to include dropshadows, including gradients
+- Apply gradients to header/icons/bold/shadows using switches
+- Build gradient importer; Recommend tools like [cssgradient.io](https://cssgradient.io/)
 
-### TODO 2 - MVP
-- Include more sample components to preview themes and review which components need special features
-- Figure out exactly which card variants and states are necessary to support
-- Find someone to build a library of decorative card backgrounds
+### TODO 2 - Cards
+- Finalize list of card variants: subtle, outline, decorative
+- Finalize list of card states: none, dragging, dragover, active
+- Add preview for all card variants/states
+- Add tooling to customize each state and variant
+- Build a library of decorative card backgrounds
+
+### TODO 3 - MVP
 - Implement save/load raw theme spec
 - Logo for `<meta property="og:image" content="">`
 
 ## Building
-Never manually edit anything inside Web_Root/dist/. The contents are output from build scripts.
 1. `npm install`
 2. `npm run <script>` See package.json for scripts to run
 3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`

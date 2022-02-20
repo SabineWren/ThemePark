@@ -7,20 +7,18 @@ import { ThemeMode, ThemeProvider } from "Providers/Theme.js"
 export class ThemePickerDropdown extends LitElement {
 	private theme = new ThemeProvider(this)
 	static override get styles() { return [Shared] }
-	override render() {
-		const selected = this.theme.GetTheme()
-		return html`
+	override render = () => html`
 <sl-dropdown>
-	<sl-button slot="trigger" caret>${selected.Label}</sl-button>
+	<sl-button slot="trigger" caret>${this.theme.GetLabel()}</sl-button>
 	<sl-menu
 		@sl-select=${(e: any) => this.theme.SetTheme(e.detail.item.theme)}>
 		${this.theme.GetThemeOptions().map(o => html`
-		<sl-menu-item ?checked=${o === selected} .theme="${o}"
+		<sl-menu-item ?checked=${o.Label === this.theme.GetLabel()}
+			.theme="${o}"
 			>${o.Label}
 		</sl-menu-item>`)}
 	</sl-menu>
 </sl-dropdown>`
-	}
 }
 
 @customElement("theme-picker-switch")

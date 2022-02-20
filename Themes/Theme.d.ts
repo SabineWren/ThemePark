@@ -17,7 +17,7 @@ type ButtonVariant = SemanticColoursTuple[number]
 
 type ThemeSpecification = {
 	ContrastBody: | 0 | 50 | 100 | 200
-	ContrastPanel: | 0 | 50 | 100 | 200
+	ContrastPanel: | 0 | 50 | 100
 	// Dark themes usually prefer lower values to prevent light bleed
 	ContrastText: | 800 | 900 | 950 | 1000
 
