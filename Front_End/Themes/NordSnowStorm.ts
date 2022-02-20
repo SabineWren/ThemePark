@@ -2,7 +2,6 @@ import { Nord } from "Themes/Palettes/NordPalette.js"
 
 export const NordSnowStorm = (): ThemeSpecification => ({
 	ContrastBody: 50,
-	// ContrastButtonHover: 600,
 	ContrastPanel: 0,
 	ContrastText: 900,
 	CssName: "sl-nord-snow-storm",
@@ -20,8 +19,8 @@ const colours: ThemeColours = {
 	},
 	neutral: {
 		Min: Nord.White,
-		C500: Nord.GreyDark2,
-		C600: Nord.GreyDark1,
+		C500: Nord.GreyLight,
+		C600: Nord.GreyDark,
 		Max: Nord.Black,
 	},
 	primary: {

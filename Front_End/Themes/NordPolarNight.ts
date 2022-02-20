@@ -1,8 +1,7 @@
 import { Nord } from "Themes/Palettes/NordPalette.js"
 
 export const NordPolarNight = (): ThemeSpecification => ({
-	ContrastBody: 200,
-	// ContrastButtonHover: 500,
+	ContrastBody: 100,
 	ContrastPanel: 50,
 	ContrastText: 900,
 	CssName: "sl-nord-polar-night",
@@ -20,8 +19,8 @@ const colours: ThemeColours = {
 	},
 	neutral: {
 		Min: Nord.Black,
-		C500: Nord.GreyDark1,
-		C600: Nord.GreyDark2,
+		C500: Nord.GreyDark,
+		C600: Nord.GreyLight,
 		Max: Nord.White,
 	},
 	primary: {

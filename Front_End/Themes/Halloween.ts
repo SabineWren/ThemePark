@@ -19,15 +19,15 @@ const colours: ThemeColours = {
 	},
 	neutral: {
 		Min: Hsl(257, 40, 14),
-		C500: Hsl(272, 25, 46),
+		C500: Hsl(272, 25, 49),
 		C600: Hsl(281, 25, 60),
 		Max: Hsl(281, 7, 99),
 	},
 	primary: {
 		Min: Hsl(12, 65, 22),
-		C500: Hsl(24, 88, 56),
-		C600: Hsl(36, 100, 58),
-		Max: Hsl(36, 100, 95),
+		C500: Hsl(24, 100, 52),
+		C600: Hsl(30, 100, 60),
+		Max: Hsl(36, 100, 96),
 	},
 	success: {
 		Min: Hsl(114, 30, 16),
