@@ -23,6 +23,6 @@
 		"bundle-dist": "rollup --config Front_End/Bundle/Rollup.config.js --failAfterWarnings",
 		"compile": "tsc -w --project tsconfig.json",
 		"compile-dist": "tsc --project tsconfig.json",
-		"lint": "eslint --ext .ts --config EslintConfig.js Front_End/ Themes/"
+		"lint": "eslint --ext .ts --config EslintConfig.js Front_End/"
 	}
 }

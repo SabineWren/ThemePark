@@ -38,7 +38,6 @@
 			"Front_End/**",
 			"node_modules/@shoelace-style/**",
 			"node_modules/@types",
-			"Themes/**",
 		],
 		// ****** Language features for code verification. ******
 		"noImplicitAny": true,
@@ -47,6 +46,6 @@
 		"strictNullChecks": true,
 		"strictFunctionTypes": true
 	},
-	"include": ["EslintConfig.ts", "Front_End/**/*", "Themes/**/*"],
+	"include": ["EslintConfig.ts", "Front_End/**/*"],
 	"exclude": ["node_modules"]
 }

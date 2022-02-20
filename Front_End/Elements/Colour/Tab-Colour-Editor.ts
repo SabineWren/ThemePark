@@ -3,10 +3,10 @@ import { css, html, LitElement } from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { live } from "lit/directives/live.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
+import { ToStringHsl, ToStringHslCommas } from "Lib/Colours.js"
 import { Shared } from "Elements/Style.js"
+import { Tokenize } from "Platform_Targets/Shoelace.js"
 import { ThemeProvider } from "Providers/Theme.js"
-import { ToStringHsl, ToStringHslCommas } from "Themes/Lib/Colours.js"
-import { Tokenize } from "Themes/Platform_Targets/Shoelace.js"
 
 const style = css`
 :host {

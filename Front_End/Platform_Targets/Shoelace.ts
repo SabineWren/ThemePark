@@ -1,6 +1,6 @@
 import * as chroma from "chroma.ts"
 import { css, unsafeCSS } from "lit"
-import { Hsl, Interpolate, ToStringHsl } from "Themes/Lib/Colours.js"
+import { Hsl, Interpolate, ToStringHsl } from "Lib/Colours.js"
 
 export const ThemeToCss = (spec: ThemeSpecification) => css`
 .${unsafeCSS(spec.CssName)}  {

@@ -1,4 +1,4 @@
-import { Hsl } from "Themes/Lib/Colours.js"
+import { Hsl } from "Lib/Colours.js"
 
 export const ShoelaceLight = (): ThemeSpecification => ({
 	ContrastBody: 0,

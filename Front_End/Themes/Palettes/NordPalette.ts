@@ -1,4 +1,4 @@
-import { Hsl } from "Themes/Lib/Colours.js"
+import { Hsl } from "Lib/Colours.js"
 /* https://www.nordtheme.com/
  * https://github.com/arcticicestudio/nord/blob/develop/src/nord.css
  *

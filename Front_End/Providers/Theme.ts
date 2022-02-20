@@ -1,11 +1,11 @@
 import { ReactiveController, ReactiveControllerHost } from "lit"
-import { ThrottleFactory } from "Lib.js"
+import { ThemeToCss } from "Platform_Targets/Shoelace.js"
 import { Halloween } from "Themes/Halloween.js"
 import { NordPolarNight } from "Themes/NordPolarNight.js"
 import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
-import { ThemeToCss } from "Themes/Platform_Targets/Shoelace.js"
+import { ThrottleFactory } from "Utilities/Throttle.js"
 
 export enum ThemeMode { Dark=1, Light=2 }
 const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
