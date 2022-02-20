@@ -1,4 +1,5 @@
 import { ReactiveController, ReactiveControllerHost } from "lit"
+import { Halloween } from "Themes/Halloween.js"
 import { NordPolarNight } from "Themes/NordPolarNight.js"
 import { NordSnowStorm } from "Themes/NordSnowStorm.js"
 import { ShoelaceDark } from "Themes/ShoelaceDark.js"
@@ -10,6 +11,7 @@ const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
 const THEMES_DARK = [
 	ShoelaceDark(),
 	NordPolarNight(),
+	Halloween(),
 ] as const
 const THEMES_LIGHT = [
 	ShoelaceLight(),

@@ -117,14 +117,14 @@ sl-card.outline {
 sl-card.outline::part(base) {
 	border: none;
 	background: var(--sl-panel-background-color) linear-gradient(90deg
-	,hsla(var(--end), 0%) 0%
-	,hsla(var(--end), 40%) 19%
-	,hsla(var(--start), 100%) 29%
-	,hsla(var(--start), 70%) 35%
-	,hsla(var(--end), 50%) 45%
-	,hsla(var(--end), 15%) 70%
-	,hsla(var(--end), 0%) 100%
-	)
+		,hsla(var(--end), 0%) 0%
+		,hsla(var(--end), 40%) 19%
+		,hsla(var(--start), 100%) 29%
+		,hsla(var(--start), 70%) 35%
+		,hsla(var(--end), 50%) 45%
+		,hsla(var(--end), 15%) 70%
+		,hsla(var(--end), 0%) 100%
+	);
 }
 sl-card.outline::part(header) {
 	border: none;

@@ -1,24 +1,7 @@
-import { css, html, LitElement} from "lit"
+import { html, LitElement} from "lit"
 import { customElement } from "lit/decorators.js"
-import { Shared } from "Elements/Style.js"
+import { Shared, StyleToggleBtn } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
-
-export const StyleToggleBtn = css`
-.toggle-btn {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	user-select: none;
-}
-/* focus ring (aka border) should be above other buttons when selected */
-sl-button[selected] { z-index: 3; }
-sl-button[selected]::part(base) {
-	border-color: var(--sl-color-primary-200);
-	box-shadow: 0 0 10px 4px var(--sl-color-primary-100) inset; }
-sl-button[selected]:hover::part(base) {
-	border-color: var(--sl-color-success-300);
-	box-shadow: 0 0 10px 4px var(--sl-color-success-100) inset; }
-`
 
 @customElement("mode-theme-type")
 class _lightDark extends LitElement {

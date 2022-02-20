@@ -1,8 +1,7 @@
 import { html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
-import { Shared } from "Elements/Style.js"
+import { Shared, StyleToggleBtn } from "Elements/Style.js"
 import { ThemeMode, ThemeProvider } from "Providers/Theme.js"
-import { StyleToggleBtn } from "Elements/Colour/ModeButtons.js"
 
 @customElement("theme-picker-dropdown")
 export class ThemePickerDropdown extends LitElement {
