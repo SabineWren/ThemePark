@@ -5,13 +5,13 @@
 	transform-origin: center;
 	transform-box: fill-box;
 
-	--au-background: var(--sl-color-neutral-1000, hsl(190, 17%, 7%));
+	--au-background: hsl(190, 17%, 7%);
 
-	/* Green */
+	/* Drazi Green */
 	--au-1-start: hsl(138 63% 18%);
 	--au-1-end: hsl(139 49% 10%);
 
-	/* purple */
+	/* Drazi Purple */
 	--au-2-start: hsl(265 100% 18%);
 	--au-2-end: hsl(244 37% 15%);
 	--au-2-spot: hsl(195, 11%, 7%);

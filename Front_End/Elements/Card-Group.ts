@@ -1,12 +1,10 @@
 import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
-import { OpenProp } from "Gradients/OpenProp.js"
 
 const style = css`
 :host {
 	display: flex; flex-direction: column; gap: 2rem;
-	--aurora1: url("/aurora/aurora-corners.svg");
 }
 
 sl-card {
@@ -67,12 +65,9 @@ sl-card.outline::part(footer) {
 
 sl-card.decorative::part(base) {
 	color: var(--sl-color-neutral-1000);
-	background-image: var(--aurora1);
-	background-size: cover;
-}
-
-sl-card.aurora::part(base) {
-	background-image: var(--aurora1);
+	background: var(--card-decorative-bg);
+	border: none;
+	/* TODO box shadow */
 }
 `
 /*
@@ -86,12 +81,13 @@ TODO type CardOptions = {
 
 @customElement("card-group")
 class _ele extends LitElement {
-	static override get styles() { return [Shared, style, OpenProp] }
+	static override get styles() { return [Shared, style] }
 	override render() {
 		const sampleText = () => html`<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit</strong>, sed do eiusmod <strong>tempor incididunt</strong> ut labore et dolore magna aliqua.</p>`
 		return html`
 <div style="width: 100%">
-Card theming not yet implemented. Coming soon!
+<select-gradient></select-gradient>
+<br>Card theming not yet implemented. Coming soon!
 <br>Figuring out gradients and box shadows first.
 </div>
 
@@ -148,15 +144,6 @@ Card theming not yet implemented. Coming soon!
 			</sl-tooltip>
 		</div>
 		${sampleText()}
-	</sl-card>
-</div>
-
-<div style="display: inline-flex; gap: 2rem; flex-wrap: wrap;">
-	<sl-card class="aurora">
-		<div style="height: 40em;"></div>
-	</sl-card>
-	<sl-card class="aurora" style="max-width: 40em;">
-		<div style="height: 15em;"></div>
 	</sl-card>
 </div>
 `

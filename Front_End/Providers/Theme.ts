@@ -39,7 +39,10 @@ const state = (() => {
 const getTheme = () =>
 	state.Mode === ThemeMode.Light ? state.Light : state.Dark
 
-export const GetThemeCss = () => ThemeToCss(getTheme()).cssText
+// TODO move to theme
+let gradient = `url("/aurora/aurora-corners.svg")`
+
+export const GetThemeCss = () => ThemeToCss(getTheme(), gradient).cssText
 const loadStyleTag = () => {
 	const theme = getTheme()
 	const style = createStyle(theme.CssName, GetThemeCss())
@@ -128,4 +131,11 @@ export class ThemeProvider implements ReactiveController {
 	}
 
 	GetLabel = () => getTheme().Label
+
+	// TODO move to theme
+	GetGradient = () => gradient
+	SetGradient = (grad: string) => {
+		gradient = grad
+		this.reapplyTheme()
+	}
 }

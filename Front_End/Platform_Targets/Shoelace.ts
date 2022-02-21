@@ -2,7 +2,7 @@ import * as chroma from "chroma.ts"
 import { css, unsafeCSS } from "lit"
 import { Hsl, Interpolate, ToStringHsl } from "Lib/Colours.js"
 
-export const ThemeToCss = (spec: ThemeSpecification) => css`
+export const ThemeToCss = (spec: ThemeSpecification, grad: string) => css`
 .${unsafeCSS(spec.CssName)}  {
 /* Colours */
 ${unsafeCSS(coloursToCss(slTokenizeAll(spec.TokensColourTheme)))}
@@ -11,10 +11,11 @@ ${unsafeCSS(coloursToCss(slTokenizeAll(spec.TokensColourTheme)))}
 ${unsafeCSS(tokensToCss(spec.IsLight ? shoelaceLight : shoelaceDark))}
 
 /* Panels/Cards */
+--card-decorative-bg: ${unsafeCSS(grad)};
 --sl-panel-border-color: var(--sl-color-neutral-200);
 --sl-panel-background-color: var(--sl-color-neutral-${spec.ContrastPanel});
 
-/* SVGs -- May needed for some libraries.
+/* SVG icons
  * https://shoelace.style/components/icon?id=icon-libraries
  * We set it here so we can override it later with a gradient URL as needed.
  * Only used if explicitly set by the app when registering icon libraries */

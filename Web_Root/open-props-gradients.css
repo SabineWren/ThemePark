@@ -3,10 +3,7 @@
 	https://github.com/argyleink/open-props
 	Copyright Adam Argyle 2021
 	Licensed under MIT */
-import { css } from "lit"
-
-export const OpenProp = css`
-:host {
+:root {
 	--gradient-1: linear-gradient(to bottom right,#1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
 	--gradient-2: linear-gradient(to bottom right,#48005c, #8300e2, #a269ff);
 	--gradient-3:
@@ -67,4 +64,3 @@ export const OpenProp = css`
 			hsl(150 100% 84%), hsl(150 100% 84% / 0%)
 		);
 }
-`
