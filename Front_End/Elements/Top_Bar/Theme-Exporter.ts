@@ -10,9 +10,11 @@ class _ele extends LitElement {
 	override render() {
 		return html`
 <sl-button-group>
-	<sl-button variant="default" size="medium">Save Theme</sl-button>
 	<sl-dropdown placement="bottom-end">
-		<sl-button slot="trigger" size="medium" caret></sl-button>
+		<sl-button variant="default" slot="trigger" size="medium"
+			>Export Theme
+			<sl-icon slot="suffix" name="triangle" library="custom"></sl-icon>
+		</sl-button>
 		<sl-menu>
 			<sl-menu-item
 				@click=${() => download(GetThemeCss(), "shoelace-theme.css")}

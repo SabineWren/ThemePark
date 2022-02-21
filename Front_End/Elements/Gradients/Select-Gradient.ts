@@ -29,11 +29,11 @@ class _class extends LitElement {
 	>${o[0]}
 </sl-menu-item>`
 		return html`
-<sl-dropdown hoist
+<sl-dropdown
 	@sl-select=${(e: any) => this.handleSelect(e)}>
-	<sl-button variant="primary" size="medium" slot="trigger" class="rectangle"
+	<sl-button variant="default" size="medium" slot="trigger"
 		>${this.selected[0]}
-		<sl-icon slot="suffix" name="caret-down-fill"></sl-icon>
+		<sl-icon slot="suffix" name="triangle" library="custom"></sl-icon>
 	</sl-button>
 	<sl-menu>
 		<menu-header>Aurora</menu-header>

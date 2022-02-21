@@ -9,7 +9,10 @@ export class ThemePickerDropdown extends LitElement {
 	static override get styles() { return [Shared] }
 	override render = () => html`
 <sl-dropdown>
-	<sl-button slot="trigger" caret>${this.theme.GetLabel()}</sl-button>
+	<sl-button slot="trigger"
+		>${this.theme.GetLabel()}
+		<sl-icon slot="suffix" name="triangle" library="custom"></sl-icon>
+	</sl-button>
 	<sl-menu
 		@sl-select=${(e: any) => this.theme.SetTheme(e.detail.item.theme)}>
 		${this.theme.GetThemeOptions().map(o => html`
