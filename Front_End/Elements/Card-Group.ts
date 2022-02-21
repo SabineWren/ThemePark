@@ -26,6 +26,7 @@ sl-card:is(.subtle,.outline) {
 	--hsla-end: hsla(var(--end), var(--alpha));
 }
 
+/* TODO move this to theme customization */
 sl-card:is(.subtle,.outline) :is(h1,h2,h3,h4,strong) {
 	color: transparent;
 	background: linear-gradient(var(--gradientDegree),var(--hsl-start) 0,var(--hsl-end) 100%);
@@ -41,15 +42,19 @@ sl-card.outline {
 	height: fit-content;
 	border-radius: var(--border-radius);
 	padding: var(--sl-spacing-2x-small);
-	background-image: var(--gradient-1); }
+	background: var(--gradient-1); }
 sl-card.outline::part(base) {
 	border: none; }
 
+sl-card.decorative {
+	background: var(--card-decorative-bg); }
+sl-card.decorative::part(header) {
+	border: none; }
 sl-card.decorative::part(base) {
 	color: var(--sl-color-neutral-1000);
-	background: var(--card-decorative-bg);
+	background: transparent;
+	backdrop-filter: blur(5px);
 	border: none;
-	/* TODO box shadow */
 }
 `
 /*
