@@ -26,6 +26,22 @@ class _ele extends LitElement {
 
 <tab-colour-editor-group class="centre"></tab-colour-editor-group>
 
+<gradient-divider
+	style="
+	--width: 2px;
+	--start: 52, 86%, 54%;
+	--end: 9, 100%, 67%;
+	--color: linear-gradient(135deg
+		,hsla(var(--end), 0%) 0%
+		,hsla(var(--end), 40%) 19%
+		,hsla(var(--start), 100%) 29%
+		,hsla(var(--start), 70%) 35%
+		,hsla(var(--end), 50%) 45%
+		,hsla(var(--end), 15%) 70%
+		,hsla(var(--end), 0%) 100%
+	);">
+</gradient-divider>
+
 <card-group class="centre"></card-group>
 `
 	}

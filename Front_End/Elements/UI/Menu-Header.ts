@@ -13,7 +13,7 @@ sl-menu-label {
 .line {
 	position: absolute; top: 50%; left: 1em;
 	height: 2px; width: Calc(100% - 2em);
-	background: var(--sl-color-neutral-900); }
+	background: currentColor; }
 .frame {
 	position: relative;
 	display: inline-block;

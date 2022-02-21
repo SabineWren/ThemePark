@@ -31,7 +31,7 @@ class _class extends LitElement {
 		return html`
 <sl-dropdown hoist
 	@sl-select=${(e: any) => this.handleSelect(e)}>
-	<sl-button variant="primary" size="small" slot="trigger" class="rectangle"
+	<sl-button variant="primary" size="medium" slot="trigger" class="rectangle"
 		>${this.selected[0]}
 		<sl-icon slot="suffix" name="caret-down-fill"></sl-icon>
 	</sl-button>
