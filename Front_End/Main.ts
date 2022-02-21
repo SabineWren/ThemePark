@@ -33,16 +33,15 @@ import "Elements/UI/Menu-Header.js"
 // svg => svg.setAttribute("fill", "currentColor")
 // TODO link to theme.
 const applyGradientFill = (svg: SVGElement) => {
-	const defs = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+	const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs")
 	defs.innerHTML = `
-<svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
-  <linearGradient id="global-svg-gradient" x2="1" y2="1">
-    <stop offset="0%" stop-color="var(--hsl-start)" />
-    <stop offset="100%" stop-color="var(--hsl-end)" />
-  </linearGradient>
-</svg>`
+<linearGradient id="global-svg-gradient"
+	x1="0%" y1="0%" x2="100%" y2="100%">
+	<stop offset="0%" stop-color="var(--icon-gradient-start)" />
+	<stop offset="100%" stop-color="var(--icon-gradient-end)" />
+</linearGradient>`
 	svg.prepend(defs)
-	svg.setAttribute("fill", "var(--svg-fill)")
+	svg.setAttribute("fill", "var(--icon-fill)")
 }
 
 const regIconLib = (dir: string, libName: string) => registerIconLibrary(libName, {

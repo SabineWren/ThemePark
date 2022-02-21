@@ -4,57 +4,60 @@ import { Hsl, Interpolate, ToStringHsl } from "Lib/Colours.js"
 
 export const ThemeToCss = (spec: ThemeSpecification, grad: string) => css`
 .${unsafeCSS(spec.CssName)}  {
-/* Colours */
-${unsafeCSS(coloursToCss(slTokenizeAll(spec.TokensColourTheme)))}
+	/* Colours */
+	${unsafeCSS(coloursToCss(slTokenizeAll(spec.TokensColourTheme)))}
 
-/* Box Shadows, Forms, Overlays, etc. */
-${unsafeCSS(tokensToCss(spec.IsLight ? shoelaceLight : shoelaceDark))}
+	/* Box Shadows, Forms, Overlays, etc. */
+	${unsafeCSS(tokensToCss(spec.IsLight ? shoelaceLight : shoelaceDark))}
 
-/* Panels/Cards */
---card-decorative-bg: ${unsafeCSS(grad)};
---sl-panel-border-color: var(--sl-color-neutral-200);
---sl-panel-background-color: var(--sl-color-neutral-${spec.ContrastPanel});
+	/* Panels/Cards */
+	--card-decorative-bg: ${unsafeCSS(grad)};
+	--sl-panel-border-color: var(--sl-color-neutral-200);
+	--sl-panel-background-color: var(--sl-color-neutral-${spec.ContrastPanel});
 
-/* SVG icons
- * https://shoelace.style/components/icon?id=icon-libraries
- * We set it here so we can override it later with a gradient URL as needed.
- * Only used if explicitly set by the app when registering icon libraries */
---svg-fill: currentColor;
+	/* SVG icons
+	* https://shoelace.style/components/icon?id=icon-libraries
+	* We set it here so we can override it later with a gradient URL as needed.
+	* Only used if explicitly set by the app when registering icon libraries */
+	--icon-gradient-start: hsl(52, 86%, 54%);
+	--icon-gradient-end: hsl(9, 100%, 67%);
+	--icon-fill: currentColor;
+	--icon-fill: url(#global-svg-gradient);
 
-/* Component Colours -- common to all themes,
- * but must apply after theme since they consume theme tokens */
---sl-input-background-color: var(--sl-color-neutral-0);
---sl-input-background-color-hover: var(--sl-input-background-color);
---sl-input-background-color-focus: var(--sl-input-background-color);
---sl-input-background-color-disabled: var(--sl-color-neutral-100);
---sl-input-border-color: var(--sl-color-neutral-300);
---sl-input-border-color-hover: var(--sl-color-neutral-400);
---sl-input-border-color-focus: var(--sl-color-primary-500);
---sl-input-border-color-disabled: var(--sl-color-neutral-300);
+	/* Component Colours -- common to all themes,
+	* but must apply after theme since they consume theme tokens */
+	--sl-input-background-color: var(--sl-color-neutral-0);
+	--sl-input-background-color-hover: var(--sl-input-background-color);
+	--sl-input-background-color-focus: var(--sl-input-background-color);
+	--sl-input-background-color-disabled: var(--sl-color-neutral-100);
+	--sl-input-border-color: var(--sl-color-neutral-300);
+	--sl-input-border-color-hover: var(--sl-color-neutral-400);
+	--sl-input-border-color-focus: var(--sl-color-primary-500);
+	--sl-input-border-color-disabled: var(--sl-color-neutral-300);
 
---sl-input-color: var(--sl-color-neutral-700);
---sl-input-color-hover: var(--sl-color-neutral-700);
---sl-input-color-focus: var(--sl-color-neutral-700);
---sl-input-color-disabled: var(--sl-color-neutral-900);
---sl-input-icon-color: var(--sl-color-neutral-500);
---sl-input-icon-color-hover: var(--sl-color-neutral-600);
---sl-input-icon-color-focus: var(--sl-color-neutral-600);
---sl-input-placeholder-color: var(--sl-color-neutral-500);
---sl-input-placeholder-color-disabled: var(--sl-color-neutral-600);
+	--sl-input-color: var(--sl-color-neutral-700);
+	--sl-input-color-hover: var(--sl-color-neutral-700);
+	--sl-input-color-focus: var(--sl-color-neutral-700);
+	--sl-input-color-disabled: var(--sl-color-neutral-900);
+	--sl-input-icon-color: var(--sl-color-neutral-500);
+	--sl-input-icon-color-hover: var(--sl-color-neutral-600);
+	--sl-input-icon-color-focus: var(--sl-color-neutral-600);
+	--sl-input-placeholder-color: var(--sl-color-neutral-500);
+	--sl-input-placeholder-color-disabled: var(--sl-color-neutral-600);
 
---sl-input-filled-background-color: var(--sl-color-neutral-100);
---sl-input-filled-background-color-hover: var(--sl-color-neutral-100);
---sl-input-filled-background-color-focus: var(--sl-color-neutral-100);
---sl-input-filled-background-color-disabled: var(--sl-color-neutral-100);
---sl-input-filled-color: var(--sl-color-neutral-800);
---sl-input-filled-color-hover: var(--sl-color-neutral-800);
---sl-input-filled-color-focus: var(--sl-color-neutral-700);
---sl-input-filled-color-disabled: var(--sl-color-neutral-800);
+	--sl-input-filled-background-color: var(--sl-color-neutral-100);
+	--sl-input-filled-background-color-hover: var(--sl-color-neutral-100);
+	--sl-input-filled-background-color-focus: var(--sl-color-neutral-100);
+	--sl-input-filled-background-color-disabled: var(--sl-color-neutral-100);
+	--sl-input-filled-color: var(--sl-color-neutral-800);
+	--sl-input-filled-color-hover: var(--sl-color-neutral-800);
+	--sl-input-filled-color-focus: var(--sl-color-neutral-700);
+	--sl-input-filled-color-disabled: var(--sl-color-neutral-800);
 
---sl-input-help-text-color: var(--sl-color-neutral-500);
+	--sl-input-help-text-color: var(--sl-color-neutral-500);
 
---sl-tooltip-background-color: var(--sl-color-neutral-800);
---sl-tooltip-color: var(--sl-color-neutral-0);
+	--sl-tooltip-background-color: var(--sl-color-neutral-800);
+	--sl-tooltip-color: var(--sl-color-neutral-0);
 }
 
 body.${unsafeCSS(spec.CssName)} {

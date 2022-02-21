@@ -5,7 +5,10 @@ import { Shared } from "Elements/Style.js"
 @customElement("menu-header")
 class _class extends LitElement {
 	static override get styles() { return [Shared, css`
-:host { display: block; user-select: none; }
+:host {
+	display: block;
+	white-space: nowrap;
+	user-select: none; }
 sl-menu-label {
 	position: relative;
 	display: flex; justify-content: center;

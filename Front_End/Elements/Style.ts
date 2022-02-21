@@ -28,7 +28,13 @@ sl-dropdown sl-menu-item::part(base) {
 sl-dropdown sl-menu-item[checked]::part(label) {
 	--sl-color-neutral-700: var(--sl-color-neutral-1000);
 	font-weight: bold; }
+
+/* TODO move to theme :host css */
+sl-button:not([variant="default"]) sl-icon {
+	--icon-fill: currentColor;
+}
 `
+
 export const StyleToggleBtn = css`
 .toggle-btn {
 	display: flex;

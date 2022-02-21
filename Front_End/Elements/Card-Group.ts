@@ -16,7 +16,6 @@ sl-card {
 }
 
 sl-card:is(.subtle,.outline) {
-	--svg-fill: url(#global-svg-gradient);
 	--start: 52, 86%, 54%;
 	--end: 9, 100%, 67%;
 	--alpha: 20%;
@@ -47,6 +46,7 @@ sl-card.outline::part(base) {
 	border: none; }
 
 sl-card.decorative {
+	--icon-fill: currentColor;
 	background: var(--card-decorative-bg); }
 sl-card.decorative::part(header) {
 	border: none; }
