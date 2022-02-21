@@ -26,7 +26,7 @@ import "Elements/Top_Bar/Theme-Picker.js"
 import "Elements/Top_Bar/Top-Bar.js"
 
 // svg => svg.setAttribute("fill", "currentColor")
-// TODO link to theme. Obivously this requires shipping JavaScript with the theme.
+// TODO link to theme.
 const applyGradientFill = (svg: SVGElement) => {
 	const defs = document.createElementNS("http://www.w3.org/2000/svg", "svg")
 	defs.innerHTML = `
