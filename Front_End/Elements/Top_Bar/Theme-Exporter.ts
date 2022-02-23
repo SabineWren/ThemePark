@@ -13,7 +13,7 @@ class _ele extends LitElement {
 	<sl-dropdown placement="bottom-end">
 		<sl-button variant="default" slot="trigger" size="medium"
 			>Export Theme
-			<sl-icon slot="suffix" name="triangle" library="custom"></sl-icon>
+			<sl-icon slot="suffix" name="caret-down-fill"></sl-icon>
 		</sl-button>
 		<sl-menu>
 			<sl-menu-item

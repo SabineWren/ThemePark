@@ -15,15 +15,6 @@ export const ThemeToCss = (spec: ThemeSpecification, grad: string) => css`
 	--sl-panel-border-color: var(--sl-color-neutral-200);
 	--sl-panel-background-color: var(--sl-color-neutral-${spec.ContrastPanel});
 
-	/* SVG icons
-	* https://shoelace.style/components/icon?id=icon-libraries
-	* We set it here so we can override it later with a gradient URL as needed.
-	* Only used if explicitly set by the app when registering icon libraries */
-	--icon-gradient-start: hsl(52, 86%, 54%);
-	--icon-gradient-end: hsl(9, 100%, 67%);
-	--icon-fill: currentColor;
-	--icon-fill: url(#global-svg-gradient);
-
 	/* Component Colours -- common to all themes,
 	* but must apply after theme since they consume theme tokens */
 	--sl-input-background-color: var(--sl-color-neutral-0);

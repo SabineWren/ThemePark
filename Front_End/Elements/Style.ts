@@ -1,6 +1,19 @@
 import { css } from "lit"
 
 export const Shared = css`
+* {
+	/* SVG icons TODO move to theme
+	* https://shoelace.style/components/icon?id=icon-libraries
+	* We set it here so we can override it later with a gradient URL as needed.
+	* Only used if explicitly set by the app when registering icon libraries */
+	--icon-gradient-start: var(--sl-color-primary-400);
+	--icon-gradient-end: var(--sl-color-primary-800);
+	--icon-fill: currentColor;
+	--icon-fill: url(#global-svg-gradient);
+
+	--sl-transition-medium: 200ms;
+}
+
 * { box-sizing: border-box; }
 
 h1, h2, h3, h4, p {

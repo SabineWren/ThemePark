@@ -11,7 +11,7 @@ export class ThemePickerDropdown extends LitElement {
 <sl-dropdown>
 	<sl-button slot="trigger"
 		>${this.theme.GetLabel()}
-		<sl-icon slot="suffix" name="triangle" library="custom"></sl-icon>
+		<sl-icon slot="suffix" name="caret-down-fill"></sl-icon>
 	</sl-button>
 	<sl-menu
 		@sl-select=${(e: any) => this.theme.SetTheme(e.detail.item.theme)}>

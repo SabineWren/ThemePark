@@ -33,7 +33,7 @@ class _class extends LitElement {
 	@sl-select=${(e: any) => this.handleSelect(e)}>
 	<sl-button variant="default" size="medium" slot="trigger"
 		>${this.selected[0]}
-		<sl-icon slot="suffix" name="triangle" library="custom"></sl-icon>
+		<sl-icon slot="suffix" name="caret-down-fill"></sl-icon>
 	</sl-button>
 	<sl-menu>
 		<menu-header>Aurora</menu-header>
