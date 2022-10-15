@@ -7,24 +7,24 @@ class _class extends LitElement {
 	static override get styles() { return [Shared, css`
 :host {
 	display: block;
-	white-space: nowrap; }
-sl-menu-label {
-	position: relative;
-	display: flex; justify-content: center;
-	font-weight: 600; }
-.line {
-	position: absolute; top: 50%; left: 1em;
-	height: 2px; width: Calc(100% - 2em);
-	background: currentColor; }
-.frame {
-	position: relative;
-	display: inline-block;
-	padding: 0 1em;
-	background-color: var(--sl-panel-background-color); }
+	font-weight: 600;
+	white-space: nowrap;
+	--min-line-width: Calc(var(--sl-spacing-x-large) - 2 * var(--sl-spacing-x-small));
+}
+sl-menu-label::part(base) {
+	display: flex; gap: var(--sl-spacing-x-small); align-items: center;
+	padding-left: var(--sl-spacing-x-small);
+	background: var(--sl-panel-background-color);
+}
+.line { height: 2px; width: var(--min-line-width); background: currentColor; }
+.left { flex: 0 0 var(--min-line-width); }
+.right { flex: 1 0 var(--min-line-width); }
 `] }
 	override render = () => html`
 <sl-menu-label>
-	<div class="line"></div>
-	<div class="frame"><slot></slot></div>
+	<div class="line left"></div>
+	<div><slot></slot></div>
+	<div class="line right"></div>
 </sl-menu-label>`
 }
+

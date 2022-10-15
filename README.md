@@ -19,12 +19,6 @@ A pre-alpha app for creating GUI themes and exporting them to a target platform.
 - Implement save/load raw theme spec
 - Logo for `<meta property="og:image" content="">`
 
-## Building
-1. `npm install`
-2. `npm run <script>` See package.json for scripts to run
-3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
-4. Load at localhost:5000/dist/index.html
-
 ## Problem
 Apps document themes through a set of Design Tokens, typically CSS Custom Properties or JSON key-value pairs. Applying third party themes requires sharing tokens, but each design system uses different tokens.
 
@@ -73,3 +67,12 @@ Shoelace requires more colour shades than themes supply as tokens, which require
 [Everforest](https://github.com/sainnhe/everforest) sepia, dim. Green pastel (see its inspirations as well)
 
 [Miramare](https://github.com/franbach/miramare) merges Everforest with Gruvbox, and in turn inspired Pinkmare
+
+## Building
+Never manually edit anything within `Web_Root/dist/`.
+1. `npm install`
+2. `npm run <script>` See package.json for scripts to run
+3. Run a local server, ex. `cd Web_Root && php -S localhost:5000`
+4. Load at localhost:5000/dist/index.html
+
+If you edit the HTML template file, you'll have to restart Rollup to copy the template. Watch mode updates the file hashes in place on script change. See the rollup config for more info.

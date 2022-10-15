@@ -113,7 +113,7 @@ const shoelaceLight = {
 	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),
 } as const
 
-const rangeStart = [50,100, 200, 300, 400, 500]
+const rangeStart = [50, 100, 200, 300, 400, 500]
 const rangeEnd = [600, 700, 800, 900, 950]
 
 export const Tokenize = (token: keyof ThemeColours, colours: ColourRange) => {
