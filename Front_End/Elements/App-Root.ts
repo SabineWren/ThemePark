@@ -24,7 +24,7 @@ class _ele extends LitElement {
 	<mode-contrast-text></mode-contrast-text>
 </div>
 
-<tab-colour-editor-group class="centre"></tab-colour-editor-group>
+<tab-color-editor-group class="centre"></tab-color-editor-group>
 
 <sl-divider
 	style="

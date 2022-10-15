@@ -1,4 +1,4 @@
-import { Hsl } from "Lib/Colours.js"
+import { Hsl } from "Lib/Colors.js"
 
 export const Halloween = (): ThemeSpecification => ({
 	ContrastBody: 50,
@@ -7,10 +7,10 @@ export const Halloween = (): ThemeSpecification => ({
 	CssName: "halloween-dark",
 	IsLight: false,
 	Label: "Halloween",
-	TokensColourTheme: colours,
+	TokensColorTheme: colors,
 })
 
-const colours: ThemeColours = {
+const colors: ThemeColors = {
 	danger: {
 		Min: Hsl(0, 56, 23.9),
 		C500: Hsl(0.7, 89.6, 57.2),

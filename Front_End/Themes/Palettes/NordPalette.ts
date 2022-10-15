@@ -1,4 +1,4 @@
-import { Hsl } from "Lib/Colours.js"
+import { Hsl } from "Lib/Colors.js"
 // https://www.nordtheme.com/
 // https://github.com/arcticicestudio/nord/blob/develop/src/nord.css
 export const Nord = {
@@ -13,7 +13,7 @@ export const Nord = {
 	*/
 	// "Used for texts, backgrounds, carets and structuring characters like curly- and square brackets."
 	// Dark mode: high contrast background
-	// Light mode: main text colour
+	// Light mode: main text color
 	// [0]: Hsl(220, 16, 22),
 
 	// "Used as a lighter background color for UI elements like status bars."
@@ -44,7 +44,7 @@ export const Nord = {
 	// [5]: Hsl(218, 27, 92),
 
 	// "In the UI scope used as background, selection- and highlight color depending on the theme shading design."
-	// Dark mode: main text colour
+	// Dark mode: main text color
 	// Light mode: high contrast background
 	// [6]: Hsl(218, 27, 94),
 
@@ -72,7 +72,7 @@ export const Nord = {
 	// [10]: Hsl(213, 32, 52),
 
 	/* ***************************************
-		*** Aurora (pastel colours) ***
+		*** Aurora (pastel colors) ***
 	*/
 	// "Used for errors"
 	C11_RedCustom1: Hsl(354, 38, 10),

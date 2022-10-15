@@ -27,7 +27,7 @@ sl-card::part(body) {
 
 const variants = ["primary", "success", "neutral", "warning", "danger"] as const
 
-@customElement("tab-colour-editor-group")
+@customElement("tab-color-editor-group")
 class _ele extends LitElement {
 	private previewState = new PreviewState(this)
 	private lastVariant: typeof variants[number] = variants[0]
@@ -39,7 +39,7 @@ class _ele extends LitElement {
 	static override get styles() { return [Shared, style] }
 	override render() {
 		const isOutline = this.previewState.GetIsOutline()
-		const isCollapsed = $<SlTab>(this, "#hide-colours")?.active ?? false
+		const isCollapsed = $<SlTab>(this, "#hide-colors")?.active ?? false
 
 		// Timeout so sl-tab events settle and update isCollapsed
 		const reExpand = () => setTimeout(() => {
@@ -59,10 +59,10 @@ class _ele extends LitElement {
 	</sl-tab>
 	<sl-tab-panel name="${t}">
 		<sl-card>
-			<tab-colour-editor variant="${t}"></tab-colour-editor>
+			<tab-color-editor variant="${t}"></tab-color-editor>
 		</sl-card>
 	</sl-tab-panel>`)}
-	<sl-tab slot="nav" id="hide-colours">
+	<sl-tab slot="nav" id="hide-colors">
 		<sl-button variant="default" ?outline=${isOutline}
 			@click=${() => reExpand()}>
 			<div style="min-width: 4em;">${isCollapsed ? "Expand" : "Collapse"}</div>

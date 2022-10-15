@@ -4,9 +4,9 @@ import { LCH_to_RGB_Percents } from "./Rgb.js"
 /* Chroma works fine with LCH -> LAB,
  * but incorect LCH -> XYZ and LCH -> RGB.
  * This clamps to the perceptually-nearest sRGB value */
-export const ToSrgbColourSpace = (colour: chroma.Color) => {
-	const alpha = colour.alpha()
-	const lch = colour.lch()
+export const ToSrgbColorSpace = (color: chroma.Color) => {
+	const alpha = color.alpha()
+	const lch = color.lch()
 	const lchSrgb = lchToSrgbSpace(lch)
 	return chroma
 		.lch(lchSrgb)

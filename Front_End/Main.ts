@@ -21,9 +21,9 @@ import "@shoelace-style/shoelace/dist/components/tooltip/tooltip.js"
 import { registerIconLibrary } from "@shoelace-style/shoelace/dist/utilities/icon-library.js"
 import "Elements/App-Root.js"
 import "Elements/Card-Group.js"
-import "Elements/Colour/ModeButtons.js"
-import "Elements/Colour/Tab-Colour-Editor.js"
-import "Elements/Colour/Tab-Colour-Editor-Group.js"
+import "Elements/Color/ModeButtons.js"
+import "Elements/Color/Tab-Color-Editor.js"
+import "Elements/Color/Tab-Color-Editor-Group.js"
 import "Elements/Gradients/Select-Gradient.js"
 import "Elements/Top_Bar/Theme-Exporter.js"
 import "Elements/Top_Bar/Theme-Picker.js"
@@ -44,10 +44,11 @@ const applyGradientFill = (svg: SVGElement) => {
 	svg.setAttribute("fill", "var(--icon-fill)")
 }
 
-const regIconLib = (dir: string, libName: string) => registerIconLibrary(libName, {
-	resolver: name => `/assets/${dir}/${name}.svg`,
-	mutator: applyGradientFill })
+const regIconLib = (libName: string, dirName: string) =>
+	registerIconLibrary(libName, {
+		resolver: name => `/assets/${dirName}/${name}.svg`,
+		mutator: applyGradientFill,
+	})
 regIconLib("custom", "custom")
 regIconLib("fa", "fa")
-regIconLib("icons", "default")
-regIconLib("icons", "system")
+regIconLib("default", "icons")

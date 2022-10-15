@@ -7,10 +7,10 @@ export const NordPolarNight = (): ThemeSpecification => ({
 	CssName: "sl-nord-polar-night",
 	IsLight: false,
 	Label: "Nord - Polar Night",
-	TokensColourTheme: colours,
+	TokensColorTheme: colors,
 })
 
-const colours: ThemeColours = {
+const colors: ThemeColors = {
 	danger: {
 		Min: Nord.C11_RedCustom1,
 		C500: Nord.C11_RedCustom2,

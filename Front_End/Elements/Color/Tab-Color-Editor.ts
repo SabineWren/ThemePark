@@ -3,7 +3,7 @@ import { css, html, LitElement } from "lit"
 import { customElement, property } from "lit/decorators.js"
 import { live } from "lit/directives/live.js"
 import { createRef, Ref, ref } from "lit/directives/ref.js"
-import { ToStringHsl, ToStringHslCommas } from "Lib/Colours.js"
+import { ToStringHsl, ToStringHslCommas } from "Lib/Colors.js"
 import { Shared } from "Elements/Style.js"
 import { Tokenize } from "Platform_Targets/Shoelace.js"
 import { ThemeProvider } from "Providers/Theme.js"
@@ -33,7 +33,7 @@ sl-tag::part(content) { min-width: 2em; }
 sl-tag::part(base):hover { cursor: pointer; }
 sl-tag::part(base) {
 	background: var(--background); }
-sl-tag::part(content) { color: var(--colour); }
+sl-tag::part(content) { color: var(--color); }
 
 sl-color-picker {
 	--grid-width: 360px; }
@@ -41,30 +41,30 @@ sl-color-picker, sl-color-picker::part(base) {
 	box-shadow: none; }
 sl-color-picker::part(swatches) { display: none; }`
 
-@customElement("tab-colour-editor")
+@customElement("tab-color-editor")
 class _ele extends LitElement {
-	@property({ reflect: true }) variant: keyof ThemeColours
-	private key: keyof ColourRange = "Min"
+	@property({ reflect: true }) variant: keyof ThemeColors
+	private key: keyof ColorRange = "Min"
 	private themeProvider = new ThemeProvider(this)
 	private pickerRef: Ref<SlColorPicker> = createRef()
-	private getSelectedColour = () => {
-		const colours = this.themeProvider.GetColoursVariant(this.variant)
-		const selectedColour = colours[this.key]
+	private getSelectedColor = () => {
+		const colors = this.themeProvider.GetColorsVariant(this.variant)
+		const selectedColor = colors[this.key]
 		const format = this.pickerRef.value?.format ?? "hsl"
-		return format === "hex" ? selectedColour.hex()
-			: format === "rgb" ? toStringRgb(selectedColour)
-			: ToStringHslCommas(selectedColour)
+		return format === "hex" ? selectedColor.hex()
+			: format === "rgb" ? toStringRgb(selectedColor)
+			: ToStringHslCommas(selectedColor)
 	}
-	private editColour() {
-		const oldValue = this.getSelectedColour()
+	private editColor() {
+		const oldValue = this.getSelectedColor()
 		const newValue = this.pickerRef.value!.value
 		// Setting the value of sl-color-picker triggers change without equality check
 		if (newValue === oldValue) { return }
-		this.themeProvider.SetColoursVariant(
+		this.themeProvider.SetColorsVariant(
 			this.variant, this.key, chroma.color(newValue))
 		this.requestUpdate()
 	}
-	private editKey(key: keyof ColourRange) {
+	private editKey(key: keyof ColorRange) {
 		this.key = key
 		this.requestUpdate()
 	}
@@ -73,12 +73,12 @@ class _ele extends LitElement {
 	protected override firstUpdated(_: any): void { this.requestUpdate() }
 	static override get styles() { return [Shared, style] }
 	override render() {
-		const colours = this.themeProvider.GetColoursVariant(this.variant)
-		const baseColours = Object.entries(colours).map(([k,c]) =>
-			({ key: k as keyof ColourRange, Css: ToStringHsl(c), L: c.lch()[0] }))
+		const colors = this.themeProvider.GetColorsVariant(this.variant)
+		const baseColors = Object.entries(colors).map(([k,c]) =>
+			({ key: k as keyof ColorRange, Css: ToStringHsl(c), L: c.lch()[0] }))
 
-		const value = this.getSelectedColour()
-		const tokens = Tokenize(this.variant, colours)
+		const value = this.getSelectedColor()
+		const tokens = Tokenize(this.variant, colors)
 		return html`
 <div style="grid-column: 1 / span 3; display: flex; gap: 5px; width: 100%;">
 	${Object.entries(tokens).map(([k,v]) => html`
@@ -90,14 +90,14 @@ class _ele extends LitElement {
 </div>
 
 <sl-tab-group placement="start" ?invert-primary=${this.variant === "primary"}>
-	${baseColours.map(({ key, Css, L }) => html`
+	${baseColors.map(({ key, Css, L }) => html`
 	<sl-tab slot="nav"
 		@click=${() => this.editKey(key)}>
 		<div style="width: 100%; font-size: 1.2em; font-weight: 600; margin-right: 1rem;"
-			>${this.getColourName(key)}
+			>${this.getColorName(key)}
 		</div>
 		<sl-tag
-			style="--background: ${Css}; --colour: ${L > 50.0 ? "black" : "white"};"
+			style="--background: ${Css}; --color: ${L > 50.0 ? "black" : "white"};"
 			variant="${this.variant}"
 			size="medium"
 			>${L.toFixed(1)}
@@ -107,7 +107,7 @@ class _ele extends LitElement {
 
 <sl-color-picker inline
 	${ref(this.pickerRef)}
-	@sl-change=${() => this.editColour()}
+	@sl-change=${() => this.editColor()}
 	format="hsl" .value=${live(value)}
 ></sl-color-picker>
 
@@ -117,7 +117,7 @@ class _ele extends LitElement {
 </div>
 `
 	}
-	private getColourName = (key: keyof ColourRange): string => {
+	private getColorName = (key: keyof ColorRange): string => {
 		// TODO will soon remove this method
 		// Will switch to this.themeProvider.GetMode
 		const isLight = this.themeProvider.GetIsLight()
@@ -130,8 +130,8 @@ class _ele extends LitElement {
 	}
 }
 
-const toStringLchCommas = (colour: chroma.Color) => {
-	const [l,c,h] = colour.lch()
+const toStringLchCommas = (color: chroma.Color) => {
+	const [l,c,h] = color.lch()
 	return `lch(${l.toFixed(1)}%, ${c.toFixed(0)}, ${h.toFixed(0)}°)`
 }
 

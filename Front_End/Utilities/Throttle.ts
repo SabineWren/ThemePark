@@ -1,9 +1,11 @@
-export const ThrottleFactory = (foo: () => any) => {
+export const ThrottleFactory = (foo: () => void) => {
 	let isThrottled = false
-	const fire = () => { foo(); isThrottled = false }
 	return () => {
 		if (isThrottled) { return }
 		isThrottled = true
-		setTimeout(fire, 50)
+		setTimeout(() => {
+			foo()
+			isThrottled = false
+		}, 50)
 	}
 }

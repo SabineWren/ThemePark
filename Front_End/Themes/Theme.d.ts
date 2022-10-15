@@ -1,14 +1,14 @@
 type TupleTriple = [number, number, number]
-type Colour = import("chroma.ts").Color
-type BoxShadow = { XYBlurSpread: string; Colour: Colour }
+type Color = import("chroma.ts").Color
+type BoxShadow = { XYBlurSpread: string; Color: Color }
 type ThemeShadowTokens = { [k: string]: BoxShadow }
 
-type SemanticColoursTuple = readonly ["primary", "success", "neutral", "warning", "danger"]
-type ButtonVariant = SemanticColoursTuple[number]
+type SemanticColorsTuple = readonly ["primary", "success", "neutral", "warning", "danger"]
+type ButtonVariant = SemanticColorsTuple[number]
 
 /* Stylesheet has 3 parts:
- * 1. Body css, which normally sets text colour and page background
- * 2. Theme colours that apply to root, body, and host
+ * 1. Body css, which normally sets text color and page background
+ * 2. Theme colors that apply to root, body, and host
  * 3. Platform-supplied shared css (ex. Shoelace tokens)
  * This probably isn't a good API, as theme implementors shouldn't
  * need to care about platform tokens. They will need to override
@@ -34,21 +34,21 @@ type ThemeSpecification = {
 	// Defines the theme implementation.
 	// Theme Park interpolates using LCH, then clamps to sRGB.
 	// Defaults to grey if not supplied
-	TokensColourTheme: ThemeColours
+	TokensColorTheme: ThemeColors
 }
 
 // Light theme order: Light -> Dark
 // Dark theme order: Dark -> Light
-type ColourRange = {
-	Min: Colour
-	C500: Colour
-	C600: Colour
-	Max: Colour
+type ColorRange = {
+	Min: Color
+	C500: Color
+	C600: Color
+	Max: Color
 }
-type ThemeColours = {
-	danger: ColourRange
-	neutral: ColourRange
-	primary: ColourRange
-	success: ColourRange
-	warning: ColourRange
+type ThemeColors = {
+	danger: ColorRange
+	neutral: ColorRange
+	primary: ColorRange
+	success: ColorRange
+	warning: ColorRange
 }

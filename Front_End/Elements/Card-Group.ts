@@ -105,7 +105,7 @@ class _ele extends LitElement {
 					Pops more than box-shadows. Useful for showing states like active, dragging, or dragover.
 					<br>
 					<br>
-					Replaces the box shadow with a border, and may apply fancier text/icon colour.
+					Replaces the box shadow with a border, and may apply fancier text/icon color.
 				</div>
 				<sl-icon name="info" library="fa"
 					style="font-size: var(--sl-font-size-large);"

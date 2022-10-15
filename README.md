@@ -41,18 +41,18 @@ Theme Park generates themes on-the-fly, but downstream apps will need pre-genera
 ## Constraints
 Some themes have complex backgrounds, such as SVG images or gradients. The API should use a [DDD](https://fsharpforfunandprofit.com/ddd/) type system to prevent broken results like `color: transparent;` without a corresponding `background-clip: text;`.
 
-Shoelace requires more colour shades than themes supply as tokens, which requires interpolating colours. Theme Park uses Chroma.ts to [interpolate colours in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB colour space. Once web browsers and the colour picker support LCH, sRGB clamping will become optional.
+Shoelace requires more color shades than themes supply as tokens, which requires interpolating colors. Theme Park uses Chroma.ts to [interpolate colors in LCH](https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/#2-lch-and-lab-is-perceptually-uniform), and then uses code adapted from Color.js to map the result to sRGB color space. Once web browsers and the color picker support LCH, sRGB clamping will become optional.
 
 ### Themes First Pass
 1. [Nord](https://nordtheme.com) Polar Night (dim), Snow Storm (light)
 2. Vampire (dark) variants: purple, pink, cyan, yellow, red, black
 
 #### Possible Future Themes
-[Midnight](https://github.com/i-mint/midnight) GNOME theme with 12 accent colour variants
+[Midnight](https://github.com/i-mint/midnight) GNOME theme with 12 accent color variants
 
 [Tokyo Night](https://github.com/enkia/tokyo-night-vscode-theme) dark, dim, and light and [unofficial variant](https://github.com/huytd/vscode-tokyo-city) with reduced saturation
 
-[Embark](https://embark-theme.github.io) is similar to vampire, but the palette offers both saturated and pastel colours. Technically has a Firefox port, although I'm still classifying it as an IDE theme due to limited GUI examples.
+[Embark](https://embark-theme.github.io) is similar to vampire, but the palette offers both saturated and pastel colors. Technically has a Firefox port, although I'm still classifying it as an IDE theme due to limited GUI examples.
 
 [Solarized](https://ethanschoonover.com/solarized/#usage-development) sepia, dim
 

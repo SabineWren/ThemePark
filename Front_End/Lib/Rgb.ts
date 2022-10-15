@@ -1,7 +1,7 @@
 /*
  * @author Lea Verou 2020 MIT License
  * Copied to Theme Park from CSS Land.
- * Tested with a 3rd party colour converter.
+ * Tested with a 3rd party color converter.
  */
 export const LCH_to_RGB_Percents = (LCH: TupleTriple): TupleTriple => {
 	// convert an array of CIE LCH values

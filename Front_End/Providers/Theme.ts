@@ -43,19 +43,21 @@ const getTheme = () =>
 let gradient = `url("/aurora/aurora-corners.svg")`
 
 export const GetThemeCss = () => ThemeToCss(getTheme(), gradient).cssText
-const loadStyleTag = () => {
+const appendCssColors = ThrottleFactory(() => {
 	const theme = getTheme()
 	const style = createStyle(theme.CssName, GetThemeCss())
 	$(document, `style#${theme.CssName}`)?.remove()
 	$(document, "head").appendChild(style)
 	$(document, "body").className = theme.CssName
-}
+})
+
+
 const applyCurrentTheme = () => {
 	const store = (k: string, v: string) => localStorage.setItem("theme-park-" + k, v)
 	store("dark", state.Dark.CssName)
 	store("light", state.Light.CssName)
 	store("mode", state.Mode === ThemeMode.Light ? "light" : "dark")
-	loadStyleTag()
+	appendCssColors()
 	hosts.forEach(h => h.requestUpdate())
 }
 
@@ -71,7 +73,7 @@ export class ThemeProvider implements ReactiveController {
 	hostConnected() { hosts.push(this.host) }
 	hostDisconnected() { hosts = hosts.filter(h => h !== this.host) }
 	private reapplyTheme() {
-		loadStyleTag()
+		appendCssColors()
 		hosts.forEach(h => h.requestUpdate())
 	}
 
@@ -92,14 +94,12 @@ export class ThemeProvider implements ReactiveController {
 	}
 
 	// ********** Theme Properties **********
-	GetColoursVariant = (variant: keyof ThemeColours) =>
-		getTheme().TokensColourTheme[variant]
-	SetColoursVariant = (() => {
-		// Only the caller needs to re-render, and colours change quickly
-		const applyColours = ThrottleFactory(loadStyleTag)
-		return (variant: keyof ThemeColours, key: keyof ColourRange, colour: Colour) => {
-			this.GetColoursVariant(variant)[key] = colour
-			applyColours()
+	GetColorsVariant = (variant: keyof ThemeColors) =>
+		getTheme().TokensColorTheme[variant]
+	SetColorsVariant = (() => {
+		return (variant: keyof ThemeColors, key: keyof ColorRange, color: Color) => {
+			this.GetColorsVariant(variant)[key] = color
+			appendCssColors()
 		}
 	})()
 

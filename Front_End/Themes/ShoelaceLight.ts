@@ -1,4 +1,4 @@
-import { Hsl } from "Lib/Colours.js"
+import { Hsl } from "Lib/Colors.js"
 
 export const ShoelaceLight = (): ThemeSpecification => ({
 	ContrastBody: 0,
@@ -8,10 +8,10 @@ export const ShoelaceLight = (): ThemeSpecification => ({
 	CssName: "shoelace-light",
 	IsLight: true,
 	Label: "Shoelace - Light",
-	TokensColourTheme: colours,
+	TokensColorTheme: colors,
 })
 
-const colours: ThemeColours = {
+const colors: ThemeColors = {
 	danger: {
 		Min: Hsl(0, 85.7, 97.3),
 		C500: Hsl(0, 84.2, 60.2),
