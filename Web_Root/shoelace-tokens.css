@@ -67,9 +67,9 @@
 
 	/*** Forms ***/
 	/* Buttons */
-	--sl-button-font-size-small: var(--sl-font-size-x-small);
-	--sl-button-font-size-medium: var(--sl-font-size-small);
-	--sl-button-font-size-large: var(--sl-font-size-medium);
+	--sl-button-font-size-small: var(--sl-font-size-small);
+	--sl-button-font-size-medium: var(--sl-font-size-medium);
+	--sl-button-font-size-large: var(--sl-font-size-large);
 
 	/* Inputs */
 	--sl-input-height-small: 1.875rem; /* 30px */

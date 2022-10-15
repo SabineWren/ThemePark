@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+<head>
 	<title>Theme Park</title>
 	<link rel="icon" sizes="32x32" type="image/svg" href="/assets/custom/logo.svg">
 	<meta charset="utf-8">
@@ -17,6 +18,9 @@ body {
 	font-weight: var(--sl-font-weight-normal);
 	letter-spacing: var(--sl-letter-spacing-normal);
 	line-height: var(--sl-line-height-normal);
+	--sl-button-font-size-small: var(--sl-font-size-x-small);
+	--sl-button-font-size-medium: var(--sl-font-size-small);
+	--sl-button-font-size-large: var(--sl-font-size-medium);
 }
 	</style>
 	<script>
@@ -28,4 +32,5 @@ window.$$ = (ele, selector) => Array.from(getRoot(ele).querySelectorAll(selector
 <body style="margin: 0;">
 	<app-root></app-root>
 	<script type="module" src="/dist/Main.123af.js"></script>
-</body></html>
+</body>
+</html>

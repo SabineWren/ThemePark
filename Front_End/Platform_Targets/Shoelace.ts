@@ -113,12 +113,12 @@ const shoelaceLight = {
 	"--sl-overlay-background-color": Hsl(240, 3.8, 46.1, 33),
 } as const
 
-const rangeStart = [50, 100, 200, 300, 400, 500]
-const rangeEnd = [600, 700, 800, 900, 950]
+const RANGE_START = [50, 100, 200, 300, 400, 500] as const
+const RANGE_END = [600, 700, 800, 900, 950] as const
 
 export const Tokenize = (token: keyof ThemeColors, colors: ColorRange) => {
-	const r1 = token === "neutral" ? [0, ...rangeStart] : rangeStart
-	const r2 = token === "neutral" ? [...rangeEnd, 1000] : rangeEnd
+	const r1 = token === "neutral" ? [0, ...RANGE_START] : RANGE_START
+	const r2 = token === "neutral" ? [...RANGE_END, 1000] : RANGE_END
 	return {
 		...tokenizeRange(token, r1, [colors.Min, colors.C500]),
 		...tokenizeRange(token, r2, [colors.C600, colors.Max]),
@@ -128,7 +128,7 @@ const slTokenizeAll = (cs: ThemeColors) => Object.entries(cs)
 	.map(([key,value]) => Tokenize(key as keyof ThemeColors, value))
 	.reduce((a,g) => ({ ...a, ...g }))
 
-const tokenizeRange = (token: string, steps: number[], colors: chroma.Color[]) => {
+const tokenizeRange = (token: string, steps: readonly number[], colors: chroma.Color[]) => {
 	const tokens = steps.map(s => `--sl-color-${token}-${s}`)
 	const shades = Interpolate(colors, steps.length)
 	const kvs = zip2(tokens, shades)

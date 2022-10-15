@@ -7,7 +7,7 @@ import { ShoelaceDark } from "Themes/ShoelaceDark.js"
 import { ShoelaceLight } from "Themes/ShoelaceLight.js"
 import { ThrottleFactory } from "Utilities/Throttle.js"
 
-export enum ThemeMode { Dark=1, Light=2 }
+export enum ThemeLightness { Dark=1, Light=2 }
 const MEDIA_PREF_LIGHT = window.matchMedia("(prefers-color-scheme: light)")
 const THEMES_DARK = [
 	ShoelaceDark(),
@@ -26,76 +26,78 @@ const createStyle = (id: string, cssText: string) => {
 	return style
 }
 
-const state = (() => {
-	const load = (k: string) => localStorage.getItem("theme-park-" + k)
-	const mode = load("mode")
-	const isLight = mode === null ? MEDIA_PREF_LIGHT.matches : mode === "light"
+const persisted = (() => {
+	const [DARK, LIGHT, LIGHTNESS] = [`theme-park-dark`, `theme-park-light`, `theme-park-lightness`]
+	const GetDark = () => THEMES_DARK.find(t => t.CssName === localStorage.getItem(DARK))
+		?? THEMES_DARK[0]
+	const GetLight = () => THEMES_LIGHT.find(t => t.CssName === localStorage.getItem(LIGHT))
+		?? THEMES_LIGHT[0]
+	const GetLightness = () => {
+		const lightness = localStorage.getItem(LIGHTNESS)
+		const isLight = lightness === null
+			? MEDIA_PREF_LIGHT.matches
+			: lightness === "light"
+		return isLight ? ThemeLightness.Light : ThemeLightness.Dark
+	}
 	return {
-		Dark: THEMES_DARK.find(t => t.CssName === load("dark")) ?? THEMES_DARK[0],
-		Light: THEMES_LIGHT.find(t => t.CssName === load("light")) ?? THEMES_LIGHT[0],
-		Mode: isLight ? ThemeMode.Light : ThemeMode.Dark,
+		GetDark, GetLight, GetLightness,
+		GetTheme: () => GetLightness() === ThemeLightness.Light ? GetLight() : GetDark(),
+		SetDark: (v: string) => localStorage.setItem(DARK, v),
+		SetLight: (v: string) => localStorage.setItem(LIGHT, v),
+		SetLightness: (v: ThemeLightness) =>
+			localStorage.setItem(LIGHTNESS, v === ThemeLightness.Light ? "light" : "dark"),
 	}
 })()
-const getTheme = () =>
-	state.Mode === ThemeMode.Light ? state.Light : state.Dark
 
-// TODO move to theme
+// TODO move state from provider variable to theme
 let gradient = `url("/aurora/aurora-corners.svg")`
 
-export const GetThemeCss = () => ThemeToCss(getTheme(), gradient).cssText
+export const GetThemeCss = () => ThemeToCss(persisted.GetTheme(), gradient).cssText
 const appendCssColors = ThrottleFactory(() => {
-	const theme = getTheme()
+	const theme = persisted.GetTheme()
 	const style = createStyle(theme.CssName, GetThemeCss())
 	$(document, `style#${theme.CssName}`)?.remove()
 	$(document, "head").appendChild(style)
 	$(document, "body").className = theme.CssName
 })
-
-
-const applyCurrentTheme = () => {
-	const store = (k: string, v: string) => localStorage.setItem("theme-park-" + k, v)
-	store("dark", state.Dark.CssName)
-	store("light", state.Light.CssName)
-	store("mode", state.Mode === ThemeMode.Light ? "light" : "dark")
+const forceRefresh = () => {
 	appendCssColors()
 	hosts.forEach(h => h.requestUpdate())
 }
 
-MEDIA_PREF_LIGHT.addEventListener("change", () => {
-	state.Mode = MEDIA_PREF_LIGHT.matches ? ThemeMode.Light : ThemeMode.Dark
-	applyCurrentTheme()
-})
 let hosts: ReactiveControllerHost[] = []
-applyCurrentTheme()
+forceRefresh()
+MEDIA_PREF_LIGHT.addEventListener("change", () => {
+	persisted.SetLightness(MEDIA_PREF_LIGHT.matches ? ThemeLightness.Light : ThemeLightness.Dark)
+	forceRefresh()
+})
 
 export class ThemeProvider implements ReactiveController {
 	constructor(private host: ReactiveControllerHost) { host.addController(this) }
 	hostConnected() { hosts.push(this.host) }
 	hostDisconnected() { hosts = hosts.filter(h => h !== this.host) }
-	private reapplyTheme() {
-		appendCssColors()
-		hosts.forEach(h => h.requestUpdate())
-	}
-
-	// Not the best name. Maybe call it 'brightness' or something?
-	GetMode = () => state.Mode
-	SetMode(m: ThemeMode) {
-		state.Mode = m
-		applyCurrentTheme() }
+	GetLightness = () => persisted.GetLightness()
+	SetLightness = (m: ThemeLightness) => { persisted.SetLightness(m); forceRefresh() }
 
 	// We only expose themes here to use their names
 	// Would be safer to only return names, but that complicates changing theme
-	GetThemeOptions() {
-		return state.Mode === ThemeMode.Light ? THEMES_LIGHT : THEMES_DARK }
-	SetTheme(o: ThemeSpecification) {
-		if (o.IsLight) { state.Light = o }
-		else           { state.Dark  = o }
-		applyCurrentTheme()
+	GetThemeOptions = () =>
+		persisted.GetLightness() === ThemeLightness.Light ? THEMES_LIGHT : THEMES_DARK
+	SetTheme = (o: ThemeSpecification) => {
+		if (o.IsLight) {
+			persisted.SetLight(o.CssName)
+			persisted.SetLightness(ThemeLightness.Light)
+		}
+		else {
+			persisted.SetDark(o.CssName)
+			persisted.SetLightness(ThemeLightness.Dark)
+		}
+		forceRefresh()
 	}
 
 	// ********** Theme Properties **********
 	GetColorsVariant = (variant: keyof ThemeColors) =>
-		getTheme().TokensColorTheme[variant]
+		persisted.GetTheme().TokensColorTheme[variant]
 	SetColorsVariant = (() => {
 		return (variant: keyof ThemeColors, key: keyof ColorRange, color: Color) => {
 			this.GetColorsVariant(variant)[key] = color
@@ -103,39 +105,38 @@ export class ThemeProvider implements ReactiveController {
 		}
 	})()
 
-	GetContrastBody = () => getTheme().ContrastBody
+	GetContrastBody = () => persisted.GetTheme().ContrastBody
 	SetContrastBody = (contrast: ThemeSpecification["ContrastBody"]) => {
-		getTheme().ContrastBody = contrast
-		this.reapplyTheme()
+		persisted.GetTheme().ContrastBody = contrast
+		forceRefresh()
 	}
 
-	GetContrastPanel = () => getTheme().ContrastPanel
-	SetContrastPanel  = (contrast: ThemeSpecification["ContrastPanel"]) => {
-		getTheme().ContrastPanel = contrast
-		this.reapplyTheme()
+	GetContrastPanel = () => persisted.GetTheme().ContrastPanel
+	SetContrastPanel = (contrast: ThemeSpecification["ContrastPanel"]) => {
+		persisted.GetTheme().ContrastPanel = contrast
+		forceRefresh()
 	}
 
-	GetContrastText = () => getTheme().ContrastText
-	SetContrastText  = (contrast: ThemeSpecification["ContrastText"]) => {
-		getTheme().ContrastText = contrast
-		this.reapplyTheme()
+	GetContrastText = () => persisted.GetTheme().ContrastText
+	SetContrastText = (contrast: ThemeSpecification["ContrastText"]) => {
+		persisted.GetTheme().ContrastText = contrast
+		forceRefresh()
 	}
 
 	// TODO replace Setter with a form option when creating new theme
 	// Changing light/dark on existing theme makes no sense
-	// Can then replace Getter with the existing mode getter
-	GetIsLight = () => getTheme().IsLight
+	GetIsLight = () => persisted.GetTheme().IsLight
 	SetIsLight = (isLight: boolean) => {
-		getTheme().IsLight = isLight
-		this.reapplyTheme()
+		persisted.GetTheme().IsLight = isLight
+		forceRefresh()
 	}
 
-	GetLabel = () => getTheme().Label
+	GetLabel = () => persisted.GetTheme().Label
 
-	// TODO move to theme
+	// TODO move state from provider variable to theme
 	GetGradient = () => gradient
 	SetGradient = (grad: string) => {
 		gradient = grad
-		this.reapplyTheme()
+		forceRefresh()
 	}
 }
