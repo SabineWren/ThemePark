@@ -26,7 +26,7 @@ const style = css`
 }
 `
 
-@customElement("gradient-divider")
+@customElement("sl-divider")
 class _class extends LitElement {
 	@property({ type: Boolean, reflect: true }) vertical = false
 	static override get styles() { return [Shared, style] }

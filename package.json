@@ -5,14 +5,13 @@
 		"lit": "2.4.0"
 	},
 	"devDependencies": {
-		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@rollup/plugin-node-resolve": "^15.0.0",
 		"@types/node": "^18.11.0",
 		"@typescript-eslint/eslint-plugin": "^5.33.1",
 		"@typescript-eslint/parser": "^5.33.1",
 		"eslint": "^8.22.0",
 		"eslint-plugin-import": "^2.26.0",
-		"rollup": "^2.78.2",
-		"rollup-plugin-terser": "^7.0.2",
+		"rollup": "^3.2.0",
 		"typescript": "^4.7.4"
 	},
 	"engines": {
@@ -24,5 +23,6 @@
 		"compile": "tsc -w --project tsconfig.json",
 		"compile-dist": "tsc --project tsconfig.json",
 		"lint": "eslint --ext .ts --config EslintConfig.js Front_End/"
-	}
+	},
+	"type": "module"
 }

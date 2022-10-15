@@ -2,7 +2,7 @@ import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 
-@customElement("menu-header")
+@customElement("ui-menu-header")
 class _class extends LitElement {
 	static override get styles() { return [Shared, css`
 :host {

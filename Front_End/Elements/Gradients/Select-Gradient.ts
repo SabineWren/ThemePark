@@ -36,9 +36,9 @@ class _class extends LitElement {
 		<sl-icon slot="suffix" name="caret-down-fill"></sl-icon>
 	</sl-button>
 	<sl-menu>
-		<menu-header>Aurora</menu-header>
+		<ui-menu-header>Aurora</ui-menu-header>
 		${AURORA.map(toMenuItem)}
-		<menu-header>Open Props</menu-header>
+		<ui-menu-header>Open Props</ui-menu-header>
 		${OPEN_PROPS.map(toMenuItem)}
 	</sl-menu>
 </sl-dropdown>`
