@@ -68,7 +68,7 @@ const variants = css`
 	height: fit-content;
 	border-radius: var(--border-radius);
 	padding: var(--sl-spacing-2x-small);
-	background: var(--gradient-1);
+	background: var(--tp-card-decorative-bg, var(--sl-color-primary-300));
 }
 :host([variant="outline"]) .card {
 	border: none;
