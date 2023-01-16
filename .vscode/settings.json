@@ -1,6 +1,6 @@
 {
 	"editor.insertSpaces": false,
-	"eslint.options": { "overrideConfigFile": "EslintConfig.js" },
+	"eslint.options": { "overrideConfigFile": "EslintConfig.cjs" },
 	"eslint.validate": ["typescript"],
 	"files.exclude": {
 		"**/bin": true,
