@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
-import { Shared, StyleToggleBtn } from "Elements/Style.js"
+import { Shared } from "Elements/Style.js"
 import { ThemeLightness, ThemeProvider } from "Providers/Theme.js"
 
 @customElement("theme-picker-dropdown")
@@ -27,21 +27,24 @@ export class ThemePickerDropdown extends LitElement {
 @customElement("theme-picker-switch")
 class _themeModeSwitch extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override styles = [Shared, StyleToggleBtn]
+	static override styles = [Shared]
 	override render() {
 		const lightness = this.themeProvider.GetLightness()
 		return html`
-<sl-button-group>
-	<sl-button variant="default"
-		?selected=${lightness === ThemeLightness.Light}
-		@click=${() => this.themeProvider.SetLightness(ThemeLightness.Light)}
+<sl-radio-group value=${lightness}
+	@sl-change=${(e: CustomEvent) => {
+		const group = e.currentTarget as SlRadioGroup
+		const lightness = Number.parseInt(group.value) as ThemeLightness
+		this.themeProvider.SetLightness(lightness)
+	}}>
+	<sl-radio-button
+		value=${ThemeLightness.Light}
 		><sl-icon name="sun"></sl-icon>
-	</sl-button>
-	<sl-button variant="default"
-		?selected=${lightness === ThemeLightness.Dark}
-		@click=${() => this.themeProvider.SetLightness(ThemeLightness.Dark)}
+	</sl-radio-button>
+	<sl-radio-button
+		value=${ThemeLightness.Dark}
 		><sl-icon name="moon"></sl-icon>
-	</sl-button>
-</sl-button-group>`
+	</sl-radio-button>
+</sl-radio-group>`
 	}
 }

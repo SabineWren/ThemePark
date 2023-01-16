@@ -1,6 +1,21 @@
 ## Theme Park
 A pre-alpha app for creating GUI themes and exporting them to a target platform. Currently supports Shoelace as the only platform target, but may eventually work more broadly.
 
+## Shoelace Replacements
+Shoelace elements expose internals as `parts` and require css rules to target. CSS rules don't pierce Shadow DOM, meaning each element has to import theme styling instead of solely relying on custom properties. Theme Park solves this by cloning several Shoelace elements with additional variants and color tokens.
+
+### Card
+Added Theme Park style variants (subtle, outline, decorative) and corresponding color tokens.
+
+### Divider
+Identical to Shoelace, except internally applies color to `background` instead of `border`. This lets the existing `--color` token apply gradients, whereas Shoelace restricts to solid colors.
+
+### Menu header
+New element! `<sl-menu-label>` looks like a disabled option instead of a header, so I use a custom `<sl-menu-header>` instead.
+
+### Radio Button
+The inset shadow makes it easier to distinguish the `selected` state, especially when only two options exist.
+
 ### TODO 1 - Gradients and Shadows
 - Add sample components that use drop shadows or gradients
 - Add gradient selection library
