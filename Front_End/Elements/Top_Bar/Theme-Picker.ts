@@ -16,9 +16,9 @@ export class ThemePickerDropdown extends LitElement {
 	<sl-menu
 		@sl-select=${(e: any) => this.theme.SetTheme(e.detail.item.theme)}>
 		${this.theme.GetThemeOptions().map(o => html`
-		<sl-menu-item ?checked=${o.Label === this.theme.GetLabel()}
-			.theme="${o}"
-			>${o.Label}
+		<sl-menu-item
+			type="checkbox" ?checked=${o.Label === this.theme.GetLabel()}
+			.theme="${o}">${o.Label}
 		</sl-menu-item>`)}
 	</sl-menu>
 </sl-dropdown>`

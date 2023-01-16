@@ -1,8 +1,6 @@
 import "@shoelace-style/shoelace/dist/components/button/button.js"
 import "@shoelace-style/shoelace/dist/components/button-group/button-group.js"
-import "Elements/UI/Shoelace_Overrides/Card.js"
 import "@shoelace-style/shoelace/dist/components/color-picker/color-picker.js"
-import "Elements/UI/Shoelace_Overrides/Divider.js"
 import "@shoelace-style/shoelace/dist/components/dropdown/dropdown.js"
 import "@shoelace-style/shoelace/dist/components/icon/icon.js"
 // import "@shoelace-style/shoelace/dist/components/icon-button/icon-button.js"
@@ -24,10 +22,12 @@ import "Elements/Color/ModeButtons.js"
 import "Elements/Color/Tab-Color-Editor.js"
 import "Elements/Color/Tab-Color-Editor-Group.js"
 import "Elements/Gradients/Select-Gradient.js"
+import "Elements/Shoelace/Card.js"
+import "Elements/Shoelace/Divider.js"
+import "Elements/Shoelace/Menu-Header.js"
 import "Elements/Top_Bar/Theme-Exporter.js"
 import "Elements/Top_Bar/Theme-Picker.js"
 import "Elements/Top_Bar/Top-Bar.js"
-import "Elements/UI/Menu-Header.js"
 
 // svg => svg.setAttribute("fill", "currentColor")
 // TODO link to theme.

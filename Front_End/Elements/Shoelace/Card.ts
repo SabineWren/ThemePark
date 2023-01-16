@@ -1,9 +1,9 @@
 import { classMap } from 'lit/directives/class-map.js'
 import { customElement, property } from "lit/decorators.js"
-import { HasSlotController } from '@shoelace-style/shoelace/dist/internal/slot'
+import { HasSlotController } from './internal/slot.js'
 import { css, html } from "lit"
-import ShoelaceElement from '@shoelace-style/shoelace/dist/internal/shoelace-element'
-import componentStyles from "@shoelace-style/shoelace/dist/styles/component.styles.js"
+import ShoelaceElement from './internal/shoelace-element.js'
+import componentStyles from "./internal/component.styles.js"
 
 const style = css`
 	${componentStyles}

@@ -8,7 +8,7 @@
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
 		"importHelpers": true,
-		"lib": ["ESNext", "dom"],
+		"lib": ["ESNext", "dom", "dom.iterable"],
 		// Future useful features (2022?): pipes, pattern matching
 		// Top level await when the eslint, rollup, and node support it
 		"module": "ES2020",

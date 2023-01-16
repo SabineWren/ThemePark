@@ -1,7 +1,7 @@
 import { css, LitElement } from "lit"
 import { customElement, property } from "lit/decorators.js"
-import componentStyles from "@shoelace-style/shoelace/dist/styles/component.styles.js"
-import { watch } from "@shoelace-style/shoelace/dist/internal/watch.js"
+import componentStyles from "./internal/component.styles.js"
+import { watch } from "./internal/watch.js"
 
 /**
  * @cssproperty --color - The color or CSS gradient of the divider.
@@ -12,10 +12,9 @@ const style = css`
 ${componentStyles}
 
 :host {
-	--color: var(--sl-panel-border-color);
 	--width: var(--sl-panel-border-width);
 	--spacing: var(--sl-spacing-medium);
-	background: var(--color);
+	background: var(--color, var(--sl-panel-border-color));
 }
 :host(:not([vertical])) {
 	display: block;

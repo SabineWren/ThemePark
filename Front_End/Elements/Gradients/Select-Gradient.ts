@@ -24,9 +24,9 @@ class _class extends LitElement {
 	static override styles = [Shared]
 	override render() {
 		const toMenuItem = (o: option) => html`
-<sl-menu-item ?checked=${o === this.selected}
-	.Option=${o}
-	>${o[0]}
+<sl-menu-item
+	type="checkbox" ?checked=${o === this.selected}
+	.Option=${o}>${o[0]}
 </sl-menu-item>`
 		return html`
 <sl-dropdown
