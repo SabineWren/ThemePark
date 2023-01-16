@@ -12,7 +12,7 @@ const style = css`
 `
 @customElement("app-root")
 class _ele extends LitElement {
-	static override get styles() { return [Shared, style] }
+	static override styles = [Shared, style]
 	override render() {
 		return html`
 <top-bar></top-bar>

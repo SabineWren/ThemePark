@@ -2,9 +2,7 @@ import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 
-@customElement("ui-menu-header")
-class _class extends LitElement {
-	static override get styles() { return [Shared, css`
+const style = css`
 :host {
 	display: block;
 	font-weight: 600;
@@ -19,7 +17,11 @@ sl-menu-label::part(base) {
 .line { height: 2px; width: var(--min-line-width); background: currentColor; }
 .left { flex: 0 0 var(--min-line-width); }
 .right { flex: 1 0 var(--min-line-width); }
-`] }
+`
+
+@customElement("ui-menu-header")
+class _class extends LitElement {
+	static override styles = [Shared, style]
 	override render = () => html`
 <sl-menu-label>
 	<div class="line left"></div>

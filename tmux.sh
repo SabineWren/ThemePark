@@ -16,7 +16,7 @@ sleep 0.1
 # Back End
 tmux send-keys -t $SESSION:0.0 "cd Web_Root/" ENTER
 tmux send-keys -t $SESSION:0.0 "pwd" ENTER
-tmux send-keys -t $SESSION:0.0 "php -S localhost:5000"
+tmux send-keys -t $SESSION:0.0 "php -S localhost:8000"
 # Bundle
 tmux send-keys -t $SESSION:0.1 "npm run bundle"
 # Compile

@@ -21,7 +21,7 @@ class _class extends LitElement {
 		this.selected = option
 		this.themeProvider.SetGradient(option[1])
 	}
-	static override get styles() { return [Shared] }
+	static override styles = [Shared]
 	override render() {
 		const toMenuItem = (o: option) => html`
 <sl-menu-item ?checked=${o === this.selected}

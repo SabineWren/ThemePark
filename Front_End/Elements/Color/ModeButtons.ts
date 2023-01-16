@@ -6,7 +6,7 @@ import { ThemeProvider } from "Providers/Theme.js"
 @customElement("mode-theme-type")
 class _lightDark extends LitElement {
 	private theme = new ThemeProvider(this)
-	static override get styles() { return [Shared, StyleToggleBtn] }
+	static override styles = [Shared, StyleToggleBtn]
 	override render = () => html`
 <div class="toggle-btn"
 	>Theme Type
@@ -26,7 +26,7 @@ class _lightDark extends LitElement {
 @customElement("mode-contrast-body")
 class _body extends LitElement {
 	private theme = new ThemeProvider(this)
-	static override get styles() { return [Shared, StyleToggleBtn] }
+	static override styles = [Shared, StyleToggleBtn]
 	override render = () => html`
 <div class="toggle-btn"
 	>Body Contrast
@@ -43,7 +43,7 @@ class _body extends LitElement {
 @customElement("mode-contrast-panel")
 class _panel extends LitElement {
 	private theme = new ThemeProvider(this)
-	static override get styles() { return [Shared, StyleToggleBtn] }
+	static override styles = [Shared, StyleToggleBtn]
 	override render() {
 		return html`
 <div class="toggle-btn"
@@ -62,7 +62,7 @@ class _panel extends LitElement {
 @customElement("mode-contrast-text")
 class _text extends LitElement {
 	private theme = new ThemeProvider(this)
-	static override get styles() { return [Shared, StyleToggleBtn] }
+	static override styles = [Shared, StyleToggleBtn]
 	override render = () => html`
 <div class="toggle-btn"
 	>Text Contrast

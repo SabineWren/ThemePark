@@ -6,7 +6,7 @@ import { GetThemeCss } from "Providers/Theme.js"
 @customElement("theme-exporter")
 class _ele extends LitElement {
 	@property({ reflect: true }) variant: keyof ThemeColors
-	static override get styles() { return [Shared] }
+	static override styles = [Shared]
 	override render() {
 		return html`
 <sl-button-group>

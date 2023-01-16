@@ -71,7 +71,7 @@ class _ele extends LitElement {
 	// sl-color-picker overrides the initial value with white
 	// Need to use the 'live' directive and reset the value on 2nd render
 	protected override firstUpdated(_: any): void { this.requestUpdate() }
-	static override get styles() { return [Shared, style] }
+	static override styles = [Shared, style]
 	override render() {
 		const colors = this.themeProvider.GetColorsVariant(this.variant)
 		const baseColors = Object.entries(colors).map(([k,c]) =>

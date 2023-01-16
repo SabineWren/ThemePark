@@ -36,7 +36,7 @@ class _ele extends LitElement {
 			this.lastVariant = e.detail.name }
 		this.requestUpdate()
 	}
-	static override get styles() { return [Shared, style] }
+	static override styles = [Shared, style]
 	override render() {
 		const isOutline = this.previewState.GetIsOutline()
 		const isCollapsed = $<SlTab>(this, "#hide-colors")?.active ?? false

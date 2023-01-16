@@ -6,7 +6,7 @@ import { ThemeLightness, ThemeProvider } from "Providers/Theme.js"
 @customElement("theme-picker-dropdown")
 export class ThemePickerDropdown extends LitElement {
 	private theme = new ThemeProvider(this)
-	static override get styles() { return [Shared] }
+	static override styles = [Shared]
 	override render = () => html`
 <sl-dropdown>
 	<sl-button slot="trigger"
@@ -27,7 +27,7 @@ export class ThemePickerDropdown extends LitElement {
 @customElement("theme-picker-switch")
 class _themeModeSwitch extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override get styles() { return [Shared, StyleToggleBtn] }
+	static override styles = [Shared, StyleToggleBtn]
 	override render() {
 		const lightness = this.themeProvider.GetLightness()
 		return html`

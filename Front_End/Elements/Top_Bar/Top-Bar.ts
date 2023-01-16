@@ -3,11 +3,11 @@ import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { PreviewState } from "Providers/PreviewState.js"
 
+
 @customElement("top-bar")
 class _ele extends LitElement {
 	private previewState = new PreviewState(this)
-	static override get styles() { return [Shared,
-		css`:host { display: flex; }`] }
+	static override styles = [Shared, css`:host { display: flex; }`]
 	override render() {
 		return html`
 <sl-button variant="default" href="https://shoelace.style/" target="_blank"

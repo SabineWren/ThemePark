@@ -15,7 +15,10 @@ sl-card {
 	--gradientDegree: 135deg;
 }
 
-sl-card:is(.subtle,.outline) {
+sl-card[variant="subtle"]::part(base) {
+	box-shadow: 1px 2px 4px 0 var(--hsla-start), 4px 8px 14px 2px var(--hsla-end);
+}
+:is(sl-card[variant="subtle"], sl-card[variant="outline"]) {
 	--start: 52, 86%, 54%;
 	--end: 9, 100%, 67%;
 	--alpha: 20%;
@@ -26,35 +29,11 @@ sl-card:is(.subtle,.outline) {
 }
 
 /* TODO move this to theme customization */
-sl-card:is(.subtle,.outline) :is(h1,h2,h3,h4,strong) {
+:is(sl-card[variant="subtle"], sl-card[variant="outline"]) :is(h1,h2,h3,h4,strong) {
 	color: transparent;
 	background: linear-gradient(var(--gradientDegree),var(--hsl-start) 0,var(--hsl-end) 100%);
 	background-clip: text;
 	-webkit-background-clip: text;
-}
-
-sl-card.subtle::part(base) {
-	box-shadow: 1px 2px 4px 0 var(--hsla-start), 4px 8px 14px 2px var(--hsla-end);
-}
-
-sl-card.outline {
-	height: fit-content;
-	border-radius: var(--border-radius);
-	padding: var(--sl-spacing-2x-small);
-	background: var(--gradient-1); }
-sl-card.outline::part(base) {
-	border: none; }
-
-sl-card.decorative {
-	--icon-fill: currentColor;
-	background: var(--card-decorative-bg); }
-sl-card.decorative::part(header) {
-	border: none; }
-sl-card.decorative::part(base) {
-	color: var(--sl-color-neutral-1000);
-	background: transparent;
-	backdrop-filter: blur(5px);
-	border: none;
 }
 `
 /*
@@ -68,7 +47,7 @@ TODO type CardOptions = {
 
 @customElement("card-group")
 class _ele extends LitElement {
-	static override get styles() { return [Shared, style] }
+	static override styles = [Shared, style]
 	override render() {
 		const sampleText = () => html`<p>Lorem ipsum dolor sit amet, consectetur <strong>adipiscing elit</strong>, sed do eiusmod <strong>tempor incididunt</strong> ut labore et dolore magna aliqua.</p>`
 		return html`
@@ -79,7 +58,7 @@ class _ele extends LitElement {
 </div>
 
 <div style="display: inline-flex; gap: 2rem; flex-wrap: wrap;">
-	<sl-card class="subtle">
+	<sl-card variant="subtle">
 		<div slot="header" style="display: flex; align-items: center;">
 			<h4 style="flex-grow: 1;">Subtle</h4>
 			<sl-tooltip>
@@ -97,7 +76,7 @@ class _ele extends LitElement {
 		${sampleText()}
 	</sl-card>
 
-	<sl-card class="outline">
+	<sl-card variant="outline">
 		<div slot="header" style="display: flex; align-items: center;">
 			<h4 style="flex-grow: 1;">Outline</h4>
 			<sl-tooltip>
@@ -115,7 +94,7 @@ class _ele extends LitElement {
 		${sampleText()}
 	</sl-card>
 
-	<sl-card class="decorative">
+	<sl-card variant="decorative">
 		<div slot="header" style="display: flex; align-items: center;">
 			<h4 style="flex-grow: 1;">Decorative</h4>
 			<sl-tooltip>
