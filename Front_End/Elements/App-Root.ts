@@ -56,7 +56,6 @@ class _ele extends LitElement {
 <top-bar></top-bar>
 
 <div class="centre" style="display: inline-flex; gap: 2rem;">
-	<mode-theme-type></mode-theme-type>
 	<mode-contrast-body></mode-contrast-body>
 	<mode-contrast-panel></mode-contrast-panel>
 	<mode-contrast-text></mode-contrast-text>

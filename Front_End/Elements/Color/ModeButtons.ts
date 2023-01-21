@@ -3,24 +3,6 @@ import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 
-@customElement("mode-theme-type")
-class _lightDark extends LitElement {
-	private theme = new ThemeProvider(this)
-	static override styles = [Shared]
-	override render = () => html`
-<sl-radio-group
-	label="Theme Type"
-	value="${this.theme.GetIsLight() ? "light" : "dark"}"
-	@sl-change=${(e: CustomEvent) => {
-		const option = (e.currentTarget as SlRadioGroup).value as "light" | "dark"
-		this.theme.SetIsLight(option === "light")
-	}}>
-	<sl-radio-button value="light">Light</sl-radio-button>
-	<sl-radio-button value="dark">Dark</sl-radio-button>
-</sl-radio-group>
-`
-}
-
 @customElement("mode-contrast-body")
 class _body extends LitElement {
 	private theme = new ThemeProvider(this)

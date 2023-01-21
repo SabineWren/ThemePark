@@ -123,13 +123,13 @@ export class ThemeProvider implements ReactiveController {
 		forceRefresh()
 	}
 
-	// TODO replace Setter with a form option when creating new theme
+	// TODO Create a form option when creating new theme
 	// Changing light/dark on existing theme makes no sense
 	GetIsLight = () => persisted.GetTheme().IsLight
-	SetIsLight = (isLight: boolean) => {
+	/* SetIsLight = (isLight: boolean) => {
 		persisted.GetTheme().IsLight = isLight
 		forceRefresh()
-	}
+	}*/
 
 	GetLabel = () => persisted.GetTheme().Label
 
