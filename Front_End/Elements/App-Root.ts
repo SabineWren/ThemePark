@@ -6,9 +6,20 @@ const style = css`
 :host {
 	height: 100vw; width: 100%;
 	display: flex; flex-direction: column; gap: 1.5rem;
+
+	--sl-transition-medium: 200ms;
+	/* SVG icons TODO move to theme
+	* https://shoelace.style/components/icon?id=icon-libraries
+	* We set it here so we can override it later with a gradient URL as needed.
+	* Only used if explicitly set by the app when registering icon libraries */
+	--icon-gradient-start: var(--sl-color-primary-400);
+	--icon-gradient-end: var(--sl-color-primary-800);
+	--icon-fill: currentColor;
+	--icon-fill: url(#global-svg-gradient);
 }
 .centre {
-	margin-left: auto; margin-right: auto; }
+	margin-left: auto; margin-right: auto;
+}
 `
 
 const cards = css`
@@ -30,6 +41,9 @@ sl-card[variant="subtle"]::part(base) {
 	--hsla-start: hsla(var(--start), var(--alpha));
 	--hsla-end: hsla(var(--end), var(--alpha));
 }
+
+h1, h2, h3, h4, p { margin: 0; margin-bottom: 0.5rem; }
+p:last-child { margin-bottom: 0; }
 
 /* TODO move this to theme customization */
 :is(sl-card[variant="subtle"], sl-card[variant="outline"]) :is(h1,h2,h3,h4,strong) {

@@ -50,5 +50,5 @@ const regIconLib = (libName: string, dirName: string) =>
 		mutator: applyGradientFill,
 	})
 regIconLib("custom", "custom")
-regIconLib("fa", "fa")
-regIconLib("default", "icons")
+regIconLib("fa", "font-awesome")
+regIconLib("default", "bootstrap")
