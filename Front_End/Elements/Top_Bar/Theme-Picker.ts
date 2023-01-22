@@ -1,4 +1,4 @@
-import { html, LitElement } from "lit"
+import { css, html, LitElement } from "lit"
 import { customElement } from "lit/decorators.js"
 import { Shared } from "Elements/Style.js"
 import { ThemeLightness, ThemeProvider } from "Providers/Theme.js"
@@ -27,7 +27,8 @@ export class ThemePickerDropdown extends LitElement {
 @customElement("theme-picker-switch")
 class _themeModeSwitch extends LitElement {
 	private themeProvider = new ThemeProvider(this)
-	static override styles = [Shared]
+	// pointer-events workaround until shoelace v89 fixes icons
+	static override styles = [Shared, css`sl-icon { pointer-events: none; }`]
 	override render() {
 		const lightness = this.themeProvider.GetLightness()
 		return html`
