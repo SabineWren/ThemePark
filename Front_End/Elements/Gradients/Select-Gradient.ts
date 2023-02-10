@@ -4,7 +4,7 @@ import { Shared } from "Elements/Style.js"
 import { ThemeProvider } from "Providers/Theme.js"
 
 const AURORA = [
-	[`Drazi Dark`, `url("/aurora/aurora-corners.svg")`],
+	[`Drazi Dark`, `url("./aurora/aurora-corners.svg")`],
 ] as const
 const OPEN_PROPS = [
 	[`Open Props 1`, `var(--gradient-1)`],

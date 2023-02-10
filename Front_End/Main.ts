@@ -46,7 +46,7 @@ const applyGradientFill = (svg: SVGElement) => {
 
 const regIconLib = (libName: string, dirName: string) =>
 	registerIconLibrary(libName, {
-		resolver: name => `/assets/${dirName}/${name}.svg`,
+		resolver: name => `./assets/${dirName}/${name}.svg`,
 		mutator: applyGradientFill,
 	})
 regIconLib("custom", "custom")

@@ -5,7 +5,8 @@ import { PluginInjectHashIntoHtml } from "./InjectHash.js"
 
 const PATH = Object.freeze({
 	Dist_Dir: "Web_Root/dist/",
-	Html_Template: "Front_End/index.html",
+	Root_Dir: "Web_Root/",
+	Html_Template: "Front_End/index_template.html",
 })
 const FORMAT = "esm"// https://rollupjs.org/guide/en/#outputformat
 const RESOLVE_OPTIONS: RollupNodeResolveOptions = Object.freeze({
@@ -39,7 +40,7 @@ export default (async () => {
 			PluginCleanOldFiles(PATH.Dist_Dir, "Main"),
 			nodeResolve(RESOLVE_OPTIONS),
 			//...pluginMinify ? [pluginMinify.terser()] : [],
-			PluginInjectHashIntoHtml(PATH.Html_Template, PATH.Dist_Dir, ["Main"]),
+			PluginInjectHashIntoHtml(PATH.Html_Template, PATH.Root_Dir, ["Main"]),
 		],
 		// We always use a hash, so we don't get facades anyway
 		preserveEntrySignatures: "strict",

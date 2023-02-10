@@ -50,7 +50,7 @@ const persisted = (() => {
 })()
 
 // TODO move state from provider variable to theme
-let gradient = `url("/aurora/aurora-corners.svg")`
+let gradient = `url("./aurora/aurora-corners.svg")`
 
 export const GetThemeCss = () => ThemeToCss(persisted.GetTheme(), gradient).cssText
 const appendCssColors = ThrottleFactory(() => {
